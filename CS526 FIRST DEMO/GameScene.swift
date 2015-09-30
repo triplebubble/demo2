@@ -35,7 +35,6 @@ class GameScene: SKScene {
     var maxAspectRatio = CGFloat()
     var playableMargin = CGFloat()
     var maxAspectRatioWidth = CGFloat()
-    //    let background = SKSpriteNode(imageNamed: "testbackground")
     let charater = SKSpriteNode(imageNamed: "worker")
     override init(size: CGSize) {
         gameState = .GameRunning
@@ -83,15 +82,7 @@ class GameScene: SKScene {
             Lifebar.color = UIColor.redColor()
         }
         switch(gameState){
-            case (.GameOver):
-                if !(gameOverLabel.parent != nil) {
-                    gemLayerNode.removeAllChildren()
-                    UIlayerNode.removeAllChildren()
-                    chararterLayerNode.removeAllChildren()
-                    resultLable.text = "Your score is \(score)"
-                    UIlayerNode.addChild(resultLable)
-                    UIlayerNode.addChild(gameOverLabel)
-                }
+        case (.GameOver): restartGame(size, gameover: gameOverLabel, result: resultLable)
             default: break
         }
     }
@@ -99,17 +90,15 @@ class GameScene: SKScene {
         if(gameState == .GameOver) {
 //            restartGame();
         } else {
-            let touch = touches.first! as UITouch
-            let touchLocation = touch.locationInNode(chararterLayerNode)
-            lastTouchPosition = moveCharacter(charater.position, touchPosition: touchLocation)
-            moveCharaterToward(lastTouchPosition!)
+            if(charater.position.x == size.width/2 || charater.position.x == size.width/3*2 || charater.position.x == size.width/3){
+                let touch = touches.first! as UITouch
+                let touchLocation = touch.locationInNode(chararterLayerNode)
+                lastTouchPosition = moveCharacter(charater.position, touchPosition: touchLocation)
+                moveCharaterToward(lastTouchPosition!)
+            }
         }
     }
     func setupSceneLayer() {
-//        background.zPosition = -1
-//        background.anchorPoint = CGPointZero
-//        background.position = CGPointZero
-//        backgroundLayerNode.addChild(background)
         addChild(backgroundLayerNode)
         addChild(chararterLayerNode)
         addChild(UIlayerNode)
@@ -141,7 +130,7 @@ class GameScene: SKScene {
         Lifebar.anchorPoint = CGPointZero
         Lifebar.position = CGPoint(x: playableMargin, y: size.height - UIbackgroundHeight)
         Lifebar.color = UIColor.greenColor()
-        LifeLosing = SKAction.scaleXTo(0, duration: 5)
+        LifeLosing = SKAction.scaleXTo(0, duration: 30)
         Lifebar.runAction(LifeLosing)
         UIlayerNode.addChild(Lifebar)
         gameOverLabel.name = "gameOverLabel"
@@ -149,8 +138,7 @@ class GameScene: SKScene {
         gameOverLabel.fontColor = SKColor.blackColor()
         gameOverLabel.horizontalAlignmentMode = .Center
         gameOverLabel.verticalAlignmentMode = .Center
-        gameOverLabel.position = CGPointMake(size.width / 2,
-            size.height / 2 + 50)
+        gameOverLabel.position = CGPointMake(size.width / 2, size.height / 2 + 50)
         gameOverLabel.zPosition = 60
         gameOverLabel.text = "GAME OVER"
         resultLable.name = "resultLable"
@@ -159,8 +147,8 @@ class GameScene: SKScene {
         resultLable.fontColor = SKColor.blackColor()
         resultLable.horizontalAlignmentMode = .Center
         resultLable.verticalAlignmentMode = .Center
-        resultLable.position = CGPointMake(size.width / 2,
-            size.height / 2 - 50)
+        resultLable.position = CGPointMake(size.width / 2, size.height / 2 - 50)
+
     }
     func setupSceneLayerAgain() {
         charater.position = CGPoint(x: size.width/2, y: 1/5*size.height)
@@ -259,11 +247,11 @@ class GameScene: SKScene {
         runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(gemfall2),SKAction.waitForDuration(3.0)])))
         runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(gemfall3),SKAction.waitForDuration(3.0)])))
     }
-    func restartGame(){
-        gameState = .GameRunning
-        gameOverLabel.removeFromParent()
-        resultLable.removeFromParent()
-        setupSceneLayerAgain()
-        setupGemAction()
+    func restartGame(size: CGSize, gameover: SKLabelNode, result: SKLabelNode){
+        result.text = "Your Score is \(score)"
+        let gameoverscene = GameOverScene(size: size, gameover: gameOverLabel, result: resultLable)
+        gameoverscene.scaleMode = scaleMode
+        let reveal = SKTransition.fadeWithDuration(0.5)
+        view?.presentScene(gameoverscene, transition: reveal)
     }
 }

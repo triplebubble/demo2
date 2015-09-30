@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE5B49F51BBB8A4000E4DBA4 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */; settings = {ASSET_TAGS = (); }; };
 		CEC6D5811BAA6E0C00F9DA7F /* Diamond-100.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC6D5801BAA6E0C00F9DA7F /* Diamond-100.png */; settings = {ASSET_TAGS = (); }; };
 		CED065B91BAB871700C9CBAC /* worker.png in Resources */ = {isa = PBXBuildFile; fileRef = CED065B81BAB871700C9CBAC /* worker.png */; settings = {ASSET_TAGS = (); }; };
 		CED065BB1BABA5BC00C9CBAC /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED065BA1BABA5BC00C9CBAC /* MyUtils.swift */; settings = {ASSET_TAGS = (); }; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		CEC6D5801BAA6E0C00F9DA7F /* Diamond-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Diamond-100.png"; sourceTree = "<group>"; };
 		CED065B81BAB871700C9CBAC /* worker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = worker.png; sourceTree = "<group>"; };
 		CED065BA1BABA5BC00C9CBAC /* MyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				CE6B01E01BABCEE000429C1F /* Sound */,
 				CEF066381BA8EF1200927C86 /* image */,
 				CEF066181BA8EB1500927C86 /* GameScene.swift */,
+				CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */,
 				CED065BA1BABA5BC00C9CBAC /* MyUtils.swift */,
 				CEF0661A1BA8EB1500927C86 /* GameViewController.swift */,
 				CEF0661F1BA8EB1500927C86 /* Images.xcassets */,
@@ -248,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE5B49F51BBB8A4000E4DBA4 /* GameOverScene.swift in Sources */,
 				CEF066191BA8EB1500927C86 /* GameScene.swift in Sources */,
 				CEF0661B1BA8EB1500927C86 /* GameViewController.swift in Sources */,
 				CEF066151BA8EB1500927C86 /* AppDelegate.swift in Sources */,
