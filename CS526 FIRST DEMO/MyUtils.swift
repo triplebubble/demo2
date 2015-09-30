@@ -10,6 +10,7 @@ import Foundation
 import CoreGraphics
 import AVFoundation
 
+
 var backgroundMusicPlayer: AVAudioPlayer!
 func playBackGroundMusic(filename: String) {
     let url = NSBundle.mainBundle().URLForResource(filename, withExtension: nil)
@@ -33,6 +34,10 @@ func playBackGroundMusic(filename: String) {
     backgroundMusicPlayer.play()
 }
 
+func randomInRange(range: Range<Int>) ->Int {
+    let count = UInt32(range.endIndex - range.startIndex)
+    return Int(arc4random_uniform(count)) + range.startIndex
+}
 
 func + (left: CGPoint, right: CGPoint) -> CGPoint {
     return CGPoint(x: left.x + right.x, y: left.y + right.y)
@@ -130,4 +135,5 @@ extension CGFloat {
         return CGFloat.random() * (max - min) + min
     }
 }
+
 
