@@ -22,11 +22,13 @@ class GameScene: SKScene {
     var dt : NSTimeInterval = 0
     var lastUpdateTime : NSTimeInterval = 0
     var lastTouchPosition = CGPoint?()
-    let characterMovePointsPerSec : CGFloat =  800
+    let characterMovePointsPerSec : CGFloat =  1200
     var velocity = CGPointZero
     let UIlayerNode = SKNode()
+    let CollectionLayerNode = SKNode()
     var scoreLabel = SKLabelNode(fontNamed: "Arial")
     let UIbackgroundHeight: CGFloat = 90
+    let collectionBackgroundHeight: CGFloat = 30
     var Lifebar = SKSpriteNode()
     var LifeLosing = SKAction()
     var gameState = GameState.GameRunning;
@@ -36,6 +38,12 @@ class GameScene: SKScene {
     var playableMargin = CGFloat()
     var maxAspectRatioWidth = CGFloat()
     let charater = SKSpriteNode(imageNamed: "worker")
+    var swipe = CGVector()
+    var collectLeft = SKSpriteNode()
+    var collectRight = SKSpriteNode()
+    var collectMid = SKSpriteNode()
+    var collectSize = CGSize()
+    var collectSet = [SKSpriteNode]()
     //set the swipe length
     var touchLocation = CGPointZero
     override init(size: CGSize) {
@@ -88,33 +96,9 @@ class GameScene: SKScene {
             default: break
         }
     }
-//    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-////        if(charater.position.x == size.width/2 || charater.position.x == size.width/3*2 || charater.position.x == size.width/3){
-//            let touch = touches.first! as UITouch
-//            let touchLocation = touch.locationInNode(chararterLayerNode)
-////            lastTouchPosition = moveCharacter(charater.position, touchPosition: touchLocation)
-////            moveCharaterToward(lastTouchPosition!)
-////       r }
-//    }
-//    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-//        let touch = touches.first! as UITouch
-////        let location = touch.locationInNode(characterLayerNode)
-//        let location = touch.locationInNode(chararterLayerNode)
-//        let touchThreshold: CGFloat = 10
-//        let swipe = CGVector(dx: location.x-touchLocation.x, dy: location.y-touchLocation.y)
-//        if sqrt(swipe.dx*swipe.dx+swipe.dy+swipe.dy)>touchThreshold
-//       {
-//            lastTouchPosition = moveCharacter(charater.position, touchPosition: location)
-//            moveCharaterToward(lastTouchPosition!)
-//
-//        }
-//    }
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first! as UITouch
-        let location = touch.locationInNode(chararterLayerNode)
-        touchLocation = location
-        //        touchTime = CACurrentTime()
-        
+        touchLocation = touch.locationInNode(chararterLayerNode)
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -123,11 +107,13 @@ class GameScene: SKScene {
         //        if CACurrentMediaTime() - touchTime < TouchTimeThreshold
         let touch = touches.first! as UITouch
         let location = touch.locationInNode(chararterLayerNode)
-        let swipe = CGVector(dx:location.x - touchLocation.x,dy:location.y - touchLocation.y)
+        swipe = CGVector(dx:location.x - touchLocation.x,dy:location.y - touchLocation.y)
         let swipeLength = sqrt(swipe.dx * swipe.dx + swipe.dy * swipe.dy)
-        if( swipeLength > touchDistanceThreshold){
-            lastTouchPosition = moveCharacter(charater.position, touchPosition: location)
-            moveCharaterToward(lastTouchPosition!)
+        if(swipeLength > touchDistanceThreshold) {
+            if((swipe.dx>0 && charater.position.x < size.width/3*2)||(swipe.dx<0 && charater.position.x > size.width/3)) {
+                lastTouchPosition = moveCharacter()
+                moveCharaterToward(lastTouchPosition!)
+            }
         }
     }
 
@@ -136,7 +122,10 @@ class GameScene: SKScene {
         addChild(chararterLayerNode)
         addChild(UIlayerNode)
         addChild(gemLayerNode)
+        addChild(CollectionLayerNode)
         setupUI()
+        setUpCollection()
+        SetUpCollectionColor()
         backgroundColor = SKColor.grayColor()
     }
     func setupUI() {
@@ -149,7 +138,14 @@ class GameScene: SKScene {
         UIbackground.anchorPoint = CGPointZero
         UIbackground.position = CGPoint(x: 0, y: size.height - UIbackgroundHeight)
         UIbackground.zPosition = 20
+        let collectionSize = CGSize(width: size.width, height: collectionBackgroundHeight)
+        let collectionbackground = SKSpriteNode(color: UIColor.blackColor(), size: collectionSize)
+        collectionbackground.anchorPoint = CGPointZero
+        collectionbackground.position = CGPoint(x: 0, y: size.height - UIbackgroundHeight - collectionBackgroundHeight)
+        collectionbackground.zPosition = 20
         UIlayerNode.addChild(UIbackground)
+        CollectionLayerNode.addChild(collectionbackground)
+        
         scoreLabel.fontColor = UIColor.grayColor();
         scoreLabel.text = "Score: 0 "
         scoreLabel.name = "scoreLabel"
@@ -163,7 +159,7 @@ class GameScene: SKScene {
         Lifebar.anchorPoint = CGPointZero
         Lifebar.position = CGPoint(x: playableMargin, y: size.height - UIbackgroundHeight)
         Lifebar.color = UIColor.greenColor()
-        LifeLosing = SKAction.scaleXTo(0, duration: 30)
+        LifeLosing = SKAction.scaleXTo(0, duration: 30) // times
         Lifebar.runAction(LifeLosing)
         UIlayerNode.addChild(Lifebar)
         gameOverLabel.name = "gameOverLabel"
@@ -181,57 +177,32 @@ class GameScene: SKScene {
         resultLable.horizontalAlignmentMode = .Center
         resultLable.verticalAlignmentMode = .Center
         resultLable.position = CGPointMake(size.width / 2, size.height / 2 - 50)
-
     }
-    func setupSceneLayerAgain() {
-        charater.position = CGPoint(x: size.width/2, y: 1/5*size.height)
-        chararterLayerNode.addChild(charater)
-        let backgroundSize = CGSize(width: size.width, height: UIbackgroundHeight)
-        let UIbackground = SKSpriteNode(color: UIColor.blackColor(), size: backgroundSize)
-        UIbackground.anchorPoint = CGPointZero
-        UIbackground.position = CGPoint(x: 0, y: size.height - UIbackgroundHeight)
-        UIbackground.zPosition = 20
-        UIlayerNode.addChild(UIbackground)
-        scoreLabel.fontColor = UIColor.grayColor();
-        scoreLabel.text = "Score: 0"
-        score = 0
-        UIlayerNode.addChild(scoreLabel)
-        Lifebar.size = CGSizeMake(size.width - playableMargin*2, 10)
-        UIlayerNode.addChild(Lifebar)
-        Lifebar.color = UIColor.greenColor()
-        LifeLosing = SKAction.scaleXTo(0, duration: 30)
-        Lifebar.runAction(LifeLosing)
+    func setUpCollection() {
+        collectSize = CGSize(width: (size.width-2*playableMargin-20)/3, height: 20)
+        collectLeft.size = collectSize
+        collectLeft.anchorPoint = CGPointZero
+        collectLeft.position = CGPoint(x: playableMargin + 5, y: size.height - UIbackgroundHeight - collectionBackgroundHeight + 5)
+        collectLeft.zPosition = 60
+        CollectionLayerNode.addChild(collectLeft)
+        collectMid.size = collectSize
+        collectMid.anchorPoint = CGPointZero
+        collectMid.position = CGPoint(x: playableMargin + 10 + collectSize.width, y: size.height - UIbackgroundHeight - collectionBackgroundHeight + 5)
+        collectMid.zPosition = 60
+        CollectionLayerNode.addChild(collectMid)
+        collectRight.size = collectSize
+        collectRight.anchorPoint = CGPointZero
+        collectRight.position = CGPoint(x: playableMargin + 15 + 2 * collectSize.width, y: size.height - UIbackgroundHeight - collectionBackgroundHeight + 5)
+        collectRight.zPosition = 60
+        CollectionLayerNode.addChild(collectRight)
+        collectSet.append(collectLeft)
+        collectSet.append(collectMid)
+        collectSet.append(collectRight)
     }
-    func gemfall1(){
-        let yellowGem = SKSpriteNode(imageNamed: "Diamond-100.png")
-        yellowGem.name = "yellowGem"
-        yellowGem.zPosition = 10
-        yellowGem.position = CGPoint(x: size.width/2, y: size.height + CGFloat(yellowGem.size.height))
-        gemLayerNode.addChild(yellowGem)
-        let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: -size.height-CGFloat(yellowGem.size.height)), duration: 5)
-        let remove = SKAction.removeFromParent()
-        yellowGem.runAction(SKAction.sequence([testActinon, remove]))
-        
-    }
-    func gemfall2(){
-        let yellowGem = SKSpriteNode(imageNamed: "Diamond-100.png")
-        yellowGem.name = "yellowGem"
-        yellowGem.zPosition = 10
-        yellowGem.position = CGPoint(x: size.width/3, y: size.height + CGFloat(yellowGem.size.height))
-        gemLayerNode.addChild(yellowGem)
-        let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: -size.height-CGFloat(yellowGem.size.height)), duration: 1)
-        let remove = SKAction.removeFromParent()
-        yellowGem.runAction(SKAction.sequence([testActinon, remove]))
-    }
-    func gemfall3(){
-        let yellowGem = SKSpriteNode(imageNamed: "Diamond-100.png")
-        yellowGem.name = "yellowGem"
-        yellowGem.zPosition = 10
-        yellowGem.position = CGPoint(x: size.width/3*2, y: size.height + CGFloat(yellowGem.size.height))
-        gemLayerNode.addChild(yellowGem)
-        let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: -size.height-CGFloat(yellowGem.size.height)), duration: 1)
-        let remove = SKAction.removeFromParent()
-        yellowGem.runAction(SKAction.sequence([testActinon, remove]))
+    func SetUpCollectionColor() {
+        for var collect in collectSet {
+            collect = generateColor(collect, num: randomInRange(1...5))
+        }
     }
     func gemfall() {
         let yellowGem = SKSpriteNode(imageNamed: "Diamond-100.png")
@@ -246,7 +217,7 @@ class GameScene: SKScene {
             yellowGem.position = CGPoint(x: size.width/3*2, y: size.height + CGFloat(yellowGem.size.height))
         }
         gemLayerNode.addChild(yellowGem)
-        let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: -size.height-CGFloat(yellowGem.size.height)), duration: 1)
+        let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: -size.height-CGFloat(yellowGem.size.height)), duration: 1.5)
         let remove = SKAction.removeFromParent()
         yellowGem.runAction(SKAction.sequence([testActinon, remove]))
     }
@@ -269,13 +240,13 @@ class GameScene: SKScene {
         increaseScoreBy(250)
     }
     
-    func moveCharacter(position: CGPoint, touchPosition: CGPoint) ->CGPoint{
+    func moveCharacter() ->CGPoint{
         if(velocity == CGPointZero) {
-            if((touchPosition.x > position.x)&&(position.x < size.width/3*2)){
-                return CGPoint(x: charater.position.x + size.width/6, y: position.y)
+            if(swipe.dx>0 && charater.position.x < size.width/3*2){
+                return CGPoint(x: charater.position.x + size.width/6, y: size.height/5)
             }
-            if((touchPosition.x < position.x)&&(position.x > size.width/3)){
-                return CGPoint(x: charater.position.x-size.width/6, y: position.y)
+            if(swipe.dx<0 && charater.position.x > size.width/3) {
+                return CGPoint(x: charater.position.x-size.width/6, y: size.height/5)
             }
         }
         return position
@@ -294,7 +265,8 @@ class GameScene: SKScene {
         scoreLabel.text = "Score: \(score)"
     }
     func setupGemAction(){
-        runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(gemfall),SKAction.waitForDuration(2.0)])))
+        runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(gemfall),SKAction.waitForDuration(0.3)])))
+        runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(gemfall),SKAction.waitForDuration(1)])))
     }
     func restartGame(size: CGSize, gameover: SKLabelNode, result: SKLabelNode){
         result.text = "Your Score is \(score)"
@@ -302,5 +274,15 @@ class GameScene: SKScene {
         gameoverscene.scaleMode = scaleMode
         let reveal = SKTransition.fadeWithDuration(0.5)
         view?.presentScene(gameoverscene, transition: reveal)
+    }
+    func generateColor(collect: SKSpriteNode, num: Int) -> SKSpriteNode {
+        switch num {
+            case 1 : collect.color = UIColor.greenColor()
+            case 2 : collect.color = UIColor.blueColor()
+            case 3 : collect.color = UIColor.purpleColor()
+            case 4 : collect.color = UIColor.yellowColor()
+            default : collect.color = UIColor.redColor()
+        }
+        return collect
     }
 }
