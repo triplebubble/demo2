@@ -44,6 +44,14 @@ class GameScene: SKScene {
     var collectMid = SKSpriteNode()
     var collectSize = CGSize()
     var collectSet = [SKSpriteNode]()
+    
+//    var BlueGem = SKSpriteNode()
+//    var YellowGem = SKSpriteNode()
+//    var RedGem = SKSpriteNode()
+//    var GreenGem = SKSpriteNode()
+//    var PurpleGem = SKSpriteNode()
+    
+    var tempGem = SKSpriteNode()
     //set the swipe length
     var touchLocation = CGPointZero
     override init(size: CGSize) {
@@ -126,6 +134,7 @@ class GameScene: SKScene {
         setupUI()
         setUpCollection()
         SetUpCollectionColor()
+//        setGem()
         backgroundColor = SKColor.grayColor()
     }
     func setupUI() {
@@ -205,21 +214,28 @@ class GameScene: SKScene {
         }
     }
     func gemfall() {
-        let yellowGem = SKSpriteNode(imageNamed: "Diamond-100.png")
-        yellowGem.name = "yellowGem"
-        yellowGem.zPosition = 10
+        let gemColor : Int = randomInRange(1...5)
+        tempGem.name = "yellowGem"
+        tempGem.zPosition = 10;
+        switch gemColor {
+            case 1: tempGem = SKSpriteNode(imageNamed: "DiamondBlue.png")
+            case 2 : tempGem = SKSpriteNode(imageNamed: "DiamondYellow.png")
+            case 3: tempGem = SKSpriteNode(imageNamed: "DiamondRed.png")
+            case 4: tempGem = SKSpriteNode(imageNamed: "DiamondViolet.png")
+            default : tempGem = SKSpriteNode(imageNamed: "DiamondGreen.png")
+        }
         let lane: Int = randomInRange(1...3)
         if(lane == 1) {
-            yellowGem.position = CGPoint(x: size.width/3, y: size.height + CGFloat(yellowGem.size.height))
+            tempGem.position = CGPoint(x: size.width/3, y: size.height + CGFloat(tempGem.size.height))
         } else if(lane == 2) {
-            yellowGem.position = CGPoint(x: size.width/2, y: size.height + CGFloat(yellowGem.size.height))
+            tempGem.position = CGPoint(x: size.width/2, y: size.height + CGFloat(tempGem.size.height))
         } else {
-            yellowGem.position = CGPoint(x: size.width/3*2, y: size.height + CGFloat(yellowGem.size.height))
+            tempGem.position = CGPoint(x: size.width/3*2, y: size.height + CGFloat(tempGem.size.height))
         }
-        gemLayerNode.addChild(yellowGem)
-        let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: -size.height-CGFloat(yellowGem.size.height)), duration: 1.5)
+        gemLayerNode.addChild(tempGem)
+        let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: -size.height-CGFloat(tempGem.size.height)), duration: 1.5)
         let remove = SKAction.removeFromParent()
-        yellowGem.runAction(SKAction.sequence([testActinon, remove]))
+        tempGem.runAction(SKAction.sequence([testActinon, remove]))
     }
 
     func collisionCheck() {
@@ -285,4 +301,23 @@ class GameScene: SKScene {
         }
         return collect
     }
+    
+//    func setGem() {
+//        BlueGem = SKSpriteNode(imageNamed: "DiamondBlue.png")
+//        BlueGem.name = "yellowGem"
+//        BlueGem.zPosition = 10
+//        YellowGem = SKSpriteNode(imageNamed: "DiamondYellow.png")
+//        YellowGem.name = "yellowGem"
+//        YellowGem.zPosition = 10
+//        RedGem = SKSpriteNode(imageNamed: "DiamondRed.png")
+//        RedGem.name = "yellowGem"
+//        RedGem.zPosition = 10
+//        PurpleGem = SKSpriteNode(imageNamed: "DiamondViolet.png")
+//        PurpleGem.name = "yellowGem"
+//        PurpleGem.zPosition = 10
+//        GreenGem = SKSpriteNode(imageNamed: "DiamondGreen.png")
+//        GreenGem.name = "yellowGem"
+//        GreenGem.zPosition = 10
+//        
+//    }
 }

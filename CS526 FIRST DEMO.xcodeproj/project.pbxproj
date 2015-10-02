@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		CE5B49F51BBB8A4000E4DBA4 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */; settings = {ASSET_TAGS = (); }; };
-		CEC6D5811BAA6E0C00F9DA7F /* Diamond-100.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC6D5801BAA6E0C00F9DA7F /* Diamond-100.png */; settings = {ASSET_TAGS = (); }; };
+		CEC6D5811BAA6E0C00F9DA7F /* DiamondBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC6D5801BAA6E0C00F9DA7F /* DiamondBlue.png */; settings = {ASSET_TAGS = (); }; };
+		CECE75931BBE456700B2911C /* DiamondYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE758F1BBE456700B2911C /* DiamondYellow.png */; settings = {ASSET_TAGS = (); }; };
+		CECE75941BBE456700B2911C /* DiamondGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE75901BBE456700B2911C /* DiamondGreen.png */; settings = {ASSET_TAGS = (); }; };
+		CECE75951BBE456700B2911C /* DiamondRed.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE75911BBE456700B2911C /* DiamondRed.png */; settings = {ASSET_TAGS = (); }; };
+		CECE75961BBE456700B2911C /* DiamondViolet.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE75921BBE456700B2911C /* DiamondViolet.png */; settings = {ASSET_TAGS = (); }; };
 		CED065B91BAB871700C9CBAC /* worker.png in Resources */ = {isa = PBXBuildFile; fileRef = CED065B81BAB871700C9CBAC /* worker.png */; settings = {ASSET_TAGS = (); }; };
 		CED065BB1BABA5BC00C9CBAC /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED065BA1BABA5BC00C9CBAC /* MyUtils.swift */; settings = {ASSET_TAGS = (); }; };
 		CEF066151BA8EB1500927C86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF066141BA8EB1500927C86 /* AppDelegate.swift */; };
@@ -33,7 +37,11 @@
 
 /* Begin PBXFileReference section */
 		CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
-		CEC6D5801BAA6E0C00F9DA7F /* Diamond-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Diamond-100.png"; sourceTree = "<group>"; };
+		CEC6D5801BAA6E0C00F9DA7F /* DiamondBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiamondBlue.png; sourceTree = "<group>"; };
+		CECE758F1BBE456700B2911C /* DiamondYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiamondYellow.png; sourceTree = "<group>"; };
+		CECE75901BBE456700B2911C /* DiamondGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiamondGreen.png; sourceTree = "<group>"; };
+		CECE75911BBE456700B2911C /* DiamondRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiamondRed.png; sourceTree = "<group>"; };
+		CECE75921BBE456700B2911C /* DiamondViolet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiamondViolet.png; sourceTree = "<group>"; };
 		CED065B81BAB871700C9CBAC /* worker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = worker.png; sourceTree = "<group>"; };
 		CED065BA1BABA5BC00C9CBAC /* MyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = "<group>"; };
 		CEF0660F1BA8EB1500927C86 /* CS526 FIRST DEMO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CS526 FIRST DEMO.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,7 +148,11 @@
 			isa = PBXGroup;
 			children = (
 				CED065B81BAB871700C9CBAC /* worker.png */,
-				CEC6D5801BAA6E0C00F9DA7F /* Diamond-100.png */,
+				CEC6D5801BAA6E0C00F9DA7F /* DiamondBlue.png */,
+				CECE758F1BBE456700B2911C /* DiamondYellow.png */,
+				CECE75901BBE456700B2911C /* DiamondGreen.png */,
+				CECE75911BBE456700B2911C /* DiamondRed.png */,
+				CECE75921BBE456700B2911C /* DiamondViolet.png */,
 				CEF0663D1BA8F27600927C86 /* testbackground.png */,
 			);
 			name = image;
@@ -229,11 +241,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEF066231BA8EB1500927C86 /* LaunchScreen.xib in Resources */,
+				CECE75951BBE456700B2911C /* DiamondRed.png in Resources */,
 				CEF066201BA8EB1500927C86 /* Images.xcassets in Resources */,
-				CEC6D5811BAA6E0C00F9DA7F /* Diamond-100.png in Resources */,
+				CEC6D5811BAA6E0C00F9DA7F /* DiamondBlue.png in Resources */,
 				CEF0663E1BA8F27600927C86 /* testbackground.png in Resources */,
 				CEF0661E1BA8EB1500927C86 /* Main.storyboard in Resources */,
+				CECE75931BBE456700B2911C /* DiamondYellow.png in Resources */,
+				CECE75941BBE456700B2911C /* DiamondGreen.png in Resources */,
 				CED065B91BAB871700C9CBAC /* worker.png in Resources */,
+				CECE75961BBE456700B2911C /* DiamondViolet.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
