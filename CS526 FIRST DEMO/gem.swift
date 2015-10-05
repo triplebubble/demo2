@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 class Gem: SKSpriteNode {
-//    var colour: Int = 0
+    var colour: Int = 0
     convenience init(s: String) {
         self.init(imageNamed: s)
     }

@@ -8,6 +8,10 @@
 
 import SpriteKit
 
+enum colour: Int {
+    case Blue = 1, Yellow, Red, Violet, Green;
+}
+
 class GameScene: SKScene {
     enum GameState {
         case GameRunning
@@ -44,6 +48,7 @@ class GameScene: SKScene {
     var collectMid = SKSpriteNode()
     var collectSize = CGSize()
     var collectSet = [SKSpriteNode]()
+    var prevHitGemColor = Int()
     
 //    var BlueGem = SKSpriteNode()
 //    var YellowGem = SKSpriteNode()
@@ -219,10 +224,19 @@ class GameScene: SKScene {
         tempGem.zPosition = 10;
         switch gemColor {
             case 1: tempGem = Gem(imageNamed: "DiamondBlue.png")
-            case 2 : tempGem = Gem(imageNamed: "DiamondYellow.png")
+                    tempGem.colour = colour.Blue.rawValue
+                    break
+            case 2: tempGem = Gem(imageNamed: "DiamondYellow.png")
+                    tempGem.colour = colour.Yellow.rawValue
+                    break
             case 3: tempGem = Gem(imageNamed: "DiamondRed.png")
+                    tempGem.colour = colour.Red.rawValue
+                    break
             case 4: tempGem = Gem(imageNamed: "DiamondViolet.png")
-            default : tempGem = Gem(imageNamed: "DiamondGreen.png")
+                    tempGem.colour = colour.Violet.rawValue
+                    break
+            default:tempGem = Gem(imageNamed: "DiamondGreen.png")
+                    tempGem.colour = colour.Green.rawValue
         }
         let lane: Int = randomInRange(1...3)
         if(lane == 1) {
@@ -239,9 +253,9 @@ class GameScene: SKScene {
     }
 
     func collisionCheck() {
-        var hitGem: [SKSpriteNode] = []
+        var hitGem: [Gem] = []
         gemLayerNode.enumerateChildNodesWithName("yellowGem") { node, _ in
-            let yellowGem = node as! SKSpriteNode
+            let yellowGem = node as! Gem
             if CGRectIntersectsRect(CGRectInset(node.frame,20, 20), self.charater.frame){
                 hitGem.append(yellowGem)
             }
@@ -251,8 +265,13 @@ class GameScene: SKScene {
         }
         
     }
-    func characterHitGem(gem: SKSpriteNode){
+    func characterHitGem(gem: Gem){
+        let curColor = gem.colour
         gem.removeFromParent()
+        if(curColor == prevHitGemColor) {
+            increaseScoreBy(100)
+        }
+        prevHitGemColor = curColor
         increaseScoreBy(250)
     }
     
@@ -281,7 +300,7 @@ class GameScene: SKScene {
         scoreLabel.text = "Score: \(score)"
     }
     func setupGemAction(){
-        runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(gemfall),SKAction.waitForDuration(0.3)])))
+//        runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(gemfall),SKAction.waitForDuration(0.3)])))
         runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(gemfall),SKAction.waitForDuration(1)])))
     }
     func restartGame(size: CGSize, gameover: SKLabelNode, result: SKLabelNode){
