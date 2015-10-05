@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1FE91D101BC2EBDD00132486 /* gem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE91D0F1BC2EBDD00132486 /* gem.swift */; settings = {ASSET_TAGS = (); }; };
 		CE5B49F51BBB8A4000E4DBA4 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */; settings = {ASSET_TAGS = (); }; };
 		CEC6D5811BAA6E0C00F9DA7F /* DiamondBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC6D5801BAA6E0C00F9DA7F /* DiamondBlue.png */; settings = {ASSET_TAGS = (); }; };
 		CECE75931BBE456700B2911C /* DiamondYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE758F1BBE456700B2911C /* DiamondYellow.png */; settings = {ASSET_TAGS = (); }; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1FE91D0F1BC2EBDD00132486 /* gem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gem.swift; sourceTree = "<group>"; };
 		CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		CEC6D5801BAA6E0C00F9DA7F /* DiamondBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiamondBlue.png; sourceTree = "<group>"; };
 		CECE758F1BBE456700B2911C /* DiamondYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiamondYellow.png; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		CEF066111BA8EB1500927C86 /* CS526 FIRST DEMO */ = {
 			isa = PBXGroup;
 			children = (
+				1FE91D0F1BC2EBDD00132486 /* gem.swift */,
 				CE6B01E01BABCEE000429C1F /* Sound */,
 				CEF066381BA8EF1200927C86 /* image */,
 				CEF066181BA8EB1500927C86 /* GameScene.swift */,
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE5B49F51BBB8A4000E4DBA4 /* GameOverScene.swift in Sources */,
+				1FE91D101BC2EBDD00132486 /* gem.swift in Sources */,
 				CEF066191BA8EB1500927C86 /* GameScene.swift in Sources */,
 				CEF0661B1BA8EB1500927C86 /* GameViewController.swift in Sources */,
 				CEF066151BA8EB1500927C86 /* AppDelegate.swift in Sources */,
