@@ -51,7 +51,7 @@ class GameScene: SKScene {
 //    var GreenGem = SKSpriteNode()
 //    var PurpleGem = SKSpriteNode()
     
-    var tempGem = SKSpriteNode()
+    var tempGem = Gem()
     //set the swipe length
     var touchLocation = CGPointZero
     override init(size: CGSize) {
@@ -218,11 +218,11 @@ class GameScene: SKScene {
         tempGem.name = "yellowGem"
         tempGem.zPosition = 10;
         switch gemColor {
-            case 1: tempGem = SKSpriteNode(imageNamed: "DiamondBlue.png")
-            case 2 : tempGem = SKSpriteNode(imageNamed: "DiamondYellow.png")
-            case 3: tempGem = SKSpriteNode(imageNamed: "DiamondRed.png")
-            case 4: tempGem = SKSpriteNode(imageNamed: "DiamondViolet.png")
-            default : tempGem = SKSpriteNode(imageNamed: "DiamondGreen.png")
+            case 1: tempGem = Gem(imageNamed: "DiamondBlue.png")
+            case 2 : tempGem = Gem(imageNamed: "DiamondYellow.png")
+            case 3: tempGem = Gem(imageNamed: "DiamondRed.png")
+            case 4: tempGem = Gem(imageNamed: "DiamondViolet.png")
+            default : tempGem = Gem(imageNamed: "DiamondGreen.png")
         }
         let lane: Int = randomInRange(1...3)
         if(lane == 1) {
