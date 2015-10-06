@@ -9,6 +9,7 @@
 import Foundation
 import SpriteKit
 
+// Gem class, encapsulates gem's attributes
 class Gem: SKSpriteNode {
     var colour: Int = 0
     convenience init(s: String) {

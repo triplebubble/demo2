@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+// number value for gem color
 enum colour: Int {
     case Blue = 1, Yellow, Red, Violet, Green;
 }
@@ -49,12 +50,9 @@ class GameScene: SKScene {
     var collectSize = CGSize()
     var collectSet = [SKSpriteNode]()
     var prevHitGemColor = Int()
+    var emptyCollect: Int = 0
     
-//    var BlueGem = SKSpriteNode()
-//    var YellowGem = SKSpriteNode()
-//    var RedGem = SKSpriteNode()
-//    var GreenGem = SKSpriteNode()
-//    var PurpleGem = SKSpriteNode()
+    var mapUIColor: [UIColor] = [UIColor.blueColor(), UIColor.yellowColor(), UIColor.redColor(), UIColor.purpleColor(), UIColor.greenColor(), UIColor.blackColor()]
     
     var tempGem = Gem()
     //set the swipe length
@@ -109,11 +107,14 @@ class GameScene: SKScene {
             default: break
         }
     }
+    
+    // record the touch begin location
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first! as UITouch
         touchLocation = touch.locationInNode(chararterLayerNode)
     }
     
+    // calculate the swipe distance and move the character
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         //        let touchTimeThreshold: CFTimeInterval = 0.3
         let touchDistanceThreshold: CGFloat = 3
@@ -129,7 +130,8 @@ class GameScene: SKScene {
             }
         }
     }
-
+    
+    // initialize UI
     func setupSceneLayer() {
         addChild(backgroundLayerNode)
         addChild(chararterLayerNode)
@@ -139,9 +141,10 @@ class GameScene: SKScene {
         setupUI()
         setUpCollection()
         SetUpCollectionColor()
-//        setGem()
         backgroundColor = SKColor.grayColor()
     }
+    
+    // set up the basic UI
     func setupUI() {
         charater.position = CGPoint(x: size.width/2, y: 1/5*size.height)
         charater.zPosition = 20
@@ -192,6 +195,8 @@ class GameScene: SKScene {
         resultLable.verticalAlignmentMode = .Center
         resultLable.position = CGPointMake(size.width / 2, size.height / 2 - 50)
     }
+    
+    // set up the colloction set, initailize the layer's nodes, and collectSet
     func setUpCollection() {
         collectSize = CGSize(width: (size.width-2*playableMargin-20)/3, height: 20)
         collectLeft.size = collectSize
@@ -213,14 +218,24 @@ class GameScene: SKScene {
         collectSet.append(collectMid)
         collectSet.append(collectRight)
     }
+    
+    // Randomly set up three color for collection set
     func SetUpCollectionColor() {
         for var collect in collectSet {
             collect = generateColor(collect, num: randomInRange(1...5))
         }
     }
+    
+    // set up color for each collection set node
+    func generateColor(collect: SKSpriteNode, num: Int) -> SKSpriteNode {
+        collect.color = mapUIColor[num - 1];
+        return collect
+    }
+    
+    // set the gems' color and set up their moving action
     func gemfall() {
         let gemColor : Int = randomInRange(1...5)
-        tempGem.name = "yellowGem"
+        tempGem.name = "Gem"
         tempGem.zPosition = 10;
         switch gemColor {
             case 1: tempGem = Gem(imageNamed: "DiamondBlue.png")
@@ -251,20 +266,23 @@ class GameScene: SKScene {
         let remove = SKAction.removeFromParent()
         tempGem.runAction(SKAction.sequence([testActinon, remove]))
     }
-
+    
+    // check all the gems and call the hit function for collisions
     func collisionCheck() {
         var hitGem: [Gem] = []
-        gemLayerNode.enumerateChildNodesWithName("yellowGem") { node, _ in
-            let yellowGem = node as! Gem
+        gemLayerNode.enumerateChildNodesWithName("Gem") { node, _ in
+            let gem = node as! Gem
             if CGRectIntersectsRect(CGRectInset(node.frame,20, 20), self.charater.frame){
-                hitGem.append(yellowGem)
+                hitGem.append(gem)
             }
         }
-        for yellowGem in hitGem {
-            characterHitGem(yellowGem)
+        for gem in hitGem {
+            characterHitGem(gem)
         }
         
     }
+    
+    // remove the collision gem, and remove the corresponding collection node
     func characterHitGem(gem: Gem){
         let curColor = gem.colour
         gem.removeFromParent()
@@ -273,8 +291,27 @@ class GameScene: SKScene {
         }
         prevHitGemColor = curColor
         increaseScoreBy(250)
+        updateCollection(curColor);
     }
     
+    // update the collection when gem hit charactor. When collecion is empty, add the score, add the life time and create a new collection
+    func updateCollection(curColor: Int) {
+        for var collect in collectSet {
+            if (mapUIColor[curColor - 1] == collect.color) {
+                collect = generateColor(collect, num: 6);
+                emptyCollect += 1
+                break
+            }
+        }
+        if (emptyCollect >= 3) {
+            increaseScoreBy(500)
+            SetUpCollectionColor()
+            Lifebar.size.width += size.width / 10
+            emptyCollect -= 3
+        }
+    }
+    
+    // calculate the target position after character moving
     func moveCharacter() ->CGPoint{
         if(velocity == CGPointZero) {
             if(swipe.dx>0 && charater.position.x < size.width/3*2){
@@ -286,23 +323,32 @@ class GameScene: SKScene {
         }
         return position
     }
+    
+    // move the character when update the frame
     func moveSprite(sprite: SKSpriteNode, velocity: CGPoint) {
         let amountToMove = velocity * CGFloat(dt)
         sprite.position += amountToMove
     }
+    
+    // calculate the character moving velocity
     func moveCharaterToward(location: CGPoint) {
         let offset = location - charater.position
         let direction = offset.normalize()
         velocity = direction * characterMovePointsPerSec
     }
+    
+    // increase the score by a given value
     func increaseScoreBy(plus: Int){
         score += plus
         scoreLabel.text = "Score: \(score)"
     }
+    
+    // Set up the moving action for all kinds of gems
     func setupGemAction(){
-//        runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(gemfall),SKAction.waitForDuration(0.3)])))
         runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(gemfall),SKAction.waitForDuration(1)])))
     }
+    
+    // display the score and game over scene, then restart the game
     func restartGame(size: CGSize, gameover: SKLabelNode, result: SKLabelNode){
         result.text = "Your Score is \(score)"
         let gameoverscene = GameOverScene(size: size, gameover: gameOverLabel, result: resultLable)
@@ -310,33 +356,5 @@ class GameScene: SKScene {
         let reveal = SKTransition.fadeWithDuration(0.5)
         view?.presentScene(gameoverscene, transition: reveal)
     }
-    func generateColor(collect: SKSpriteNode, num: Int) -> SKSpriteNode {
-        switch num {
-            case 1 : collect.color = UIColor.greenColor()
-            case 2 : collect.color = UIColor.blueColor()
-            case 3 : collect.color = UIColor.purpleColor()
-            case 4 : collect.color = UIColor.yellowColor()
-            default : collect.color = UIColor.redColor()
-        }
-        return collect
-    }
     
-//    func setGem() {
-//        BlueGem = SKSpriteNode(imageNamed: "DiamondBlue.png")
-//        BlueGem.name = "yellowGem"
-//        BlueGem.zPosition = 10
-//        YellowGem = SKSpriteNode(imageNamed: "DiamondYellow.png")
-//        YellowGem.name = "yellowGem"
-//        YellowGem.zPosition = 10
-//        RedGem = SKSpriteNode(imageNamed: "DiamondRed.png")
-//        RedGem.name = "yellowGem"
-//        RedGem.zPosition = 10
-//        PurpleGem = SKSpriteNode(imageNamed: "DiamondViolet.png")
-//        PurpleGem.name = "yellowGem"
-//        PurpleGem.zPosition = 10
-//        GreenGem = SKSpriteNode(imageNamed: "DiamondGreen.png")
-//        GreenGem.name = "yellowGem"
-//        GreenGem.zPosition = 10
-//        
-//    }
 }
