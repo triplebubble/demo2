@@ -51,6 +51,7 @@ class GameScene: SKScene {
     var collectSet = [SKSpriteNode]()
     var prevHitGemColor = Int()
     var emptyCollect: Int = 0
+    var lifeLosingVelocity: CGFloat = 0
     
     var mapUIColor: [UIColor] = [UIColor.blueColor(), UIColor.yellowColor(), UIColor.redColor(), UIColor.purpleColor(), UIColor.greenColor(), UIColor.blackColor()]
     
@@ -93,7 +94,8 @@ class GameScene: SKScene {
                 moveSprite(charater, velocity: velocity)
             }
         }
-        if(Lifebar.size.width==0 && gameState == .GameRunning){
+        Lifebar.size.width -= lifeLosingVelocity * CGFloat(dt)
+        if(Lifebar.size.width <= 0 && gameState == .GameRunning){
             gameState = GameState.GameOver
         }
         if(Lifebar.size.width <= size.width/2 && Lifebar.color == UIColor.greenColor()){
@@ -176,8 +178,9 @@ class GameScene: SKScene {
         Lifebar.anchorPoint = CGPointZero
         Lifebar.position = CGPoint(x: playableMargin, y: size.height - UIbackgroundHeight)
         Lifebar.color = UIColor.greenColor()
-        LifeLosing = SKAction.scaleXTo(0, duration: 30) // times
-        Lifebar.runAction(LifeLosing)
+//        LifeLosing = SKAction.scaleXTo(0, duration: 30) // times
+//        Lifebar.runAction(LifeLosing)
+        lifeLosingVelocity = Lifebar.size.width / 30
         UIlayerNode.addChild(Lifebar)
         gameOverLabel.name = "gameOverLabel"
         gameOverLabel.fontSize = 70
