@@ -2,25 +2,22 @@
 //  GameScene.swift
 //  CS526 FIRST DEMO
 //
-//  Created by User on 9/15/15.
-//  Copyright (c) 2015 User. All rights reserved.℃℃
+//  Created by User on 9/15/1
+//  Copyright (c) 2015 User. All rights reserved.
 //
 
 import SpriteKit
 
 // number value for gem color
-enum colour: Int {
-    case Blue = 1, Yellow, Red, Violet, Green;
-}
+//enum colour: Int {
+//    case Blue = 1, Yellow, Red, Violet, Green;
+//}
 
-class GameScene: SKScene {
+class GameSceneSpecial: SKScene {
     enum GameState {
         case GameRunning
         case GameOver
     }
-    
-    var counter = 0;
-    
     var score = 0;
     let playableRect : CGRect
     let backgroundLayerNode = SKNode()
@@ -35,7 +32,6 @@ class GameScene: SKScene {
     let UIlayerNode = SKNode()
     let CollectionLayerNode = SKNode()
     var scoreLabel = SKLabelNode(fontNamed: "Arial")
-    var feverSecond = SKLabelNode(fontNamed: "Arial")
     let UIbackgroundHeight: CGFloat = 90
     let collectionBackgroundHeight: CGFloat = 30
     var Lifebar = SKSpriteNode()
@@ -59,19 +55,9 @@ class GameScene: SKScene {
     
     var mapUIColor: [UIColor] = [UIColor.blueColor(), UIColor.yellowColor(), UIColor.redColor(), UIColor.purpleColor(), UIColor.greenColor(), UIColor.blackColor()]
     
-    //combo label
-    let comboLabel = SKLabelNode(fontNamed: "Arial")
-    var comboHitCount = 0
-
-    
     var tempGem = Gem()
     //set the swipe length
     var touchLocation = CGPointZero
-    
-    var feverCount = Float(5);
-    var fever = false;
-    var hitWithOutMistake = 0;
-    
     override init(size: CGSize) {
         gameState = .GameRunning
         maxAspectRatio = 16.0/9.0 // iPhone 5"
@@ -109,26 +95,6 @@ class GameScene: SKScene {
             }
         }
         Lifebar.size.width -= lifeLosingVelocity * CGFloat(dt)
-        
-        
-        
-        if(fever){
-            var temp = Float(0);
-            temp += Float(feverSecond.text!)!
-            feverCount -= Float(dt);
-            if(feverCount <= temp-1){
-                feverSecond.text = String(Int(temp-1))
-            }
-            if(feverSecond.text=="0"){
-                fever = false
-                feverCount = 5
-                counter = 0
-                feverSecond.removeFromParent()
-            }
-        }
-        
-        
-        
         if(Lifebar.size.width <= 0 && gameState == .GameRunning){
             gameState = GameState.GameOver
         }
@@ -152,9 +118,7 @@ class GameScene: SKScene {
     
     // calculate the swipe distance and move the character
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        //        let touchTimeThreshold: CFTimeInterval = 0.3
         let touchDistanceThreshold: CGFloat = 3
-        //        if CACurrentMediaTime() - touchTime < TouchTimeThreshold
         let touch = touches.first! as UITouch
         let location = touch.locationInNode(chararterLayerNode)
         swipe = CGVector(dx:location.x - touchLocation.x,dy:location.y - touchLocation.y)
@@ -174,14 +138,10 @@ class GameScene: SKScene {
         addChild(UIlayerNode)
         addChild(gemLayerNode)
         addChild(CollectionLayerNode)
-        addChild(informationLayerNode)
-
         setupUI()
         setUpCollection()
         SetUpCollectionColor()
         backgroundColor = SKColor.grayColor()
-        
-        
     }
     
     // set up the basic UI
@@ -206,14 +166,6 @@ class GameScene: SKScene {
         scoreLabel.fontColor = UIColor.grayColor();
         scoreLabel.text = "Score: 0 "
         scoreLabel.name = "scoreLabel"
-        
-        feverSecond.text = "15"
-        feverSecond.name = "feverSecond"
-        feverSecond.fontSize = 40
-        feverSecond.fontColor = SKColor.blackColor();
-        feverSecond.zPosition = 60
-        feverSecond.position = CGPointMake(100, size.height / 2)
-        
         scoreLabel.fontSize = 50
         scoreLabel.zPosition = 60
         scoreLabel.verticalAlignmentMode = .Center
@@ -243,16 +195,6 @@ class GameScene: SKScene {
         resultLable.horizontalAlignmentMode = .Center
         resultLable.verticalAlignmentMode = .Center
         resultLable.position = CGPointMake(size.width / 2, size.height / 2 - 50)
-        
-        comboLabel.fontSize = 50
-        comboLabel.zPosition = 60
-        comboLabel.text = ""
-        comboLabel.name = "comboLabel"
-        comboLabel.verticalAlignmentMode = .Center
-        comboLabel.position = CGPoint(
-            x: size.width / 4,
-            y: size.height / 8)
-        informationLayerNode.addChild(comboLabel)
     }
     
     // set up the colloction set, initailize the layer's nodes, and collectSet
@@ -279,9 +221,15 @@ class GameScene: SKScene {
     }
     
     // Randomly set up three color for collection set
-    func SetUpCollectionColor() {
+    func SetUpCollectionColorRandom() {
         for var collect in collectSet {
             collect = generateColor(collect, num: randomInRange(1...5))
+        }
+    }
+    //set up black color for collection set
+    func SetUpCollectionColor() {
+        for var collect in collectSet {
+            collect = generateColor(collect, num: 6)
         }
     }
     
@@ -321,7 +269,7 @@ class GameScene: SKScene {
             tempGem.position = CGPoint(x: size.width/3*2, y: size.height + CGFloat(tempGem.size.height))
         }
         gemLayerNode.addChild(tempGem)
-        let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: -size.height-CGFloat(tempGem.size.height)), duration: 1.5)
+        let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: -size.height-CGFloat(tempGem.size.height)), duration: 8)
         let remove = SKAction.removeFromParent()
         tempGem.runAction(SKAction.sequence([testActinon, remove]))
     }
@@ -345,74 +293,30 @@ class GameScene: SKScene {
     func characterHitGem(gem: Gem){
         let curColor = gem.colour
         gem.removeFromParent()
-//        if(curColor == prevHitGemColor) {
-//            increaseScoreBy(100)
-//            comboHitCount += 1
-//        }
-        
-        
-        
         if(curColor == prevHitGemColor) {
-            comboHitCount += 1
             increaseScoreBy(100)
-            if(comboHitCount > 0) {
-                comboLabel.text = "Combo * " + String(comboHitCount)
-            }
-        } else {
-            comboLabel.text = ""
-            comboHitCount = 1
         }
-
         prevHitGemColor = curColor
         increaseScoreBy(250)
-        if(fever){
-            if(counter==3){
-                counter = 0;
-            }
-            collectSet[counter].color = UIColor.blackColor()
-            counter++
-            emptyCollect++
-            if (emptyCollect >= 3) {
-                increaseScoreBy(500)
-                SetUpCollectionColor()
-                Lifebar.size.width += size.width / 10
-                emptyCollect -= 3
-                hitWithOutMistake = 0
-            }
-        } else {
-            updateCollection(curColor);
-        }
-        
+        updateCollection(curColor);
     }
-    
+//    func characterHitGem(gem: Gem){
+//        increaseScoreBy(250)
+//        updateCollection(gem.colour)
+//        gem.removeFromParent()
+//    }
     // update the collection when gem hit charactor. When collecion is empty, add the score, add the life time and create a new collection
     func updateCollection(curColor: Int) {
-        var check = false
-        for var collect in collectSet {
-            if (mapUIColor[curColor - 1] == collect.color) {
-                check = true;
-                collect = generateColor(collect, num: 6);
-                emptyCollect += 1
-                hitWithOutMistake++
-                break
-            }
-        }
-        if(!check) {
-            hitWithOutMistake = 0
-        }
-        if (emptyCollect >= 3) {
+        emptyCollect += 1
+//         NSThread.sleepForTimeInterval(1)
+        collectSet[emptyCollect-1] = generateColor(collectSet[emptyCollect-1], num: curColor)
+        
+        if(emptyCollect >= 3){
+           
             increaseScoreBy(500)
             SetUpCollectionColor()
             Lifebar.size.width += size.width / 10
-            emptyCollect -= 3
-            if(hitWithOutMistake==3) {
-                fever = true;
-                feverCount = 15;
-                feverSecond.text = "15"
-                UIlayerNode.addChild(feverSecond)
-            } else {
-                hitWithOutMistake = 0
-            }
+            emptyCollect = 0
         }
     }
     

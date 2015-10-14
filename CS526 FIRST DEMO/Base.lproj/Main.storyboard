@@ -1,10 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HMN-fy-hxF">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
+        <!--Start Game View Controller-->
+        <scene sceneID="rRA-x7-9GW">
+            <objects>
+                <viewController id="HMN-fy-hxF" customClass="StartGameViewController" customModule="CS526_FIRST_DEMO" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7eR-Oj-NTQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="nAp-H4-6WY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gKV-Lf-ccu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7KD-MX-HHU">
+                                <rect key="frame" x="251" y="368" width="100" height="100"/>
+                                <animations/>
+                                <state key="normal" image="DiamondViolet.png"/>
+                                <connections>
+                                    <segue destination="Jr9-7Y-pOD" kind="show" id="zJW-DN-69K"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIN-XR-HDT">
+                                <rect key="frame" x="250" y="116" width="101" height="100"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="101" id="jEV-WU-2CJ"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="DiamondBlue.png"/>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="show" id="kQ3-wE-JNw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RIN-XR-HDT" firstAttribute="centerX" secondItem="gKV-Lf-ccu" secondAttribute="centerX" id="6SF-rL-d7D"/>
+                            <constraint firstItem="nAp-H4-6WY" firstAttribute="top" secondItem="7KD-MX-HHU" secondAttribute="bottom" constant="132" id="Bqg-gH-OPq"/>
+                            <constraint firstItem="7KD-MX-HHU" firstAttribute="trailing" secondItem="RIN-XR-HDT" secondAttribute="trailing" id="aDh-VG-WHw"/>
+                            <constraint firstItem="RIN-XR-HDT" firstAttribute="top" secondItem="7eR-Oj-NTQ" secondAttribute="bottom" constant="96" id="ql6-Yf-BuL"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uf5-lF-sVU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="169" y="434"/>
+        </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
@@ -16,11 +62,36 @@
                     <view key="view" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="981" y="347"/>
+        </scene>
+        <!--Special View Controller-->
+        <scene sceneID="Uwd-Is-uoy">
+            <objects>
+                <viewController id="Jr9-7Y-pOD" customClass="SpecialViewController" customModule="CS526_FIRST_DEMO" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2uU-5O-z6P"/>
+                        <viewControllerLayoutGuide type="bottom" id="niM-f9-2cT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Rwj-Y4-cjZ" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UDm-kT-szj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="778" y="1204"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="DiamondBlue.png" width="100" height="100"/>
+        <image name="DiamondViolet.png" width="100" height="100"/>
+    </resources>
 </document>

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1FE91D101BC2EBDD00132486 /* gem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE91D0F1BC2EBDD00132486 /* gem.swift */; settings = {ASSET_TAGS = (); }; };
 		CE5B49F51BBB8A4000E4DBA4 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */; settings = {ASSET_TAGS = (); }; };
+		CEC125101BCAD8FD0007A88A /* StartGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1250F1BCAD8FD0007A88A /* StartGameViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		CEC6D5811BAA6E0C00F9DA7F /* DiamondBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC6D5801BAA6E0C00F9DA7F /* DiamondBlue.png */; settings = {ASSET_TAGS = (); }; };
 		CECE75931BBE456700B2911C /* DiamondYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE758F1BBE456700B2911C /* DiamondYellow.png */; settings = {ASSET_TAGS = (); }; };
 		CECE75941BBE456700B2911C /* DiamondGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE75901BBE456700B2911C /* DiamondGreen.png */; settings = {ASSET_TAGS = (); }; };
@@ -16,6 +17,8 @@
 		CECE75961BBE456700B2911C /* DiamondViolet.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE75921BBE456700B2911C /* DiamondViolet.png */; settings = {ASSET_TAGS = (); }; };
 		CED065B91BAB871700C9CBAC /* worker.png in Resources */ = {isa = PBXBuildFile; fileRef = CED065B81BAB871700C9CBAC /* worker.png */; settings = {ASSET_TAGS = (); }; };
 		CED065BB1BABA5BC00C9CBAC /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED065BA1BABA5BC00C9CBAC /* MyUtils.swift */; settings = {ASSET_TAGS = (); }; };
+		CEE8E19B1BCE025400A78EA8 /* GameSceneSpecial.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE8E19A1BCE025400A78EA8 /* GameSceneSpecial.swift */; settings = {ASSET_TAGS = (); }; };
+		CEE8E19D1BCE02B300A78EA8 /* SpecialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE8E19C1BCE02B300A78EA8 /* SpecialViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		CEF066151BA8EB1500927C86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF066141BA8EB1500927C86 /* AppDelegate.swift */; };
 		CEF066191BA8EB1500927C86 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF066181BA8EB1500927C86 /* GameScene.swift */; };
 		CEF0661B1BA8EB1500927C86 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0661A1BA8EB1500927C86 /* GameViewController.swift */; };
@@ -39,6 +42,7 @@
 /* Begin PBXFileReference section */
 		1FE91D0F1BC2EBDD00132486 /* gem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gem.swift; sourceTree = "<group>"; };
 		CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		CEC1250F1BCAD8FD0007A88A /* StartGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartGameViewController.swift; sourceTree = "<group>"; };
 		CEC6D5801BAA6E0C00F9DA7F /* DiamondBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiamondBlue.png; sourceTree = "<group>"; };
 		CECE758F1BBE456700B2911C /* DiamondYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiamondYellow.png; sourceTree = "<group>"; };
 		CECE75901BBE456700B2911C /* DiamondGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiamondGreen.png; sourceTree = "<group>"; };
@@ -46,6 +50,8 @@
 		CECE75921BBE456700B2911C /* DiamondViolet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiamondViolet.png; sourceTree = "<group>"; };
 		CED065B81BAB871700C9CBAC /* worker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = worker.png; sourceTree = "<group>"; };
 		CED065BA1BABA5BC00C9CBAC /* MyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = "<group>"; };
+		CEE8E19A1BCE025400A78EA8 /* GameSceneSpecial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneSpecial.swift; sourceTree = "<group>"; };
+		CEE8E19C1BCE02B300A78EA8 /* SpecialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialViewController.swift; sourceTree = "<group>"; };
 		CEF0660F1BA8EB1500927C86 /* CS526 FIRST DEMO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CS526 FIRST DEMO.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF066131BA8EB1500927C86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEF066141BA8EB1500927C86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -106,13 +112,15 @@
 		CEF066111BA8EB1500927C86 /* CS526 FIRST DEMO */ = {
 			isa = PBXGroup;
 			children = (
-				1FE91D0F1BC2EBDD00132486 /* gem.swift */,
 				CE6B01E01BABCEE000429C1F /* Sound */,
 				CEF066381BA8EF1200927C86 /* image */,
 				CEF066181BA8EB1500927C86 /* GameScene.swift */,
 				CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */,
 				CED065BA1BABA5BC00C9CBAC /* MyUtils.swift */,
 				CEF0661A1BA8EB1500927C86 /* GameViewController.swift */,
+				CEE8E19C1BCE02B300A78EA8 /* SpecialViewController.swift */,
+				CEC1250F1BCAD8FD0007A88A /* StartGameViewController.swift */,
+				CEE8E19A1BCE025400A78EA8 /* GameSceneSpecial.swift */,
 				CEF0661F1BA8EB1500927C86 /* Images.xcassets */,
 				CEF066121BA8EB1500927C86 /* Supporting Files */,
 			);
@@ -122,6 +130,7 @@
 		CEF066121BA8EB1500927C86 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1FE91D0F1BC2EBDD00132486 /* gem.swift */,
 				CEF066141BA8EB1500927C86 /* AppDelegate.swift */,
 				CEF0661C1BA8EB1500927C86 /* Main.storyboard */,
 				CEF066211BA8EB1500927C86 /* LaunchScreen.xib */,
@@ -270,12 +279,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEC125101BCAD8FD0007A88A /* StartGameViewController.swift in Sources */,
 				CE5B49F51BBB8A4000E4DBA4 /* GameOverScene.swift in Sources */,
+				CEE8E19B1BCE025400A78EA8 /* GameSceneSpecial.swift in Sources */,
 				1FE91D101BC2EBDD00132486 /* gem.swift in Sources */,
 				CEF066191BA8EB1500927C86 /* GameScene.swift in Sources */,
 				CEF0661B1BA8EB1500927C86 /* GameViewController.swift in Sources */,
 				CEF066151BA8EB1500927C86 /* AppDelegate.swift in Sources */,
 				CED065BB1BABA5BC00C9CBAC /* MyUtils.swift in Sources */,
+				CEE8E19D1BCE02B300A78EA8 /* SpecialViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

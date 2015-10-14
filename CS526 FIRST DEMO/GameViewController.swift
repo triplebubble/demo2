@@ -14,12 +14,19 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         let scene = GameScene(size: CGSize(width: 750, height: 1134))// Configure the view.
         let skView = self.view as! SKView
-        skView.showsFPS = true
-        skView.showsNodeCount = true
+//        skView.showsFPS = true
+//        skView.showsNodeCount = true
         skView.ignoresSiblingOrder = true
         scene.scaleMode = .AspectFill
         skView.presentScene(scene)
     }
+//    @IBAction func NormalMode(sender: UIButton) {
+//        let scene = GameScene(size: CGSize(width: 750, height: 1134))
+//        let skView = self.view as! SKView
+//        skView.ignoresSiblingOrder = true
+//        scene.scaleMode = .AspectFill
+//        skView.presentScene(scene)
+//    }
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
