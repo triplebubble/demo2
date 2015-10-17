@@ -208,9 +208,6 @@ class GameScene: SKScene {
         setupUI()
         setUpCollection()
         SetUpCollectionColor()
-//        backgroundColor = SKColor.grayColor()
-        
-        
     }
     
     // set up the basic UI
@@ -285,16 +282,6 @@ class GameScene: SKScene {
         resultLable.verticalAlignmentMode = .Center
         resultLable.position = CGPointMake(size.width / 2, size.height / 2 - 50)
         
-//        comboLabel.fontSize = 50
-//        comboLabel.zPosition = 60
-//        comboLabel.text = ""
-//        comboLabel.name = "comboLabel"
-//        comboLabel.verticalAlignmentMode = .Center
-//        comboLabel.position = CGPoint(
-//            x: size.width / 4,
-//            y: size.height / 8)
-//        informationLayerNode.addChild(comboLabel)
-//        
         blackLabel.fontSize = 50
         blackLabel.zPosition = 60
         blackLabel.text = ""
@@ -514,29 +501,20 @@ class GameScene: SKScene {
     
     //help finish 2 collection
     func helpCollection() {
+        hitWithOutMistake = 0
         if(emptyCollect >= 1) {
             emptyCollect = 3
-            hitWithOutMistake += 3 - emptyCollect
         }
         else {
             generateColor(collectSet[0], num: colour.Black.rawValue)
             generateColor(collectSet[1], num: colour.Black.rawValue)
-            emptyCollect -= 2
-            hitWithOutMistake += 2
+            emptyCollect += 2
         }
         if (emptyCollect >= 3) {
             increaseScoreBy(500)
             SetUpCollectionColor()
             Lifebar.size.width += size.width / 10
             emptyCollect -= 3
-            if(hitWithOutMistake==3) {
-                fever = true;
-                feverCount = 10;
-                feverSecond.text = "10"
-                UIlayerNode.addChild(feverSecond)
-            } else {
-                hitWithOutMistake = 0
-            }
         }
     }
     
