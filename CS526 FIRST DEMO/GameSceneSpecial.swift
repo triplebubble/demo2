@@ -55,7 +55,15 @@ class GameSceneSpecial: SKScene {
     
     var mapUIColor: [UIColor] = [UIColor.blueColor(), UIColor.yellowColor(), UIColor.redColor(), UIColor.purpleColor(), UIColor.greenColor(), UIColor.blackColor()]
     
+    let gemCollsionSound: SKAction = SKAction.playSoundFileNamed("sound_ui001.mp3", waitForCompletion: false)
+    let collectionSound: SKAction = SKAction.playSoundFileNamed("sound_fight_skill005.mp3", waitForCompletion: false)
+    
+    let backgroundImage = SKSpriteNode(imageNamed: "fightground_yingyachengbao.jpg")
+    let backgroundImagedown = SKSpriteNode(imageNamed: "fightground_yingyachengbao_startPos.jpg")
+
+    
     var tempGem = Gem()
+    var tempGem1 = Gem();
     //set the swipe length
     var touchLocation = CGPointZero
     override init(size: CGSize) {
@@ -77,6 +85,7 @@ class GameSceneSpecial: SKScene {
     override func didMoveToView(view: SKView) {
         setupSceneLayer()
         setupGemAction()
+        playBackGroundMusic("bgm_002.mp3");
     }
     override func update(currentTime: NSTimeInterval) {
         if lastUpdateTime > 0 {
@@ -146,6 +155,18 @@ class GameSceneSpecial: SKScene {
     
     // set up the basic UI
     func setupUI() {
+        
+        backgroundImage.anchorPoint = CGPointZero
+        backgroundLayerNode.addChild(backgroundImage)
+        backgroundImage.zPosition = -100;
+        backgroundImage.position = CGPoint(x: playableMargin, y: 170)
+        
+        backgroundImagedown.anchorPoint = CGPointZero
+        backgroundLayerNode.addChild(backgroundImagedown)
+        backgroundImagedown.zPosition = -100;
+        backgroundImagedown.position = CGPoint(x: playableMargin, y: 0)
+        
+
         charater.position = CGPoint(x: size.width/2, y: 1/5*size.height)
         charater.zPosition = 20
         charater.name = "charater"
@@ -245,33 +266,59 @@ class GameSceneSpecial: SKScene {
         tempGem.name = "Gem"
         tempGem.zPosition = 10;
         switch gemColor {
-            case 1: tempGem = Gem(imageNamed: "DiamondBlue.png")
-                    tempGem.colour = colour.Blue.rawValue
-                    break
-            case 2: tempGem = Gem(imageNamed: "DiamondYellow.png")
-                    tempGem.colour = colour.Yellow.rawValue
-                    break
-            case 3: tempGem = Gem(imageNamed: "DiamondRed.png")
-                    tempGem.colour = colour.Red.rawValue
-                    break
-            case 4: tempGem = Gem(imageNamed: "DiamondViolet.png")
-                    tempGem.colour = colour.Violet.rawValue
-                    break
-            default:tempGem = Gem(imageNamed: "DiamondGreen.png")
-                    tempGem.colour = colour.Green.rawValue
+        case 1: tempGem = Gem(imageNamed: "DiamondBlue.png")
+        tempGem.colour = colour.Blue.rawValue
+            break
+        case 2: tempGem = Gem(imageNamed: "DiamondYellow.png")
+        tempGem.colour = colour.Yellow.rawValue
+            break
+        case 3: tempGem = Gem(imageNamed: "DiamondRed.png")
+        tempGem.colour = colour.Red.rawValue
+            break
+        case 4: tempGem = Gem(imageNamed: "DiamondViolet.png")
+        tempGem.colour = colour.Violet.rawValue
+            break
+        default:tempGem = Gem(imageNamed: "DiamondGreen.png")
+        tempGem.colour = colour.Green.rawValue
         }
+        let gemColor1 : Int = randomInRange(1...5)
+        tempGem1.name = "Gem"
+        tempGem1.zPosition = 10;
+        switch gemColor1 {
+        case 1: tempGem1 = Gem(imageNamed: "DiamondBlue.png")
+        tempGem1.colour = colour.Blue.rawValue
+            break
+        case 2: tempGem1 = Gem(imageNamed: "DiamondYellow.png")
+        tempGem1.colour = colour.Yellow.rawValue
+            break
+        case 3: tempGem1 = Gem(imageNamed: "DiamondRed.png")
+        tempGem1.colour = colour.Red.rawValue
+            break
+        case 4: tempGem1 = Gem(imageNamed: "DiamondViolet.png")
+        tempGem1.colour = colour.Violet.rawValue
+            break
+        default:tempGem1 = Gem(imageNamed: "DiamondGreen.png")
+        tempGem1.colour = colour.Green.rawValue
+        }
+        
         let lane: Int = randomInRange(1...3)
         if(lane == 1) {
-            tempGem.position = CGPoint(x: size.width/3, y: size.height + CGFloat(tempGem.size.height))
-        } else if(lane == 2) {
             tempGem.position = CGPoint(x: size.width/2, y: size.height + CGFloat(tempGem.size.height))
+            tempGem1.position = CGPoint(x: size.width/3*2, y: size.height + CGFloat(tempGem1.size.height))
+        } else if(lane == 2) {
+            tempGem.position = CGPoint(x: size.width/3, y: size.height + CGFloat(tempGem.size.height))
+            tempGem1.position = CGPoint(x: size.width/3*2, y: size.height + CGFloat(tempGem1.size.height))
         } else {
-            tempGem.position = CGPoint(x: size.width/3*2, y: size.height + CGFloat(tempGem.size.height))
+            tempGem.position = CGPoint(x: size.width/3, y: size.height + CGFloat(tempGem.size.height))
+            tempGem1.position = CGPoint(x: size.width/2, y: size.height + CGFloat(tempGem1.size.height))
         }
         gemLayerNode.addChild(tempGem)
+        gemLayerNode.addChild(tempGem1)
         let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: -size.height-CGFloat(tempGem.size.height)), duration: 8)
         let remove = SKAction.removeFromParent()
         tempGem.runAction(SKAction.sequence([testActinon, remove]))
+        tempGem1.runAction(SKAction.sequence([testActinon, remove]))
+
     }
     
     // check all the gems and call the hit function for collisions
@@ -360,7 +407,7 @@ class GameSceneSpecial: SKScene {
     // display the score and game over scene, then restart the game
     func restartGame(size: CGSize, gameover: SKLabelNode, result: SKLabelNode){
         result.text = "Your Score is \(score)"
-        let gameoverscene = GameOverScene(size: size, gameover: gameOverLabel, result: resultLable)
+        let gameoverscene = GameOverScene(size: size, gameover: gameOverLabel, result: resultLable, Number: Int(0))
         gameoverscene.scaleMode = scaleMode
         let reveal = SKTransition.fadeWithDuration(0.5)
         view?.presentScene(gameoverscene, transition: reveal)

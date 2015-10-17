@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Start Game View Controller-->
@@ -14,24 +15,29 @@
                         <viewControllerLayoutGuide type="bottom" id="nAp-H4-6WY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gKV-Lf-ccu">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7KD-MX-HHU">
-                                <rect key="frame" x="251" y="368" width="100" height="100"/>
+                                <rect key="frame" x="86" y="252" width="194" height="163"/>
                                 <animations/>
-                                <state key="normal" image="DiamondViolet.png"/>
+                                <state key="normal" image="sliver.png"/>
                                 <connections>
                                     <segue destination="Jr9-7Y-pOD" kind="show" id="zJW-DN-69K"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cT9-5m-baK">
+                                <rect key="frame" x="86" y="440" width="198" height="151"/>
+                                <animations/>
+                                <state key="normal" title="Button" image="shop.png"/>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIN-XR-HDT">
-                                <rect key="frame" x="250" y="116" width="101" height="100"/>
+                                <rect key="frame" x="90" y="50" width="194" height="162"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="101" id="jEV-WU-2CJ"/>
+                                    <constraint firstAttribute="height" constant="162" id="98i-2A-1Cx"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="DiamondBlue.png"/>
+                                <state key="normal" title="Button" image="golden.png"/>
                                 <connections>
                                     <segue destination="BV1-FR-VrT" kind="show" id="kQ3-wE-JNw"/>
                                 </connections>
@@ -40,16 +46,23 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="RIN-XR-HDT" firstAttribute="centerX" secondItem="gKV-Lf-ccu" secondAttribute="centerX" id="6SF-rL-d7D"/>
-                            <constraint firstItem="nAp-H4-6WY" firstAttribute="top" secondItem="7KD-MX-HHU" secondAttribute="bottom" constant="132" id="Bqg-gH-OPq"/>
-                            <constraint firstItem="7KD-MX-HHU" firstAttribute="trailing" secondItem="RIN-XR-HDT" secondAttribute="trailing" id="aDh-VG-WHw"/>
-                            <constraint firstItem="RIN-XR-HDT" firstAttribute="top" secondItem="7eR-Oj-NTQ" secondAttribute="bottom" constant="96" id="ql6-Yf-BuL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7KD-MX-HHU" secondAttribute="trailing" constant="79" id="0aF-t4-nJW"/>
+                            <constraint firstItem="RIN-XR-HDT" firstAttribute="top" secondItem="7eR-Oj-NTQ" secondAttribute="bottom" constant="30" id="BXF-rn-Kel"/>
+                            <constraint firstItem="cT9-5m-baK" firstAttribute="trailing" secondItem="RIN-XR-HDT" secondAttribute="trailing" id="CBn-r9-04c"/>
+                            <constraint firstItem="cT9-5m-baK" firstAttribute="leading" secondItem="7KD-MX-HHU" secondAttribute="leading" id="J9k-hp-Tax"/>
+                            <constraint firstItem="RIN-XR-HDT" firstAttribute="centerX" secondItem="gKV-Lf-ccu" secondAttribute="centerX" id="R4A-RT-7Mb"/>
+                            <constraint firstItem="7KD-MX-HHU" firstAttribute="leading" secondItem="gKV-Lf-ccu" secondAttribute="leadingMargin" constant="70" id="UD8-fy-atz"/>
+                            <constraint firstItem="RIN-XR-HDT" firstAttribute="leading" secondItem="gKV-Lf-ccu" secondAttribute="leadingMargin" constant="74" id="ZIi-ip-00D"/>
+                            <constraint firstItem="7KD-MX-HHU" firstAttribute="centerY" secondItem="gKV-Lf-ccu" secondAttribute="centerY" id="cfi-kU-7cF"/>
+                            <constraint firstItem="cT9-5m-baK" firstAttribute="top" secondItem="7KD-MX-HHU" secondAttribute="bottom" constant="25" id="d1T-oV-Yds"/>
+                            <constraint firstItem="7KD-MX-HHU" firstAttribute="top" secondItem="RIN-XR-HDT" secondAttribute="bottom" constant="40" id="hku-lv-6Jc"/>
                         </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uf5-lF-sVU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="169" y="434"/>
+            <point key="canvasLocation" x="168.5" y="433.5"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -60,7 +73,7 @@
                         <viewControllerLayoutGuide type="bottom" id="khH-OB-KpY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -79,7 +92,7 @@
                         <viewControllerLayoutGuide type="bottom" id="niM-f9-2cT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Rwj-Y4-cjZ" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -87,11 +100,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UDm-kT-szj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="778" y="1204"/>
+            <point key="canvasLocation" x="589.5" y="1240.5"/>
         </scene>
     </scenes>
     <resources>
-        <image name="DiamondBlue.png" width="100" height="100"/>
-        <image name="DiamondViolet.png" width="100" height="100"/>
+        <image name="golden.png" width="203" height="154"/>
+        <image name="shop.png" width="219" height="151"/>
+        <image name="sliver.png" width="201" height="147"/>
     </resources>
 </document>

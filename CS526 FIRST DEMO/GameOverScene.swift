@@ -12,9 +12,11 @@ import SpriteKit
 class GameOverScene: SKScene {
     let gameOverlabel: SKLabelNode
     let resultlabel: SKLabelNode
-    init(size: CGSize, gameover: SKLabelNode, result: SKLabelNode){
+    let Mode: Int
+    init(size: CGSize, gameover: SKLabelNode, result: SKLabelNode, Number: Int){
         self.gameOverlabel = gameover
         self.resultlabel = result
+        self.Mode = Number
         super.init(size: size)
     }
     
@@ -28,13 +30,18 @@ class GameOverScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let myScene: SKScene
+        if (self.Mode == 1){
+            myScene = GameScene(size: self.size)
+        } else {
+            myScene = GameSceneSpecial(size: self.size)
+        }
         let block = SKAction.runBlock {
-            let myScene = GameScene(size: self.size)
             myScene.scaleMode = self.scaleMode
             let reveal = SKTransition.fadeWithDuration(0.5)
             self.view?.presentScene(myScene, transition: reveal)
         }
         self.runAction(block)
     }
-
+    
 }

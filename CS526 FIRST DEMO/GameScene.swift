@@ -62,12 +62,16 @@ class GameScene: SKScene {
     var emptyCollect: Int = 0
     var lifeLosingVelocity: CGFloat = 0
     
+    let backgroundImage = SKSpriteNode(imageNamed: "fightground_heishita.jpg")
+    let backgroundImagedown = SKSpriteNode(imageNamed: "fightground_heishita_startPos.jpg")
+    
     var mapUIColor: [UIColor] = [UIColor.blueColor(), UIColor.yellowColor(), UIColor.redColor(), UIColor.purpleColor(), UIColor.greenColor(), UIColor.blackColor()]
     
     //combo label
     let comboLabel = SKLabelNode(fontNamed: "Arial")
     var comboHitCount = 0
-
+    let combePicture = SKSpriteNode()
+    
     //black label
     let blackLabel = SKLabelNode(fontNamed: "Arial")
     
@@ -82,6 +86,9 @@ class GameScene: SKScene {
     
     //gem fall second
     var gemFallSecond = Float(0.8)
+    
+    let gemCollsionSound: SKAction = SKAction.playSoundFileNamed("sound_ui001.mp3", waitForCompletion: false)
+    let collectionSound: SKAction = SKAction.playSoundFileNamed("sound_fight_skill005.mp3", waitForCompletion: false)
     
     override init(size: CGSize) {
         gameState = .GameRunning
@@ -102,6 +109,7 @@ class GameScene: SKScene {
     override func didMoveToView(view: SKView) {
         setupSceneLayer()
         setupGemAction()
+        playBackGroundMusic("bgm_003.mp3");
     }
     override func update(currentTime: NSTimeInterval) {
         if lastUpdateTime > 0 {
@@ -200,13 +208,27 @@ class GameScene: SKScene {
         setupUI()
         setUpCollection()
         SetUpCollectionColor()
-        backgroundColor = SKColor.grayColor()
+//        backgroundColor = SKColor.grayColor()
         
         
     }
     
     // set up the basic UI
     func setupUI() {
+        
+        backgroundImage.anchorPoint = CGPointZero
+        backgroundLayerNode.addChild(backgroundImage)
+        backgroundImage.zPosition = -100;
+        backgroundImage.position = CGPoint(x: playableMargin, y: 170)
+        
+        backgroundImagedown.anchorPoint = CGPointZero
+        backgroundLayerNode.addChild(backgroundImagedown)
+        backgroundImagedown.zPosition = -100;
+        backgroundImagedown.position = CGPoint(x: playableMargin, y: 0)
+        
+
+        
+        
         charater.position = CGPoint(x: size.width/2, y: 1/5*size.height)
         charater.zPosition = 20
         charater.name = "charater"
@@ -263,16 +285,16 @@ class GameScene: SKScene {
         resultLable.verticalAlignmentMode = .Center
         resultLable.position = CGPointMake(size.width / 2, size.height / 2 - 50)
         
-        comboLabel.fontSize = 50
-        comboLabel.zPosition = 60
-        comboLabel.text = ""
-        comboLabel.name = "comboLabel"
-        comboLabel.verticalAlignmentMode = .Center
-        comboLabel.position = CGPoint(
-            x: size.width / 4,
-            y: size.height / 8)
-        informationLayerNode.addChild(comboLabel)
-        
+//        comboLabel.fontSize = 50
+//        comboLabel.zPosition = 60
+//        comboLabel.text = ""
+//        comboLabel.name = "comboLabel"
+//        comboLabel.verticalAlignmentMode = .Center
+//        comboLabel.position = CGPoint(
+//            x: size.width / 4,
+//            y: size.height / 8)
+//        informationLayerNode.addChild(comboLabel)
+//        
         blackLabel.fontSize = 50
         blackLabel.zPosition = 60
         blackLabel.text = ""
@@ -424,9 +446,20 @@ class GameScene: SKScene {
         
         if(curColor == prevHitGemColor) {
             comboHitCount += 1
-            increaseScoreBy(100)
             if(comboHitCount > 0) {
-                comboLabel.text = "Combo * " + String(comboHitCount)
+                //                comboLabel.text = "Combo * " + String(comboHitCount)
+                var combo = SKSpriteNode()
+                if(comboHitCount>9) {
+                    combo = SKSpriteNode(imageNamed: "evolutionlv_max.png")
+                } else {
+                    combo = SKSpriteNode(imageNamed: "evolutionlv_\(comboHitCount).png")
+                }
+                UIlayerNode.addChild(combo)
+                combo.position = charater.position
+                combo.zPosition = 100;
+                let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: 150), duration: 1)
+                let remove = SKAction.removeFromParent()
+                combo.runAction(SKAction.sequence([testActinon, remove]))
             }
         } else {
             comboLabel.text = ""
@@ -434,7 +467,7 @@ class GameScene: SKScene {
         }
 
         prevHitGemColor = curColor
-        increaseScoreBy(250)
+        increaseScoreBy(250*comboHitCount)
         if(fever){
             if(counter==3){
                 counter = 0;
@@ -566,6 +599,13 @@ class GameScene: SKScene {
     
     // increase the score by a given value
     func increaseScoreBy(plus: Int){
+        let scoreincrease = SKLabelNode()
+        scoreincrease.text = String(plus)
+        scoreincrease.fontSize = 70;
+        scoreincrease.zPosition = 100;
+        scoreincrease.position = charater.position
+        UIlayerNode.addChild(scoreincrease)
+        scoreincrease.runAction(SKAction.sequence([SKAction.moveBy(CGVector(dx: 0, dy: 150), duration: 1), SKAction.fadeOutWithDuration(0.2), SKAction.removeFromParent()]))
         score += plus
         scoreLabel.text = "Score: \(score)"
     }
@@ -578,7 +618,7 @@ class GameScene: SKScene {
     // display the score and game over scene, then restart the game
     func restartGame(size: CGSize, gameover: SKLabelNode, result: SKLabelNode){
         result.text = "Your Score is \(score)"
-        let gameoverscene = GameOverScene(size: size, gameover: gameOverLabel, result: resultLable)
+        let gameoverscene = GameOverScene(size: size, gameover: gameOverLabel, result: resultLable, Number: Int(1))
         gameoverscene.scaleMode = scaleMode
         let reveal = SKTransition.fadeWithDuration(0.5)
         view?.presentScene(gameoverscene, transition: reveal)
