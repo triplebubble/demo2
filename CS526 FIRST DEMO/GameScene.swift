@@ -44,6 +44,7 @@ class GameScene: SKScene {
     let collectionBackgroundHeight: CGFloat = 30
     var Lifebar = SKSpriteNode()
     var LifeLosing = SKAction()
+    var LifebarSize = CGFloat(0)
     var gameState = GameState.GameRunning;
     let resultLable = SKLabelNode()
     let gameOverLabel = SKLabelNode()
@@ -61,6 +62,9 @@ class GameScene: SKScene {
     var blackHit = Bool()
     var emptyCollect: Int = 0
     var lifeLosingVelocity: CGFloat = 0
+    
+    let black = SKEmitterNode(fileNamed: "Black.sks")
+    let feverEffect = SKEmitterNode(fileNamed: "Fever.sks")
     
     let backgroundImage = SKSpriteNode(imageNamed: "fightground_heishita.jpg")
     let backgroundImagedown = SKSpriteNode(imageNamed: "fightground_heishita_startPos.jpg")
@@ -80,7 +84,7 @@ class GameScene: SKScene {
     var touchLocation = CGPointZero
     
     //fever model
-    var feverCount = Float(10);
+    var feverCount = Float(5);
     var fever = false;
     var hitWithOutMistake = 0;
     
@@ -129,6 +133,9 @@ class GameScene: SKScene {
         }
         Lifebar.size.width -= lifeLosingVelocity * CGFloat(dt)
         
+        feverEffect!.hidden = !fever;
+        black!.hidden = !blackHit;
+        
         if(fever){
             var temp = Float(0);
             temp += Float(feverSecond.text!)!
@@ -138,14 +145,14 @@ class GameScene: SKScene {
             }
             if(feverSecond.text=="0"){
                 fever = false
-                feverCount = 10
+                feverCount = 5
                 counter = 0
                 feverSecond.removeFromParent()
             }
         }
         
         totalGameTime += Float(dt)
-        if (totalGameTime - lastUpdateFallTime > 10 && totalGameTime < 60) {
+        if (totalGameTime - lastUpdateFallTime > 10 && totalGameTime < 41) {
             lastUpdateFallTime = totalGameTime
             gemFallInterval -= 0.1
             gemFallSpeed -= 0.1
@@ -208,9 +215,6 @@ class GameScene: SKScene {
         setupUI()
         setUpCollection()
         SetUpCollectionColor()
-//        backgroundColor = SKColor.grayColor()
-        
-        
     }
     
     // set up the basic UI
@@ -232,6 +236,13 @@ class GameScene: SKScene {
         charater.position = CGPoint(x: size.width/2, y: 1/5*size.height)
         charater.zPosition = 20
         charater.name = "charater"
+        charater.addChild(feverEffect!)
+        charater.addChild(black!)
+        
+        feverEffect!.hidden = true;
+        black!.hidden = true;
+
+        
         chararterLayerNode.addChild(charater)
         let backgroundSize = CGSize(width: size.width, height: UIbackgroundHeight)
         let UIbackground = SKSpriteNode(color: UIColor.blackColor(), size: backgroundSize)
@@ -250,7 +261,7 @@ class GameScene: SKScene {
         scoreLabel.text = "Score: 0 "
         scoreLabel.name = "scoreLabel"
         
-        feverSecond.text = "10"
+        feverSecond.text = "5"
         feverSecond.name = "feverSecond"
         feverSecond.fontSize = 40
         feverSecond.fontColor = SKColor.blackColor();
@@ -263,7 +274,8 @@ class GameScene: SKScene {
         scoreLabel.position = CGPoint(x: size.width/2, y: size.height - scoreLabel.frame.height)
         UIlayerNode.addChild(scoreLabel)
         Lifebar.zPosition = 60
-        Lifebar.size = CGSizeMake(size.width - playableMargin*2, 10)
+        LifebarSize = size.width - playableMargin*2;
+        Lifebar.size = CGSizeMake(LifebarSize, 10)
         Lifebar.anchorPoint = CGPointZero
         Lifebar.position = CGPoint(x: playableMargin, y: size.height - UIbackgroundHeight)
         Lifebar.color = UIColor.greenColor()
@@ -285,16 +297,6 @@ class GameScene: SKScene {
         resultLable.verticalAlignmentMode = .Center
         resultLable.position = CGPointMake(size.width / 2, size.height / 2 - 50)
         
-//        comboLabel.fontSize = 50
-//        comboLabel.zPosition = 60
-//        comboLabel.text = ""
-//        comboLabel.name = "comboLabel"
-//        comboLabel.verticalAlignmentMode = .Center
-//        comboLabel.position = CGPoint(
-//            x: size.width / 4,
-//            y: size.height / 8)
-//        informationLayerNode.addChild(comboLabel)
-//        
         blackLabel.fontSize = 50
         blackLabel.zPosition = 60
         blackLabel.text = ""
@@ -479,6 +481,9 @@ class GameScene: SKScene {
                 increaseScoreBy(500)
                 SetUpCollectionColor()
                 Lifebar.size.width += size.width / 10
+                if (Lifebar.size.width > LifebarSize) {
+                    Lifebar.size.width = LifebarSize
+                }
                 emptyCollect -= 3
                 hitWithOutMistake = 0
             }
@@ -493,6 +498,9 @@ class GameScene: SKScene {
         switch(curColor) {
         case colour.Green.rawValue:
             Lifebar.size.width += size.width / 10
+            if (Lifebar.size.width > LifebarSize) {
+                Lifebar.size.width = LifebarSize
+            }
             break
         case colour.Blue.rawValue:
             increaseScoreBy(300)
@@ -504,6 +512,9 @@ class GameScene: SKScene {
             break
         case colour.Red.rawValue:
             Lifebar.size.width -= size.width / 10
+            if (Lifebar.size.width > LifebarSize) {
+                Lifebar.size.width = LifebarSize
+            }
             break
         case colour.Violet.rawValue:
             helpCollection()
@@ -514,29 +525,23 @@ class GameScene: SKScene {
     
     //help finish 2 collection
     func helpCollection() {
+        hitWithOutMistake = 0
         if(emptyCollect >= 1) {
             emptyCollect = 3
-            hitWithOutMistake += 3 - emptyCollect
         }
         else {
             generateColor(collectSet[0], num: colour.Black.rawValue)
             generateColor(collectSet[1], num: colour.Black.rawValue)
-            emptyCollect -= 2
-            hitWithOutMistake += 2
+            emptyCollect += 2
         }
         if (emptyCollect >= 3) {
             increaseScoreBy(500)
             SetUpCollectionColor()
             Lifebar.size.width += size.width / 10
-            emptyCollect -= 3
-            if(hitWithOutMistake==3) {
-                fever = true;
-                feverCount = 10;
-                feverSecond.text = "10"
-                UIlayerNode.addChild(feverSecond)
-            } else {
-                hitWithOutMistake = 0
+            if (Lifebar.size.width > LifebarSize) {
+                Lifebar.size.width = LifebarSize
             }
+            emptyCollect -= 3
         }
     }
     
@@ -559,11 +564,14 @@ class GameScene: SKScene {
             increaseScoreBy(500)
             SetUpCollectionColor()
             Lifebar.size.width += size.width / 10
+            if (Lifebar.size.width > LifebarSize) {
+                Lifebar.size.width = LifebarSize
+            }
             emptyCollect -= 3
             if(hitWithOutMistake==3) {
                 fever = true;
-                feverCount = 10;
-                feverSecond.text = "10"
+                feverCount = 5;
+                feverSecond.text = "5"
                 UIlayerNode.addChild(feverSecond)
             } else {
                 hitWithOutMistake = 0
