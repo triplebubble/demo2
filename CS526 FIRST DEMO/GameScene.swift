@@ -29,6 +29,10 @@ class GameScene: SKScene {
     let gemLayerNode = SKNode()
     var dt : NSTimeInterval = 0
     var lastUpdateTime : NSTimeInterval = 0
+    var totalGameTime = Float(0)
+    var lastUpdateFallTime = Float(0)
+    var gemFallInterval = Float(0.8)
+    var gemFallSpeed : NSTimeInterval = 1.8
     var lastTouchPosition = CGPoint?()
     let characterMovePointsPerSec : CGFloat =  1200
     var velocity = CGPointZero
@@ -71,9 +75,13 @@ class GameScene: SKScene {
     //set the swipe length
     var touchLocation = CGPointZero
     
-    var feverCount = Float(5);
+    //fever model
+    var feverCount = Float(10);
     var fever = false;
     var hitWithOutMistake = 0;
+    
+    //gem fall second
+    var gemFallSecond = Float(0.8)
     
     override init(size: CGSize) {
         gameState = .GameRunning
@@ -113,8 +121,6 @@ class GameScene: SKScene {
         }
         Lifebar.size.width -= lifeLosingVelocity * CGFloat(dt)
         
-        
-        
         if(fever){
             var temp = Float(0);
             temp += Float(feverSecond.text!)!
@@ -124,12 +130,24 @@ class GameScene: SKScene {
             }
             if(feverSecond.text=="0"){
                 fever = false
-                feverCount = 5
+                feverCount = 10
                 counter = 0
                 feverSecond.removeFromParent()
             }
         }
         
+        totalGameTime += Float(dt)
+        if (totalGameTime - lastUpdateFallTime > 10 && totalGameTime < 60) {
+            lastUpdateFallTime = totalGameTime
+            gemFallInterval -= 0.1
+            gemFallSpeed -= 0.1
+        }
+        
+        gemFallSecond -= Float(dt)
+        if (gemFallSecond <= 0) {
+            gemFallSecond = gemFallInterval
+            runAction(SKAction.runBlock(gemfall))
+        }
         
         
         if(Lifebar.size.width <= 0 && gameState == .GameRunning){
@@ -210,7 +228,7 @@ class GameScene: SKScene {
         scoreLabel.text = "Score: 0 "
         scoreLabel.name = "scoreLabel"
         
-        feverSecond.text = "15"
+        feverSecond.text = "10"
         feverSecond.name = "feverSecond"
         feverSecond.fontSize = 40
         feverSecond.fontColor = SKColor.blackColor();
@@ -227,8 +245,6 @@ class GameScene: SKScene {
         Lifebar.anchorPoint = CGPointZero
         Lifebar.position = CGPoint(x: playableMargin, y: size.height - UIbackgroundHeight)
         Lifebar.color = UIColor.greenColor()
-//        LifeLosing = SKAction.scaleXTo(0, duration: 30) // times
-//        Lifebar.runAction(LifeLosing)
         lifeLosingVelocity = Lifebar.size.width / 30
         UIlayerNode.addChild(Lifebar)
         gameOverLabel.name = "gameOverLabel"
@@ -309,14 +325,14 @@ class GameScene: SKScene {
     func gemfall() {
         let judgeSpecial:Int = randomInRange(1...5)
         if(judgeSpecial == 1 && !fever) {
-            blackGemFall()
+            blackGemFall(gemFallSpeed)
         }
         else {
-            normalGemFall()
+            normalGemFall(gemFallSpeed)
         }
     }
     
-    func blackGemFall() {
+    func blackGemFall(dur : NSTimeInterval) {
         tempGem.name = "Gem"
         tempGem.zPosition = 10;
         tempGem = Gem(imageNamed: "DiamondBlack.png")
@@ -330,12 +346,12 @@ class GameScene: SKScene {
             tempGem.position = CGPoint(x: size.width/3*2, y: size.height + CGFloat(tempGem.size.height))
         }
         gemLayerNode.addChild(tempGem)
-        let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: -size.height-CGFloat(tempGem.size.height)), duration: 1.5)
+        let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: -size.height-CGFloat(tempGem.size.height)), duration: dur)
         let remove = SKAction.removeFromParent()
         tempGem.runAction(SKAction.sequence([testActinon, remove]))
     }
     
-    func normalGemFall() {
+    func normalGemFall(dur : NSTimeInterval) {
         let gemColor : Int = randomInRange(1...5)
         tempGem.name = "Gem"
         tempGem.zPosition = 10;
@@ -364,7 +380,7 @@ class GameScene: SKScene {
             tempGem.position = CGPoint(x: size.width/3*2, y: size.height + CGFloat(tempGem.size.height))
         }
         gemLayerNode.addChild(tempGem)
-        let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: -size.height-CGFloat(tempGem.size.height)), duration: 1.5)
+        let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: -size.height-CGFloat(tempGem.size.height)), duration: dur)
         let remove = SKAction.removeFromParent()
         tempGem.runAction(SKAction.sequence([testActinon, remove]))
     }
@@ -388,10 +404,6 @@ class GameScene: SKScene {
     func characterHitGem(gem: Gem){
         let curColor = gem.colour
         gem.removeFromParent()
-//        if(curColor == prevHitGemColor) {
-//            increaseScoreBy(100)
-//            comboHitCount += 1
-//        }
         
         if(curColor == colour.Black.rawValue) {
             blackHit = true
@@ -454,6 +466,7 @@ class GameScene: SKScene {
             break
         case colour.Yellow.rawValue:
             SetUpCollectionColor()
+            hitWithOutMistake = 0
             emptyCollect = 0
             break
         case colour.Red.rawValue:
@@ -485,8 +498,8 @@ class GameScene: SKScene {
             emptyCollect -= 3
             if(hitWithOutMistake==3) {
                 fever = true;
-                feverCount = 15;
-                feverSecond.text = "15"
+                feverCount = 10;
+                feverSecond.text = "10"
                 UIlayerNode.addChild(feverSecond)
             } else {
                 hitWithOutMistake = 0
@@ -516,8 +529,8 @@ class GameScene: SKScene {
             emptyCollect -= 3
             if(hitWithOutMistake==3) {
                 fever = true;
-                feverCount = 15;
-                feverSecond.text = "15"
+                feverCount = 10;
+                feverSecond.text = "10"
                 UIlayerNode.addChild(feverSecond)
             } else {
                 hitWithOutMistake = 0
@@ -559,7 +572,7 @@ class GameScene: SKScene {
     
     // Set up the moving action for all kinds of gems
     func setupGemAction(){
-        runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(gemfall),SKAction.waitForDuration(1)])))
+//        runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(gemfall),SKAction.waitForDuration(1)])))
     }
     
     // display the score and game over scene, then restart the game
