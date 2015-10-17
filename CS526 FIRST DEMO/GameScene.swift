@@ -81,7 +81,7 @@ class GameScene: SKScene {
     var touchLocation = CGPointZero
     
     //fever model
-    var feverCount = Float(10);
+    var feverCount = Float(5);
     var fever = false;
     var hitWithOutMistake = 0;
     
@@ -139,7 +139,7 @@ class GameScene: SKScene {
             }
             if(feverSecond.text=="0"){
                 fever = false
-                feverCount = 10
+                feverCount = 5
                 counter = 0
                 feverSecond.removeFromParent()
             }
@@ -248,7 +248,7 @@ class GameScene: SKScene {
         scoreLabel.text = "Score: 0 "
         scoreLabel.name = "scoreLabel"
         
-        feverSecond.text = "10"
+        feverSecond.text = "5"
         feverSecond.name = "feverSecond"
         feverSecond.fontSize = 40
         feverSecond.fontColor = SKColor.blackColor();
@@ -557,8 +557,8 @@ class GameScene: SKScene {
             emptyCollect -= 3
             if(hitWithOutMistake==3) {
                 fever = true;
-                feverCount = 10;
-                feverSecond.text = "10"
+                feverCount = 5;
+                feverSecond.text = "5"
                 UIlayerNode.addChild(feverSecond)
             } else {
                 hitWithOutMistake = 0
