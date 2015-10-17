@@ -44,6 +44,7 @@ class GameScene: SKScene {
     let collectionBackgroundHeight: CGFloat = 30
     var Lifebar = SKSpriteNode()
     var LifeLosing = SKAction()
+    var LifebarSize = CGFloat(0)
     var gameState = GameState.GameRunning;
     let resultLable = SKLabelNode()
     let gameOverLabel = SKLabelNode()
@@ -145,7 +146,7 @@ class GameScene: SKScene {
         }
         
         totalGameTime += Float(dt)
-        if (totalGameTime - lastUpdateFallTime > 10 && totalGameTime < 60) {
+        if (totalGameTime - lastUpdateFallTime > 10 && totalGameTime < 41) {
             lastUpdateFallTime = totalGameTime
             gemFallInterval -= 0.1
             gemFallSpeed -= 0.1
@@ -260,7 +261,8 @@ class GameScene: SKScene {
         scoreLabel.position = CGPoint(x: size.width/2, y: size.height - scoreLabel.frame.height)
         UIlayerNode.addChild(scoreLabel)
         Lifebar.zPosition = 60
-        Lifebar.size = CGSizeMake(size.width - playableMargin*2, 10)
+        LifebarSize = size.width - playableMargin*2;
+        Lifebar.size = CGSizeMake(LifebarSize, 10)
         Lifebar.anchorPoint = CGPointZero
         Lifebar.position = CGPoint(x: playableMargin, y: size.height - UIbackgroundHeight)
         Lifebar.color = UIColor.greenColor()
@@ -466,6 +468,9 @@ class GameScene: SKScene {
                 increaseScoreBy(500)
                 SetUpCollectionColor()
                 Lifebar.size.width += size.width / 10
+                if (Lifebar.size.width > LifebarSize) {
+                    Lifebar.size.width = LifebarSize
+                }
                 emptyCollect -= 3
                 hitWithOutMistake = 0
             }
@@ -480,6 +485,9 @@ class GameScene: SKScene {
         switch(curColor) {
         case colour.Green.rawValue:
             Lifebar.size.width += size.width / 10
+            if (Lifebar.size.width > LifebarSize) {
+                Lifebar.size.width = LifebarSize
+            }
             break
         case colour.Blue.rawValue:
             increaseScoreBy(300)
@@ -491,6 +499,9 @@ class GameScene: SKScene {
             break
         case colour.Red.rawValue:
             Lifebar.size.width -= size.width / 10
+            if (Lifebar.size.width > LifebarSize) {
+                Lifebar.size.width = LifebarSize
+            }
             break
         case colour.Violet.rawValue:
             helpCollection()
@@ -514,6 +525,9 @@ class GameScene: SKScene {
             increaseScoreBy(500)
             SetUpCollectionColor()
             Lifebar.size.width += size.width / 10
+            if (Lifebar.size.width > LifebarSize) {
+                Lifebar.size.width = LifebarSize
+            }
             emptyCollect -= 3
         }
     }
@@ -537,6 +551,9 @@ class GameScene: SKScene {
             increaseScoreBy(500)
             SetUpCollectionColor()
             Lifebar.size.width += size.width / 10
+            if (Lifebar.size.width > LifebarSize) {
+                Lifebar.size.width = LifebarSize
+            }
             emptyCollect -= 3
             if(hitWithOutMistake==3) {
                 fever = true;
