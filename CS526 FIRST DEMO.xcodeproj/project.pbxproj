@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1FA412481BD1BA05009F9FDA /* DiamondBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FA412471BD1BA05009F9FDA /* DiamondBlack.png */; settings = {ASSET_TAGS = (); }; };
 		1FE91D101BC2EBDD00132486 /* gem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE91D0F1BC2EBDD00132486 /* gem.swift */; settings = {ASSET_TAGS = (); }; };
 		CE5B49F51BBB8A4000E4DBA4 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */; settings = {ASSET_TAGS = (); }; };
 		CEC125101BCAD8FD0007A88A /* StartGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1250F1BCAD8FD0007A88A /* StartGameViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1FA412471BD1BA05009F9FDA /* DiamondBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiamondBlack.png; sourceTree = "<group>"; };
 		1FE91D0F1BC2EBDD00132486 /* gem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gem.swift; sourceTree = "<group>"; };
 		CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		CEC1250F1BCAD8FD0007A88A /* StartGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartGameViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		CEF066381BA8EF1200927C86 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				1FA412471BD1BA05009F9FDA /* DiamondBlack.png */,
 				CED065B81BAB871700C9CBAC /* worker.png */,
 				CEC6D5801BAA6E0C00F9DA7F /* DiamondBlue.png */,
 				CECE758F1BBE456700B2911C /* DiamondYellow.png */,
@@ -260,6 +263,7 @@
 				CEF0661E1BA8EB1500927C86 /* Main.storyboard in Resources */,
 				CECE75931BBE456700B2911C /* DiamondYellow.png in Resources */,
 				CECE75941BBE456700B2911C /* DiamondGreen.png in Resources */,
+				1FA412481BD1BA05009F9FDA /* DiamondBlack.png in Resources */,
 				CED065B91BAB871700C9CBAC /* worker.png in Resources */,
 				CECE75961BBE456700B2911C /* DiamondViolet.png in Resources */,
 			);

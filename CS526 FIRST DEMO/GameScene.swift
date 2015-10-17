@@ -10,7 +10,7 @@ import SpriteKit
 
 // number value for gem color
 enum colour: Int {
-    case Blue = 1, Yellow, Red, Violet, Green;
+    case Blue = 1, Yellow, Red, Violet, Green, Black;
 }
 
 class GameScene: SKScene {
@@ -54,6 +54,7 @@ class GameScene: SKScene {
     var collectSize = CGSize()
     var collectSet = [SKSpriteNode]()
     var prevHitGemColor = Int()
+    var blackHit = Bool()
     var emptyCollect: Int = 0
     var lifeLosingVelocity: CGFloat = 0
     
@@ -63,6 +64,8 @@ class GameScene: SKScene {
     let comboLabel = SKLabelNode(fontNamed: "Arial")
     var comboHitCount = 0
 
+    //black label
+    let blackLabel = SKLabelNode(fontNamed: "Arial")
     
     var tempGem = Gem()
     //set the swipe length
@@ -253,6 +256,17 @@ class GameScene: SKScene {
             x: size.width / 4,
             y: size.height / 8)
         informationLayerNode.addChild(comboLabel)
+        
+        blackLabel.fontSize = 50
+        blackLabel.zPosition = 60
+        blackLabel.text = ""
+        blackLabel.name = "blackLabel"
+        blackLabel.verticalAlignmentMode = .Center
+        blackLabel.position = CGPoint(
+            x: size.width / 4,
+            y: size.height / 8)
+        informationLayerNode.addChild(blackLabel)
+
     }
     
     // set up the colloction set, initailize the layer's nodes, and collectSet
@@ -293,24 +307,53 @@ class GameScene: SKScene {
     
     // set the gems' color and set up their moving action
     func gemfall() {
+        let judgeSpecial:Int = randomInRange(1...5)
+        if(judgeSpecial == 1 && !fever) {
+            blackGemFall()
+        }
+        else {
+            normalGemFall()
+        }
+    }
+    
+    func blackGemFall() {
+        tempGem.name = "Gem"
+        tempGem.zPosition = 10;
+        tempGem = Gem(imageNamed: "DiamondBlack.png")
+        tempGem.colour = colour.Black.rawValue
+        let lane: Int = randomInRange(1...3)
+        if(lane == 1) {
+            tempGem.position = CGPoint(x: size.width/3, y: size.height + CGFloat(tempGem.size.height))
+        } else if(lane == 2) {
+            tempGem.position = CGPoint(x: size.width/2, y: size.height + CGFloat(tempGem.size.height))
+        } else {
+            tempGem.position = CGPoint(x: size.width/3*2, y: size.height + CGFloat(tempGem.size.height))
+        }
+        gemLayerNode.addChild(tempGem)
+        let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: -size.height-CGFloat(tempGem.size.height)), duration: 1.5)
+        let remove = SKAction.removeFromParent()
+        tempGem.runAction(SKAction.sequence([testActinon, remove]))
+    }
+    
+    func normalGemFall() {
         let gemColor : Int = randomInRange(1...5)
         tempGem.name = "Gem"
         tempGem.zPosition = 10;
         switch gemColor {
-            case 1: tempGem = Gem(imageNamed: "DiamondBlue.png")
-                    tempGem.colour = colour.Blue.rawValue
-                    break
-            case 2: tempGem = Gem(imageNamed: "DiamondYellow.png")
-                    tempGem.colour = colour.Yellow.rawValue
-                    break
-            case 3: tempGem = Gem(imageNamed: "DiamondRed.png")
-                    tempGem.colour = colour.Red.rawValue
-                    break
-            case 4: tempGem = Gem(imageNamed: "DiamondViolet.png")
-                    tempGem.colour = colour.Violet.rawValue
-                    break
-            default:tempGem = Gem(imageNamed: "DiamondGreen.png")
-                    tempGem.colour = colour.Green.rawValue
+        case 1: tempGem = Gem(imageNamed: "DiamondBlue.png")
+        tempGem.colour = colour.Blue.rawValue
+            break
+        case 2: tempGem = Gem(imageNamed: "DiamondYellow.png")
+        tempGem.colour = colour.Yellow.rawValue
+            break
+        case 3: tempGem = Gem(imageNamed: "DiamondRed.png")
+        tempGem.colour = colour.Red.rawValue
+            break
+        case 4: tempGem = Gem(imageNamed: "DiamondViolet.png")
+        tempGem.colour = colour.Violet.rawValue
+            break
+        default:tempGem = Gem(imageNamed: "DiamondGreen.png")
+        tempGem.colour = colour.Green.rawValue
         }
         let lane: Int = randomInRange(1...3)
         if(lane == 1) {
@@ -350,7 +393,22 @@ class GameScene: SKScene {
 //            comboHitCount += 1
 //        }
         
+        if(curColor == colour.Black.rawValue) {
+            blackHit = true
+            comboLabel.text = ""
+            blackLabel.text = "Black got!"
+            return
+        }
         
+        blackLabel.text = ""
+        
+        if(blackHit) {
+            checkBlackEffects(curColor)
+            blackHit = false
+            return
+        }
+        
+        blackHit = false
         
         if(curColor == prevHitGemColor) {
             comboHitCount += 1
@@ -383,6 +441,57 @@ class GameScene: SKScene {
             updateCollection(curColor);
         }
         
+    }
+    
+    //check special effects triggered by black diamond
+    func checkBlackEffects(curColor:Int) {
+        switch(curColor) {
+        case colour.Green.rawValue:
+            Lifebar.size.width += size.width / 10
+            break
+        case colour.Blue.rawValue:
+            increaseScoreBy(300)
+            break
+        case colour.Yellow.rawValue:
+            SetUpCollectionColor()
+            emptyCollect = 0
+            break
+        case colour.Red.rawValue:
+            Lifebar.size.width -= size.width / 10
+            break
+        case colour.Violet.rawValue:
+            helpCollection()
+            break
+        default: break
+        }
+    }
+    
+    //help finish 2 collection
+    func helpCollection() {
+        if(emptyCollect >= 1) {
+            emptyCollect = 3
+            hitWithOutMistake += 3 - emptyCollect
+        }
+        else {
+            generateColor(collectSet[0], num: colour.Black.rawValue)
+            generateColor(collectSet[1], num: colour.Black.rawValue)
+            emptyCollect -= 2
+            hitWithOutMistake += 2
+        }
+        if (emptyCollect >= 3) {
+            increaseScoreBy(500)
+            SetUpCollectionColor()
+            Lifebar.size.width += size.width / 10
+            emptyCollect -= 3
+            if(hitWithOutMistake==3) {
+                fever = true;
+                feverCount = 15;
+                feverSecond.text = "15"
+                UIlayerNode.addChild(feverSecond)
+            } else {
+                hitWithOutMistake = 0
+            }
+        }
     }
     
     // update the collection when gem hit charactor. When collecion is empty, add the score, add the life time and create a new collection
