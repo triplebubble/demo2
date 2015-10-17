@@ -76,9 +76,6 @@ class GameScene: SKScene {
     var comboHitCount = 0
     let combePicture = SKSpriteNode()
     
-    //black label
-    let blackLabel = SKLabelNode(fontNamed: "Arial")
-    
     var tempGem = Gem()
     //set the swipe length
     var touchLocation = CGPointZero
@@ -296,16 +293,6 @@ class GameScene: SKScene {
         resultLable.horizontalAlignmentMode = .Center
         resultLable.verticalAlignmentMode = .Center
         resultLable.position = CGPointMake(size.width / 2, size.height / 2 - 50)
-        
-        blackLabel.fontSize = 50
-        blackLabel.zPosition = 60
-        blackLabel.text = ""
-        blackLabel.name = "blackLabel"
-        blackLabel.verticalAlignmentMode = .Center
-        blackLabel.position = CGPoint(
-            x: size.width / 4,
-            y: size.height / 8)
-        informationLayerNode.addChild(blackLabel)
 
     }
     
@@ -432,11 +419,8 @@ class GameScene: SKScene {
         if(curColor == colour.Black.rawValue) {
             blackHit = true
             comboLabel.text = ""
-            blackLabel.text = "Black got!"
             return
         }
-        
-        blackLabel.text = ""
         
         if(blackHit) {
             checkBlackEffects(curColor)
