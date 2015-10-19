@@ -62,6 +62,7 @@ class GameScene: SKScene {
     var blackHit = Bool()
     var emptyCollect: Int = 0
     var lifeLosingVelocity: CGFloat = 0
+    var timing = NSTimeInterval(0)
     
     let black = SKEmitterNode(fileNamed: "Black.sks")
     let feverEffect = SKEmitterNode(fileNamed: "Fever.sks")
@@ -87,9 +88,12 @@ class GameScene: SKScene {
     
     //gem fall second
     var gemFallSecond = Float(0.8)
+    var blackGemFallSecond = Float(8)
     
     let gemCollsionSound: SKAction = SKAction.playSoundFileNamed("sound_ui001.mp3", waitForCompletion: false)
     let collectionSound: SKAction = SKAction.playSoundFileNamed("sound_fight_skill005.mp3", waitForCompletion: false)
+    
+    let pauseButton = SKSpriteNode(imageNamed: "pause.png")
     
     override init(size: CGSize) {
         gameState = .GameRunning
@@ -113,67 +117,73 @@ class GameScene: SKScene {
         playBackGroundMusic("bgm_003.mp3");
     }
     override func update(currentTime: NSTimeInterval) {
-        if lastUpdateTime > 0 {
-            dt = currentTime - lastUpdateTime
-        } else {
-            dt = 0
-        }
-        lastUpdateTime = currentTime
-        if let lastTouch = lastTouchPosition {
-            let diff = lastTouch - charater.position
-            if (diff.length() <= characterMovePointsPerSec * CGFloat(dt)) {
-                charater.position = lastTouchPosition!
-                velocity = CGPointZero
+        timing = currentTime
+        if(self.view?.paused == false) {
+            if lastUpdateTime > 0 {
+                dt = currentTime - lastUpdateTime
             } else {
-                moveSprite(charater, velocity: velocity)
+                dt = 0
             }
-        }
-        Lifebar.size.width -= lifeLosingVelocity * CGFloat(dt)
-        
-        feverEffect!.hidden = !fever;
-        black!.hidden = !blackHit;
-        
-        if(fever){
-            var temp = Float(0);
-            temp += Float(feverSecond.text!)!
-            feverCount -= Float(dt);
-            if(feverCount <= temp-1){
-                feverSecond.text = String(Int(temp-1))
+            lastUpdateTime = currentTime
+            if let lastTouch = lastTouchPosition {
+                let diff = lastTouch - charater.position
+                if (diff.length() <= characterMovePointsPerSec * CGFloat(dt)) {
+                    charater.position = lastTouchPosition!
+                    velocity = CGPointZero
+                } else {
+                    moveSprite(charater, velocity: velocity)
+                }
             }
-            if(feverSecond.text=="0"){
-                fever = false
-                feverCount = 5
-                counter = 0
-                feverSecond.removeFromParent()
+            Lifebar.size.width -= lifeLosingVelocity * CGFloat(dt)
+            
+            feverEffect!.hidden = !fever;
+            black!.hidden = !blackHit;
+            
+            if(fever){
+                var temp = Float(0);
+                temp += Float(feverSecond.text!)!
+                feverCount -= Float(dt);
+                if(feverCount <= temp-1){
+                    feverSecond.text = String(Int(temp-1))
+                }
+                if(feverSecond.text=="0"){
+                    fever = false
+                    feverCount = 5
+                    counter = 0
+                    feverSecond.removeFromParent()
+                }
             }
-        }
-        
-        totalGameTime += Float(dt)
-        if (totalGameTime - lastUpdateFallTime > 10 && totalGameTime < 41) {
-            lastUpdateFallTime = totalGameTime
-            gemFallInterval -= 0.1
-            gemFallSpeed -= 0.1
-        }
-        
-        gemFallSecond -= Float(dt)
-        if (gemFallSecond <= 0) {
-            gemFallSecond = gemFallInterval
-            runAction(SKAction.runBlock(gemfall))
-        }
-        
-        
-        if(Lifebar.size.width <= 0 && gameState == .GameRunning){
-            gameState = GameState.GameOver
-        }
-        if(Lifebar.size.width <= size.width/2 && Lifebar.color == UIColor.greenColor()){
-            Lifebar.color = UIColor.orangeColor()
-        }
-        if(Lifebar.size.width <= size.width/5 && Lifebar.color == UIColor.orangeColor()){
-            Lifebar.color = UIColor.redColor()
-        }
-        switch(gameState){
-        case (.GameOver): restartGame(size, gameover: gameOverLabel, result: resultLable)
+            
+            totalGameTime += Float(dt)
+            if (totalGameTime - lastUpdateFallTime > 10 && totalGameTime < 41) {
+                lastUpdateFallTime = totalGameTime
+                gemFallInterval -= 0.1
+                gemFallSpeed -= 0.1
+            }
+            
+            gemFallSecond -= Float(dt)
+            blackGemFallSecond -= Float(dt)
+            
+            if (gemFallSecond <= 0) {
+                gemFallSecond = gemFallInterval
+                runAction(SKAction.runBlock(gemfall))
+            }
+            
+            
+            if(Lifebar.size.width <= 0 && gameState == .GameRunning){
+                gameState = GameState.GameOver
+            }
+            if(Lifebar.size.width <= size.width/2 && Lifebar.color == UIColor.greenColor()){
+                Lifebar.color = UIColor.orangeColor()
+            }
+            if(Lifebar.size.width <= size.width/5 && Lifebar.color == UIColor.orangeColor()){
+                Lifebar.color = UIColor.redColor()
+            }
+            switch(gameState){
+            case (.GameOver): restartGame(size, gameover: gameOverLabel, result: resultLable)
             default: break
+            }
+
         }
     }
     
@@ -181,6 +191,14 @@ class GameScene: SKScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first! as UITouch
         touchLocation = touch.locationInNode(chararterLayerNode)
+        if(pauseButton.containsPoint(touchLocation)){
+            if(self.view?.paused == false){
+                self.view?.paused = true
+            } else {
+                self.view?.paused = false
+                lastUpdateTime = timing
+            }
+        }
     }
     
     // calculate the swipe distance and move the character
@@ -190,14 +208,17 @@ class GameScene: SKScene {
         //        if CACurrentMediaTime() - touchTime < TouchTimeThreshold
         let touch = touches.first! as UITouch
         let location = touch.locationInNode(chararterLayerNode)
-        swipe = CGVector(dx:location.x - touchLocation.x,dy:location.y - touchLocation.y)
-        let swipeLength = sqrt(swipe.dx * swipe.dx + swipe.dy * swipe.dy)
-        if(swipeLength > touchDistanceThreshold) {
-            if((swipe.dx>0 && charater.position.x < size.width/3*2)||(swipe.dx<0 && charater.position.x > size.width/3)) {
-                lastTouchPosition = moveCharacter()
-                moveCharaterToward(lastTouchPosition!)
+        if(!pauseButton.containsPoint(location)){
+            swipe = CGVector(dx:location.x - touchLocation.x,dy:location.y - touchLocation.y)
+            let swipeLength = sqrt(swipe.dx * swipe.dx + swipe.dy * swipe.dy)
+            if(swipeLength > touchDistanceThreshold) {
+                if((swipe.dx>0 && charater.position.x < size.width/3*2)||(swipe.dx<0 && charater.position.x > size.width/3)) {
+                    lastTouchPosition = moveCharacter()
+                    moveCharaterToward(lastTouchPosition!)
+                }
             }
         }
+        
     }
     
     // initialize UI
@@ -227,8 +248,9 @@ class GameScene: SKScene {
         backgroundImagedown.zPosition = -100;
         backgroundImagedown.position = CGPoint(x: playableMargin, y: 0)
         
-
-        
+        UIlayerNode.addChild(pauseButton)
+        pauseButton.zPosition = 100
+        pauseButton.position = CGPoint(x: size.width/2, y: 50)
         
         charater.position = CGPoint(x: size.width/2, y: 1/5*size.height)
         charater.zPosition = 20
@@ -334,13 +356,19 @@ class GameScene: SKScene {
     
     // set the gems' color and set up their moving action
     func gemfall() {
-        let judgeSpecial:Int = randomInRange(1...5)
-        if(judgeSpecial == 1 && !fever) {
+        if (blackGemFallSecond <= 0) {
+            blackGemFallSecond = 8
             blackGemFall(gemFallSpeed)
-        }
-        else {
+        } else {
             normalGemFall(gemFallSpeed)
         }
+//        let judgeSpecial:Int = randomInRange(1...5)
+//        if(judgeSpecial == 1 && !fever) {
+//            blackGemFall(gemFallSpeed)
+//        }
+//        else {
+//            normalGemFall(gemFallSpeed)
+//        }
     }
     
     func blackGemFall(dur : NSTimeInterval) {
@@ -591,6 +619,7 @@ class GameScene: SKScene {
     
     // increase the score by a given value
     func increaseScoreBy(plus: Int){
+//        self.view?.paused = true
         let scoreincrease = SKLabelNode()
         scoreincrease.text = String(plus)
         scoreincrease.fontSize = 70;

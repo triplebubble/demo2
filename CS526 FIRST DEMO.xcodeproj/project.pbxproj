@@ -15,6 +15,7 @@
 		CE94FAA21BD343A0002C0011 /* listbase_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE94FAA11BD343A0002C0011 /* listbase_1.jpg */; settings = {ASSET_TAGS = (); }; };
 		CE94FAA41BD343C4002C0011 /* fightground_heishita_EndPos.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE94FAA31BD343C4002C0011 /* fightground_heishita_EndPos.jpg */; settings = {ASSET_TAGS = (); }; };
 		CE94FAA61BD3483C002C0011 /* uiground_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE94FAA51BD3483C002C0011 /* uiground_1.jpg */; settings = {ASSET_TAGS = (); }; };
+		CEB567381BD564C300FBA2F0 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB567371BD564C300FBA2F0 /* pause.png */; settings = {ASSET_TAGS = (); }; };
 		CEC125101BCAD8FD0007A88A /* StartGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1250F1BCAD8FD0007A88A /* StartGameViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		CEC499671BD2D705005CAFF1 /* golden.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC499661BD2D705005CAFF1 /* golden.png */; settings = {ASSET_TAGS = (); }; };
 		CEC499741BD2D718005CAFF1 /* evolutionlv_1.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC499691BD2D718005CAFF1 /* evolutionlv_1.png */; settings = {ASSET_TAGS = (); }; };
@@ -163,6 +164,7 @@
 		CE94FAA11BD343A0002C0011 /* listbase_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = listbase_1.jpg; sourceTree = "<group>"; };
 		CE94FAA31BD343C4002C0011 /* fightground_heishita_EndPos.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fightground_heishita_EndPos.jpg; sourceTree = "<group>"; };
 		CE94FAA51BD3483C002C0011 /* uiground_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = uiground_1.jpg; sourceTree = "<group>"; };
+		CEB567371BD564C300FBA2F0 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		CEC1250F1BCAD8FD0007A88A /* StartGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartGameViewController.swift; sourceTree = "<group>"; };
 		CEC499661BD2D705005CAFF1 /* golden.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = golden.png; sourceTree = "<group>"; };
 		CEC499691BD2D718005CAFF1 /* evolutionlv_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = evolutionlv_1.png; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 		CEF066381BA8EF1200927C86 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				CEB567371BD564C300FBA2F0 /* pause.png */,
 				CE94FAA51BD3483C002C0011 /* uiground_1.jpg */,
 				CE94FAA31BD343C4002C0011 /* fightground_heishita_EndPos.jpg */,
 				CE94FAA11BD343A0002C0011 /* listbase_1.jpg */,
@@ -719,6 +722,7 @@
 				CEC49A071BD2D7AD005CAFF1 /* sound_fight_slash002.mp3 in Resources */,
 				CEC499F31BD2D7AD005CAFF1 /* sound_dig004.mp3 in Resources */,
 				CEC499841BD2D737005CAFF1 /* fightground_yingyachengbao_startPos.jpg in Resources */,
+				CEB567381BD564C300FBA2F0 /* pause.png in Resources */,
 				CEC49A411BD2EC3A005CAFF1 /* backgroud_raffleanimation.jpg in Resources */,
 				CEC49A001BD2D7AD005CAFF1 /* sound_fight_skillhit004.mp3 in Resources */,
 				CEC49A1D1BD2D7AD005CAFF1 /* sound_monster003.mp3 in Resources */,
