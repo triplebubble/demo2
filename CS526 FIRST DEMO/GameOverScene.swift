@@ -10,8 +10,7 @@ import Foundation
 import SpriteKit
 
 class GameOverScene: SKScene {
-    let gameOverlabel: SKLabelNode
-    let resultlabel: SKLabelNode
+    let score : String
     let Mode: Int
     let backgroundbottom1 = SKSpriteNode(imageNamed: "fightground_heishita.jpg")
     let backgroundtop1 = SKSpriteNode(imageNamed: "fightground_heishita_EndPos.jpg")
@@ -20,10 +19,10 @@ class GameOverScene: SKScene {
     var playableMargin = CGFloat()
     var maxAspectRatioWidth = CGFloat()
     var playableRect = CGRect()
-
-    init(size: CGSize, gameover: SKLabelNode, result: SKLabelNode, Number: Int){
-        self.gameOverlabel = gameover
-        self.resultlabel = result
+    let resultLable = SKLabelNode()
+    let gameOverLabel = SKLabelNode()
+    init(size: CGSize, Score: String, Number: Int){
+        self.score = Score
         self.Mode = Number
         maxAspectRatio = 16.0/9.0 // iPhone 5"
         maxAspectRatioWidth = size.height / maxAspectRatio
@@ -39,8 +38,6 @@ class GameOverScene: SKScene {
     }
     override func didMoveToView(view: SKView) {
         backgroundColor = UIColor.grayColor()
-        self.addChild(gameOverlabel)
-        self.addChild(resultlabel)
         self.addChild(backgroundbottom1)
         self.addChild(backgroundtop1)
         self.addChild(endboard)
@@ -52,7 +49,24 @@ class GameOverScene: SKScene {
         backgroundtop1.position = CGPoint(x: playableMargin, y: backgroundbottom1.size.height)
         endboard.position = CGPoint(x: size.width/2, y: size.height/2)
         endboard.zPosition = 10
-        
+        gameOverLabel.name = "gameOverLabel"
+        gameOverLabel.fontSize = 70
+        gameOverLabel.fontColor = SKColor.blackColor()
+        gameOverLabel.horizontalAlignmentMode = .Center
+        gameOverLabel.verticalAlignmentMode = .Center
+        gameOverLabel.position = CGPointMake(size.width / 2, size.height / 2 + 50)
+        gameOverLabel.zPosition = 60
+        gameOverLabel.text = "GAME OVER"
+        resultLable.name = "resultLable"
+        resultLable.text = "You score is "+score
+        resultLable.fontSize = 70
+        resultLable.zPosition = 60
+        resultLable.fontColor = SKColor.blackColor()
+        resultLable.horizontalAlignmentMode = .Center
+        resultLable.verticalAlignmentMode = .Center
+        resultLable.position = CGPointMake(size.width / 2, size.height / 2 - 50)
+        self.addChild(gameOverLabel)
+        self.addChild(resultLable)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

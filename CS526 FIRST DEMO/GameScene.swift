@@ -14,13 +14,17 @@ enum colour: Int {
 }
 
 class GameScene: SKScene {
+    
+    
+    var viewcontroller = GameViewController()
+    
+    
     enum GameState {
         case GameRunning
         case GameOver
     }
     
     var counter = 0;
-    
     var score = 0;
     let playableRect : CGRect
     let backgroundLayerNode = SKNode()
@@ -46,8 +50,7 @@ class GameScene: SKScene {
     var LifeLosing = SKAction()
     var LifebarSize = CGFloat(0)
     var gameState = GameState.GameRunning;
-    let resultLable = SKLabelNode()
-    let gameOverLabel = SKLabelNode()
+    
     var maxAspectRatio = CGFloat()
     var playableMargin = CGFloat()
     var maxAspectRatioWidth = CGFloat()
@@ -62,7 +65,8 @@ class GameScene: SKScene {
     var blackHit = Bool()
     var emptyCollect: Int = 0
     var lifeLosingVelocity: CGFloat = 0
-    var timing = NSTimeInterval(0)
+//    var timing = NSTimeInterval(0)
+    var lifebarRecoder = CGFloat(0)
     
     let black = SKEmitterNode(fileNamed: "Black.sks")
     let feverEffect = SKEmitterNode(fileNamed: "Fever.sks")
@@ -113,12 +117,11 @@ class GameScene: SKScene {
     }
     override func didMoveToView(view: SKView) {
         setupSceneLayer()
-        setupGemAction()
         playBackGroundMusic("bgm_003.mp3");
+      
     }
     override func update(currentTime: NSTimeInterval) {
-        timing = currentTime
-        if(self.view?.paused == false) {
+        if(gameState != .GameOver) {
             if lastUpdateTime > 0 {
                 dt = currentTime - lastUpdateTime
             } else {
@@ -173,14 +176,17 @@ class GameScene: SKScene {
             if(Lifebar.size.width <= 0 && gameState == .GameRunning){
                 gameState = GameState.GameOver
             }
-            if(Lifebar.size.width <= size.width/2 && Lifebar.color == UIColor.greenColor()){
+            if(Lifebar.size.width <= size.width/2 && Lifebar.size.width > size.width/5 ){
                 Lifebar.color = UIColor.orangeColor()
             }
-            if(Lifebar.size.width <= size.width/5 && Lifebar.color == UIColor.orangeColor()){
+            if(Lifebar.size.width <= size.width/5){
                 Lifebar.color = UIColor.redColor()
             }
+            if(Lifebar.size.width > size.width/2){
+                Lifebar.color = UIColor.greenColor()
+            }
             switch(gameState){
-            case (.GameOver): restartGame(size, gameover: gameOverLabel, result: resultLable)
+            case (.GameOver): restartGame()
             default: break
             }
 
@@ -193,10 +199,11 @@ class GameScene: SKScene {
         touchLocation = touch.locationInNode(chararterLayerNode)
         if(pauseButton.containsPoint(touchLocation)){
             if(self.view?.paused == false){
+                lifebarRecoder = Lifebar.size.width
                 self.view?.paused = true
             } else {
                 self.view?.paused = false
-                lastUpdateTime = timing
+                Lifebar.size.width = lifebarRecoder
             }
         }
     }
@@ -300,22 +307,6 @@ class GameScene: SKScene {
         Lifebar.color = UIColor.greenColor()
         lifeLosingVelocity = Lifebar.size.width / 30
         UIlayerNode.addChild(Lifebar)
-        gameOverLabel.name = "gameOverLabel"
-        gameOverLabel.fontSize = 70
-        gameOverLabel.fontColor = SKColor.blackColor()
-        gameOverLabel.horizontalAlignmentMode = .Center
-        gameOverLabel.verticalAlignmentMode = .Center
-        gameOverLabel.position = CGPointMake(size.width / 2, size.height / 2 + 50)
-        gameOverLabel.zPosition = 60
-        gameOverLabel.text = "GAME OVER"
-        resultLable.name = "resultLable"
-        resultLable.fontSize = 70
-        resultLable.zPosition = 60
-        resultLable.fontColor = SKColor.blackColor()
-        resultLable.horizontalAlignmentMode = .Center
-        resultLable.verticalAlignmentMode = .Center
-        resultLable.position = CGPointMake(size.width / 2, size.height / 2 - 50)
-
     }
     
     // set up the colloction set, initailize the layer's nodes, and collectSet
@@ -362,13 +353,6 @@ class GameScene: SKScene {
         } else {
             normalGemFall(gemFallSpeed)
         }
-//        let judgeSpecial:Int = randomInRange(1...5)
-//        if(judgeSpecial == 1 && !fever) {
-//            blackGemFall(gemFallSpeed)
-//        }
-//        else {
-//            normalGemFall(gemFallSpeed)
-//        }
     }
     
     func blackGemFall(dur : NSTimeInterval) {
@@ -630,19 +614,9 @@ class GameScene: SKScene {
         score += plus
         scoreLabel.text = "Score: \(score)"
     }
-    
-    // Set up the moving action for all kinds of gems
-    func setupGemAction(){
-//        runAction(SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(gemfall),SKAction.waitForDuration(1)])))
-    }
-    
-    // display the score and game over scene, then restart the game
-    func restartGame(size: CGSize, gameover: SKLabelNode, result: SKLabelNode){
-        result.text = "Your Score is \(score)"
-        let gameoverscene = GameOverScene(size: size, gameover: gameOverLabel, result: resultLable, Number: Int(1))
-        gameoverscene.scaleMode = scaleMode
-        let reveal = SKTransition.fadeWithDuration(0.5)
-        view?.presentScene(gameoverscene, transition: reveal)
+     // display the score and game over scene, then restart the game
+    func restartGame(){
+        self.viewcontroller.test("\(score)",mode: 1)
     }
     
 }

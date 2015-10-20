@@ -16,6 +16,7 @@
 		CE94FAA41BD343C4002C0011 /* fightground_heishita_EndPos.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE94FAA31BD343C4002C0011 /* fightground_heishita_EndPos.jpg */; settings = {ASSET_TAGS = (); }; };
 		CE94FAA61BD3483C002C0011 /* uiground_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE94FAA51BD3483C002C0011 /* uiground_1.jpg */; settings = {ASSET_TAGS = (); }; };
 		CEB567381BD564C300FBA2F0 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB567371BD564C300FBA2F0 /* pause.png */; settings = {ASSET_TAGS = (); }; };
+		CEB5673A1BD6EBD700FBA2F0 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB567391BD6EBD700FBA2F0 /* GameOverViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		CEC125101BCAD8FD0007A88A /* StartGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC1250F1BCAD8FD0007A88A /* StartGameViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		CEC499671BD2D705005CAFF1 /* golden.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC499661BD2D705005CAFF1 /* golden.png */; settings = {ASSET_TAGS = (); }; };
 		CEC499741BD2D718005CAFF1 /* evolutionlv_1.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC499691BD2D718005CAFF1 /* evolutionlv_1.png */; settings = {ASSET_TAGS = (); }; };
@@ -165,6 +166,7 @@
 		CE94FAA31BD343C4002C0011 /* fightground_heishita_EndPos.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fightground_heishita_EndPos.jpg; sourceTree = "<group>"; };
 		CE94FAA51BD3483C002C0011 /* uiground_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = uiground_1.jpg; sourceTree = "<group>"; };
 		CEB567371BD564C300FBA2F0 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
+		CEB567391BD6EBD700FBA2F0 /* GameOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		CEC1250F1BCAD8FD0007A88A /* StartGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartGameViewController.swift; sourceTree = "<group>"; };
 		CEC499661BD2D705005CAFF1 /* golden.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = golden.png; sourceTree = "<group>"; };
 		CEC499691BD2D718005CAFF1 /* evolutionlv_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = evolutionlv_1.png; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 				CEF066381BA8EF1200927C86 /* image */,
 				CEF066181BA8EB1500927C86 /* GameScene.swift */,
 				CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */,
+				CEB567391BD6EBD700FBA2F0 /* GameOverViewController.swift */,
 				CED065BA1BABA5BC00C9CBAC /* MyUtils.swift */,
 				CEF0661A1BA8EB1500927C86 /* GameViewController.swift */,
 				CEE8E19C1BCE02B300A78EA8 /* SpecialViewController.swift */,
@@ -747,6 +750,7 @@
 				CE5B49F51BBB8A4000E4DBA4 /* GameOverScene.swift in Sources */,
 				CEE8E19B1BCE025400A78EA8 /* GameSceneSpecial.swift in Sources */,
 				1FE91D101BC2EBDD00132486 /* gem.swift in Sources */,
+				CEB5673A1BD6EBD700FBA2F0 /* GameOverViewController.swift in Sources */,
 				CEF066191BA8EB1500927C86 /* GameScene.swift in Sources */,
 				CEF0661B1BA8EB1500927C86 /* GameViewController.swift in Sources */,
 				CEF066151BA8EB1500927C86 /* AppDelegate.swift in Sources */,

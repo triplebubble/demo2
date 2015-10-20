@@ -10,9 +10,12 @@ import UIKit
 import SpriteKit
 
 class GameViewController: UIViewController {
+    var totalscore = String()
+    var index = Int(0)
     override func viewDidLoad() {
         super.viewDidLoad()
         let scene = GameScene(size: CGSize(width: 750, height: 1134))// Configure the view.
+        scene.viewcontroller = self
         let skView = self.view as! SKView
 //        skView.showsFPS = true
 //        skView.showsNodeCount = true
@@ -23,7 +26,17 @@ class GameViewController: UIViewController {
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
-//    @IBAction func pause(sender: UIButton) {
-//        self.view.paused = !self.view.paused;
-//    }
+    func test(score: String, mode: Int) {
+        totalscore = score
+        index = mode
+        performSegueWithIdentifier("test", sender: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "test") {
+            let svc: GameOverViewController = segue.destinationViewController as! GameOverViewController
+            svc.toPass = totalscore
+            svc.modeIndex = index
+        }
+    }
 }

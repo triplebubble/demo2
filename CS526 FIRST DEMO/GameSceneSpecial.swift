@@ -406,11 +406,11 @@ class GameSceneSpecial: SKScene {
     
     // display the score and game over scene, then restart the game
     func restartGame(size: CGSize, gameover: SKLabelNode, result: SKLabelNode){
-        result.text = "Your Score is \(score)"
-        let gameoverscene = GameOverScene(size: size, gameover: gameOverLabel, result: resultLable, Number: Int(0))
-        gameoverscene.scaleMode = scaleMode
-        let reveal = SKTransition.fadeWithDuration(0.5)
-        view?.presentScene(gameoverscene, transition: reveal)
+//        result.text = "Your Score is \(score)"
+//        let gameoverscene = GameOverScene(size: size, gameover: gameOverLabel, result: resultLable, Number: Int(0))
+//        gameoverscene.scaleMode = scaleMode
+//        let reveal = SKTransition.fadeWithDuration(0.5)
+//        view?.presentScene(gameoverscene, transition: reveal)
     }
     
 }
