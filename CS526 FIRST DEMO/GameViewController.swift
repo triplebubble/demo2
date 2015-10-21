@@ -23,6 +23,11 @@ class GameViewController: UIViewController {
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
+    // move to setting view
+    @IBAction func toMenu(sender: UIButton) {
+        let menuView = self.storyboard?.instantiateViewControllerWithIdentifier("settingView") as! SettingView
+        self.presentViewController(menuView, animated: false, completion: nil)
+    }
 //    @IBAction func pause(sender: UIButton) {
 //        self.view.paused = !self.view.paused;
 //    }

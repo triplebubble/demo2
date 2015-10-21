@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00784A491BD7603C00B54E63 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00784A481BD7603C00B54E63 /* SettingView.swift */; settings = {ASSET_TAGS = (); }; };
 		1FA412481BD1BA05009F9FDA /* DiamondBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FA412471BD1BA05009F9FDA /* DiamondBlack.png */; settings = {ASSET_TAGS = (); }; };
 		1FE91D101BC2EBDD00132486 /* gem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE91D0F1BC2EBDD00132486 /* gem.swift */; settings = {ASSET_TAGS = (); }; };
 		CE0584351BD3063900AE7C6B /* Black.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE0584341BD3063900AE7C6B /* Black.sks */; settings = {ASSET_TAGS = (); }; };
@@ -156,6 +157,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00784A481BD7603C00B54E63 /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		1FA412471BD1BA05009F9FDA /* DiamondBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiamondBlack.png; sourceTree = "<group>"; };
 		1FE91D0F1BC2EBDD00132486 /* gem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gem.swift; sourceTree = "<group>"; };
 		CE0584341BD3063900AE7C6B /* Black.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Black.sks; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 				CEF0661A1BA8EB1500927C86 /* GameViewController.swift */,
 				CEE8E19C1BCE02B300A78EA8 /* SpecialViewController.swift */,
 				CEC1250F1BCAD8FD0007A88A /* StartGameViewController.swift */,
+				00784A481BD7603C00B54E63 /* SettingView.swift */,
 				CEE8E19A1BCE025400A78EA8 /* GameSceneSpecial.swift */,
 				CEF0661F1BA8EB1500927C86 /* Images.xcassets */,
 				CEF066121BA8EB1500927C86 /* Supporting Files */,
@@ -568,7 +571,7 @@
 				TargetAttributes = {
 					CEF0660E1BA8EB1500927C86 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = LW9YM3679A;
+						DevelopmentTeam = ETMB55L5KQ;
 					};
 					CEF066271BA8EB1500927C86 = {
 						CreatedOnToolsVersion = 6.4;
@@ -744,6 +747,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEC125101BCAD8FD0007A88A /* StartGameViewController.swift in Sources */,
+				00784A491BD7603C00B54E63 /* SettingView.swift in Sources */,
 				CE5B49F51BBB8A4000E4DBA4 /* GameOverScene.swift in Sources */,
 				CEE8E19B1BCE025400A78EA8 /* GameSceneSpecial.swift in Sources */,
 				1FE91D101BC2EBDD00132486 /* gem.swift in Sources */,
@@ -885,7 +889,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "CS526 FIRST DEMO/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "usc.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "usc.CS526-FIRST-DEMO-addmenu";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -899,7 +903,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "CS526 FIRST DEMO/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "usc.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "usc.CS526-FIRST-DEMO-addmenu";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

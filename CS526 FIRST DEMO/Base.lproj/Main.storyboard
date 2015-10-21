@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HMN-fy-hxF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HMN-fy-hxF">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -9,7 +9,7 @@
         <!--Start Game View Controller-->
         <scene sceneID="rRA-x7-9GW">
             <objects>
-                <viewController id="HMN-fy-hxF" customClass="StartGameViewController" customModule="CS526_FIRST_DEMO" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="startGameView" id="HMN-fy-hxF" customClass="StartGameViewController" customModule="CS526_FIRST_DEMO" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7eR-Oj-NTQ"/>
                         <viewControllerLayoutGuide type="bottom" id="nAp-H4-6WY"/>
@@ -67,26 +67,147 @@
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="CS526_FIRST_DEMO" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="gameView" id="BV1-FR-VrT" customClass="GameViewController" customModule="CS526_FIRST_DEMO" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="maK-i9-Uhn"/>
                         <viewControllerLayoutGuide type="bottom" id="khH-OB-KpY"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="gameView1" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glD-sV-FWQ">
+                                <rect key="frame" x="5" y="5" width="54" height="49"/>
+                                <state key="normal" image="menu"/>
+                                <connections>
+                                    <action selector="toMenu:" destination="BV1-FR-VrT" eventType="touchUpInside" id="25E-8K-Btc"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="981" y="347"/>
+            <point key="canvasLocation" x="980.5" y="346.5"/>
+        </scene>
+        <!--Setting View-->
+        <scene sceneID="j31-Pm-SPG">
+            <objects>
+                <viewController storyboardIdentifier="settingView" id="kWC-kX-Cxj" customClass="SettingView" customModule="CS526_FIRST_DEMO" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="77a-T9-Neo"/>
+                        <viewControllerLayoutGuide type="bottom" id="Wnc-jg-mfm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bZz-vw-wjd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vR4-9X-Kc1">
+                                <rect key="frame" x="233" y="38" width="55" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="R1r-B6-Lws"/>
+                                </constraints>
+                                <state key="normal" image="close"/>
+                                <connections>
+                                    <action selector="closeGame:" destination="kWC-kX-Cxj" eventType="touchUpInside" id="Bao-dD-67Z"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ovk-ss-TGo">
+                                <rect key="frame" x="17" y="109" width="99" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="New Game">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="toStartGame:" destination="kWC-kX-Cxj" eventType="touchUpInside" id="QxN-IC-f1I"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" enabled="NO" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cq8-kR-E1c">
+                                <rect key="frame" x="17" y="53" width="141" height="28"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Triple Bubble">
+                                        <attributes>
+                                            <color key="NSColor" red="0.97647064924240112" green="0.99215692281723022" blue="0.99215692281723022" alpha="1" colorSpace="deviceRGB"/>
+                                            <font key="NSFont" size="24" name="HelveticaNeue"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qKk-zm-H0d">
+                                <rect key="frame" x="20" y="180" width="54" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="Neb-va-aBy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Music">
+                                    <color key="titleColor" red="0.97647064920000004" green="0.99215692280000001" blue="0.99215692280000001" alpha="1" colorSpace="deviceRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UTb-c6-hSq">
+                                <rect key="frame" x="20" y="323" width="64" height="64"/>
+                                <state key="normal" image="facebook"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cL-9O-A9I">
+                                <rect key="frame" x="20" y="435" width="64" height="72"/>
+                                <state key="normal" image="instagram"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIl-7C-Z6F">
+                                <rect key="frame" x="149" y="443" width="52" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="52" id="NjN-UZ-ejL"/>
+                                </constraints>
+                                <state key="normal" image="google+"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oR9-qZ-el9">
+                                <rect key="frame" x="149" y="323" width="64" height="64"/>
+                                <state key="normal" image="twitter"/>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jhi-7o-nnL">
+                                <rect key="frame" x="171" y="195" width="51" height="31"/>
+                                <connections>
+                                    <action selector="muteTheMusic:" destination="kWC-kX-Cxj" eventType="valueChanged" id="6mz-7l-LUN"/>
+                                </connections>
+                            </switch>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jhi-7o-nnL" firstAttribute="top" secondItem="77a-T9-Neo" secondAttribute="bottom" constant="175" id="124-ma-VFs"/>
+                            <constraint firstItem="yIl-7C-Z6F" firstAttribute="bottom" secondItem="4cL-9O-A9I" secondAttribute="bottom" id="5uB-ng-ItT"/>
+                            <constraint firstItem="vR4-9X-Kc1" firstAttribute="top" secondItem="77a-T9-Neo" secondAttribute="bottom" constant="18" id="8Kb-Qf-QTy"/>
+                            <constraint firstItem="qKk-zm-H0d" firstAttribute="leading" secondItem="bZz-vw-wjd" secondAttribute="leadingMargin" constant="4" id="9Rd-V9-3Ck"/>
+                            <constraint firstItem="vR4-9X-Kc1" firstAttribute="leading" secondItem="Cq8-kR-E1c" secondAttribute="trailing" constant="75" id="EuV-ND-GSQ"/>
+                            <constraint firstItem="qKk-zm-H0d" firstAttribute="top" secondItem="bZz-vw-wjd" secondAttribute="top" constant="180" id="LrI-Gs-tas"/>
+                            <constraint firstItem="Cq8-kR-E1c" firstAttribute="top" secondItem="77a-T9-Neo" secondAttribute="bottom" constant="33" id="MYv-Z0-fAj"/>
+                            <constraint firstItem="oR9-qZ-el9" firstAttribute="top" secondItem="UTb-c6-hSq" secondAttribute="top" id="NjV-i4-q8z"/>
+                            <constraint firstItem="oR9-qZ-el9" firstAttribute="leading" secondItem="bZz-vw-wjd" secondAttribute="leading" constant="149" id="Q9T-Ac-H3V"/>
+                            <constraint firstItem="yIl-7C-Z6F" firstAttribute="leading" secondItem="oR9-qZ-el9" secondAttribute="leading" id="TOT-cf-iBr"/>
+                            <constraint firstItem="oR9-qZ-el9" firstAttribute="bottom" secondItem="UTb-c6-hSq" secondAttribute="bottom" id="bCF-jl-sdh"/>
+                            <constraint firstItem="vR4-9X-Kc1" firstAttribute="centerY" secondItem="Cq8-kR-E1c" secondAttribute="centerY" id="buZ-xH-SlJ"/>
+                            <constraint firstItem="oR9-qZ-el9" firstAttribute="leading" secondItem="UTb-c6-hSq" secondAttribute="trailing" constant="65" id="daN-b2-Atp"/>
+                            <constraint firstItem="Ovk-ss-TGo" firstAttribute="top" secondItem="Cq8-kR-E1c" secondAttribute="bottom" constant="28" id="ezB-m8-qyn"/>
+                            <constraint firstItem="qKk-zm-H0d" firstAttribute="top" secondItem="Ovk-ss-TGo" secondAttribute="bottom" constant="35" id="fJe-Ya-sAC"/>
+                            <constraint firstItem="Cq8-kR-E1c" firstAttribute="leading" secondItem="bZz-vw-wjd" secondAttribute="leadingMargin" constant="1" id="jFX-vj-Yb4"/>
+                            <constraint firstItem="yIl-7C-Z6F" firstAttribute="top" secondItem="oR9-qZ-el9" secondAttribute="bottom" constant="56" id="jqY-8E-Saw"/>
+                            <constraint firstItem="Ovk-ss-TGo" firstAttribute="leading" secondItem="Cq8-kR-E1c" secondAttribute="leading" id="m16-Py-YRG"/>
+                            <constraint firstItem="jhi-7o-nnL" firstAttribute="leading" secondItem="qKk-zm-H0d" secondAttribute="trailing" constant="97" id="pRn-24-UtX"/>
+                            <constraint firstItem="4cL-9O-A9I" firstAttribute="top" secondItem="UTb-c6-hSq" secondAttribute="bottom" constant="48" id="wpV-6p-roj"/>
+                            <constraint firstItem="Wnc-jg-mfm" firstAttribute="top" secondItem="4cL-9O-A9I" secondAttribute="bottom" constant="160" id="wtB-xY-SdM"/>
+                            <constraint firstItem="UTb-c6-hSq" firstAttribute="leading" secondItem="4cL-9O-A9I" secondAttribute="leading" id="zLm-Rs-E8Q"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0OW-J0-Wtd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1410.5" y="346.5"/>
         </scene>
         <!--Special View Controller-->
         <scene sceneID="Uwd-Is-uoy">
             <objects>
-                <viewController id="Jr9-7Y-pOD" customClass="SpecialViewController" customModule="CS526_FIRST_DEMO" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="specialGameView" id="Jr9-7Y-pOD" customClass="SpecialViewController" customModule="CS526_FIRST_DEMO" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2uU-5O-z6P"/>
                         <viewControllerLayoutGuide type="bottom" id="niM-f9-2cT"/>
@@ -94,6 +215,15 @@
                     <view key="view" contentMode="scaleToFill" id="Rwj-Y4-cjZ" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdE-Ry-xoZ">
+                                <rect key="frame" x="8" y="7" width="56" height="56"/>
+                                <state key="normal" image="menu"/>
+                                <connections>
+                                    <action selector="specialToMenu:" destination="Jr9-7Y-pOD" eventType="touchUpInside" id="8Qn-RA-8YT"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -104,8 +234,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="close" width="64" height="64"/>
+        <image name="facebook" width="64" height="64"/>
         <image name="golden.png" width="203" height="154"/>
+        <image name="google+" width="64" height="64"/>
+        <image name="instagram" width="64" height="64"/>
+        <image name="menu" width="64" height="64"/>
         <image name="shop.png" width="219" height="151"/>
         <image name="sliver.png" width="201" height="147"/>
+        <image name="twitter" width="64" height="64"/>
     </resources>
 </document>
