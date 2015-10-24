@@ -76,7 +76,7 @@ class GameScene: SKScene {
     var mapUIColor: [UIColor] = [UIColor.blueColor(), UIColor.yellowColor(), UIColor.redColor(), UIColor.purpleColor(), UIColor.greenColor(), UIColor.blackColor()]
     
     //combo label
-    let comboLabel = SKLabelNode(fontNamed: "Arial")
+    //let comboLabel = SKLabelNode(fontNamed: "Arial")
     var comboHitCount = 0
     let combePicture = SKSpriteNode()
     
@@ -431,9 +431,8 @@ class GameScene: SKScene {
         let curColor = gem.colour
         gem.removeFromParent()
         
-        if(curColor == colour.Black.rawValue) {
+        if(!fever && curColor == colour.Black.rawValue) {
             blackHit = true
-            comboLabel.text = ""
             return
         }
         
@@ -445,30 +444,44 @@ class GameScene: SKScene {
         
         blackHit = false
         
-        if(curColor == prevHitGemColor) {
-            comboHitCount += 1
-            if(comboHitCount > 0) {
-                //                comboLabel.text = "Combo * " + String(comboHitCount)
-                var combo = SKSpriteNode()
-                if(comboHitCount>9) {
-                    combo = SKSpriteNode(imageNamed: "evolutionlv_max.png")
-                } else {
-                    combo = SKSpriteNode(imageNamed: "evolutionlv_\(comboHitCount).png")
-                }
-                UIlayerNode.addChild(combo)
-                combo.position = charater.position
-                combo.zPosition = 100;
-                let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: 150), duration: 1)
-                let remove = SKAction.removeFromParent()
-                combo.runAction(SKAction.sequence([testActinon, remove]))
-            }
-        } else {
-            comboLabel.text = ""
-            comboHitCount = 1
+//        if(curColor == prevHitGemColor) {
+//            comboHitCount += 1
+//            if(comboHitCount > 1) {
+//                var combo = SKSpriteNode()
+////                if(comboHitCount>9) {
+////                    combo = SKSpriteNode(imageNamed: "evolutionlv_max.png")
+////                } else {
+//                combo = SKSpriteNode(imageNamed: "evolutionlv_\(comboHitCount).png")
+////                }
+//                UIlayerNode.addChild(combo)
+//                combo.position = charater.position
+//                combo.zPosition = 100;
+//                let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: 150), duration: 1)
+//                let remove = SKAction.removeFromParent()
+//                increaseScoreBy(comboHitCount * 250)
+//                combo.runAction(SKAction.sequence([testActinon, remove]))
+//            }
+//        } else {
+//            //comboLabel.text = ""
+//            comboHitCount = 1
+//        }
+        
+        
+        /*
+        increaseScoreBy(500)
+        SetUpCollectionColor()
+        Lifebar.size.width += size.width / 10
+        if (Lifebar.size.width > LifebarSize) {
+        Lifebar.size.width = LifebarSize
         }
-
-        prevHitGemColor = curColor
-        increaseScoreBy(250*comboHitCount)
+        emptyCollect -= 3
+        if(hitWithOutMistake==3) {
+        enterFeverMode()
+        } else {
+        hitWithOutMistake = 0
+        }
+*/
+        
         if(fever){
             if(counter==3){
                 counter = 0;
@@ -476,20 +489,44 @@ class GameScene: SKScene {
             collectSet[counter].color = UIColor.blackColor()
             counter++
             emptyCollect++
-            if (emptyCollect >= 3) {
-                increaseScoreBy(500)
-                SetUpCollectionColor()
-                Lifebar.size.width += size.width / 10
-                if (Lifebar.size.width > LifebarSize) {
-                    Lifebar.size.width = LifebarSize
-                }
-                emptyCollect -= 3
+            if (emptyCollect == 3) {
+                fullCollectionDone()
                 hitWithOutMistake = 0
             }
+            prevHitGemColor = 0
         } else {
+            comboCheck(curColor)
             updateCollection(curColor);
         }
         
+    }
+    
+    func comboCheck(curColor:Int) {
+        if(curColor == prevHitGemColor) {
+            comboHitCount += 1
+            if(comboHitCount > 1) {
+                var combo = SKSpriteNode()
+                //                if(comboHitCount>9) {
+                //                    combo = SKSpriteNode(imageNamed: "evolutionlv_max.png")
+                //                } else {
+                combo = SKSpriteNode(imageNamed: "evolutionlv_\(comboHitCount).png")
+                //                }
+                UIlayerNode.addChild(combo)
+                combo.position = charater.position
+                combo.zPosition = 100;
+                let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: 150), duration: 1)
+                let remove = SKAction.removeFromParent()
+                increaseScoreBy(comboHitCount * 250)
+                combo.runAction(SKAction.sequence([testActinon, remove]))
+                if(comboHitCount == 5) {
+                    enterFeverMode()
+                }
+            }
+        } else {
+            //comboLabel.text = ""
+            comboHitCount = 1
+        }
+        prevHitGemColor = curColor
     }
     
     //check special effects triggered by black diamond
@@ -511,9 +548,9 @@ class GameScene: SKScene {
             break
         case colour.Red.rawValue:
             Lifebar.size.width -= size.width / 10
-            if (Lifebar.size.width > LifebarSize) {
-                Lifebar.size.width = LifebarSize
-            }
+//            if (Lifebar.size.width > LifebarSize) {
+//                Lifebar.size.width = LifebarSize
+//            }
             break
         case colour.Violet.rawValue:
             helpCollection()
@@ -524,24 +561,45 @@ class GameScene: SKScene {
     
     //help finish 2 collection
     func helpCollection() {
-        hitWithOutMistake = 0
         if(emptyCollect >= 1) {
+            let helpedHit = 3 - emptyCollect
             emptyCollect = 3
+            hitWithOutMistake += helpedHit
         }
         else {
             generateColor(collectSet[0], num: colour.Black.rawValue)
             generateColor(collectSet[1], num: colour.Black.rawValue)
             emptyCollect += 2
+            hitWithOutMistake += 2
         }
-        if (emptyCollect >= 3) {
-            increaseScoreBy(500)
-            SetUpCollectionColor()
-            Lifebar.size.width += size.width / 10
-            if (Lifebar.size.width > LifebarSize) {
-                Lifebar.size.width = LifebarSize
-            }
-            emptyCollect -= 3
+        if (emptyCollect == 3) {
+            fullCollectionDone()
         }
+    }
+    
+    func fullCollectionDone() {
+        increaseScoreBy(500)
+        SetUpCollectionColor()
+        Lifebar.size.width += size.width / 10
+        if (Lifebar.size.width > LifebarSize) {
+            Lifebar.size.width = LifebarSize
+        }
+        emptyCollect -= 3
+        if(hitWithOutMistake==3) {
+            enterFeverMode()
+        } else {
+            hitWithOutMistake = 0
+        }
+    }
+    
+    func enterFeverMode() {
+        if(fever) {
+            return
+        }
+        fever = true;
+        feverCount = 5;
+        feverSecond.text = "5"
+        UIlayerNode.addChild(feverSecond)
     }
     
     // update the collection when gem hit charactor. When collecion is empty, add the score, add the life time and create a new collection
@@ -553,28 +611,15 @@ class GameScene: SKScene {
                 collect = generateColor(collect, num: 6);
                 emptyCollect += 1
                 hitWithOutMistake++
+                increaseScoreBy(300)
                 break
             }
         }
         if(!check) {
             hitWithOutMistake = 0
         }
-        if (emptyCollect >= 3) {
-            increaseScoreBy(500)
-            SetUpCollectionColor()
-            Lifebar.size.width += size.width / 10
-            if (Lifebar.size.width > LifebarSize) {
-                Lifebar.size.width = LifebarSize
-            }
-            emptyCollect -= 3
-            if(hitWithOutMistake==3) {
-                fever = true;
-                feverCount = 5;
-                feverSecond.text = "5"
-                UIlayerNode.addChild(feverSecond)
-            } else {
-                hitWithOutMistake = 0
-            }
+        if (emptyCollect == 3) {
+            fullCollectionDone()
         }
     }
     

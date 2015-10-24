@@ -580,7 +580,7 @@
 				TargetAttributes = {
 					CEF0660E1BA8EB1500927C86 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = ETMB55L5KQ;
+						DevelopmentTeam = 254K6E45Z5;
 					};
 					CEF066271BA8EB1500927C86 = {
 						CreatedOnToolsVersion = 6.4;
@@ -901,7 +901,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "CS526 FIRST DEMO/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "usc.CS526-FIRST-DEMO-addmenu";
+				PRODUCT_BUNDLE_IDENTIFIER = "usc.CS526-FIRST-DEMO-lyx";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -915,7 +915,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "CS526 FIRST DEMO/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "usc.CS526-FIRST-DEMO-addmenu";
+				PRODUCT_BUNDLE_IDENTIFIER = "usc.CS526-FIRST-DEMO-lyx";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
