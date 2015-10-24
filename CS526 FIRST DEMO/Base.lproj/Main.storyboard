@@ -98,7 +98,7 @@
         <!--Start Game View Controller-->
         <scene sceneID="rRA-x7-9GW">
             <objects>
-                <viewController id="HMN-fy-hxF" customClass="StartGameViewController" customModule="CS526_FIRST_DEMO" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="startGameView" id="HMN-fy-hxF" customClass="StartGameViewController" customModule="CS526_FIRST_DEMO" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7eR-Oj-NTQ"/>
                         <viewControllerLayoutGuide type="bottom" id="nAp-H4-6WY"/>
@@ -159,14 +159,24 @@
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="CS526_FIRST_DEMO" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="gameView" id="BV1-FR-VrT" customClass="GameViewController" customModule="CS526_FIRST_DEMO" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="maK-i9-Uhn"/>
                         <viewControllerLayoutGuide type="bottom" id="khH-OB-KpY"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="gameView1" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glD-sV-FWQ">
+                                <rect key="frame" x="5" y="5" width="54" height="49"/>
+                                <animations/>
+                                <state key="normal" image="menu"/>
+                                <connections>
+                                    <action selector="toMenu:" destination="BV1-FR-VrT" eventType="touchUpInside" id="25E-8K-Btc"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -220,7 +230,7 @@
         <!--Special View Controller-->
         <scene sceneID="Uwd-Is-uoy">
             <objects>
-                <viewController id="Jr9-7Y-pOD" customClass="SpecialViewController" customModule="CS526_FIRST_DEMO" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="specialGameView" id="Jr9-7Y-pOD" customClass="SpecialViewController" customModule="CS526_FIRST_DEMO" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2uU-5O-z6P"/>
                         <viewControllerLayoutGuide type="bottom" id="niM-f9-2cT"/>
@@ -228,6 +238,16 @@
                     <view key="view" contentMode="scaleToFill" id="Rwj-Y4-cjZ" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdE-Ry-xoZ">
+                                <rect key="frame" x="8" y="7" width="56" height="56"/>
+                                <animations/>
+                                <state key="normal" image="menu"/>
+                                <connections>
+                                    <action selector="specialToMenu:" destination="Jr9-7Y-pOD" eventType="touchUpInside" id="8Qn-RA-8YT"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -239,6 +259,7 @@
     </scenes>
     <resources>
         <image name="golden.png" width="203" height="154"/>
+        <image name="menu" width="64" height="64"/>
         <image name="shop.png" width="219" height="151"/>
         <image name="sliver.png" width="201" height="147"/>
     </resources>
