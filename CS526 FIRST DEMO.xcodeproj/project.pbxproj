@@ -12,6 +12,8 @@
 		CE0584351BD3063900AE7C6B /* Black.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE0584341BD3063900AE7C6B /* Black.sks */; settings = {ASSET_TAGS = (); }; };
 		CE591FC51BD3034D0051E479 /* BlackGem.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE591FC41BD3034D0051E479 /* BlackGem.sks */; settings = {ASSET_TAGS = (); }; };
 		CE5B49F51BBB8A4000E4DBA4 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */; settings = {ASSET_TAGS = (); }; };
+		CE9057271BDB39550027EDF1 /* collection-red.png in Resources */ = {isa = PBXBuildFile; fileRef = CE9057261BDB39550027EDF1 /* collection-red.png */; settings = {ASSET_TAGS = (); }; };
+		CE9057291BDC2B410027EDF1 /* GuideTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9057281BDC2B410027EDF1 /* GuideTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		CE94FAA21BD343A0002C0011 /* listbase_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE94FAA11BD343A0002C0011 /* listbase_1.jpg */; settings = {ASSET_TAGS = (); }; };
 		CE94FAA41BD343C4002C0011 /* fightground_heishita_EndPos.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE94FAA31BD343C4002C0011 /* fightground_heishita_EndPos.jpg */; settings = {ASSET_TAGS = (); }; };
 		CE94FAA61BD3483C002C0011 /* uiground_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CE94FAA51BD3483C002C0011 /* uiground_1.jpg */; settings = {ASSET_TAGS = (); }; };
@@ -162,6 +164,8 @@
 		CE0584341BD3063900AE7C6B /* Black.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Black.sks; sourceTree = "<group>"; };
 		CE591FC41BD3034D0051E479 /* BlackGem.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlackGem.sks; sourceTree = "<group>"; };
 		CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		CE9057261BDB39550027EDF1 /* collection-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collection-red.png"; sourceTree = "<group>"; };
+		CE9057281BDC2B410027EDF1 /* GuideTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideTableViewController.swift; sourceTree = "<group>"; };
 		CE94FAA11BD343A0002C0011 /* listbase_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = listbase_1.jpg; sourceTree = "<group>"; };
 		CE94FAA31BD343C4002C0011 /* fightground_heishita_EndPos.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = fightground_heishita_EndPos.jpg; sourceTree = "<group>"; };
 		CE94FAA51BD3483C002C0011 /* uiground_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = uiground_1.jpg; sourceTree = "<group>"; };
@@ -443,6 +447,7 @@
 				CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */,
 				CEB567391BD6EBD700FBA2F0 /* GameOverViewController.swift */,
 				CED065BA1BABA5BC00C9CBAC /* MyUtils.swift */,
+				CE9057281BDC2B410027EDF1 /* GuideTableViewController.swift */,
 				CEF0661A1BA8EB1500927C86 /* GameViewController.swift */,
 				CEE8E19C1BCE02B300A78EA8 /* SpecialViewController.swift */,
 				CEC1250F1BCAD8FD0007A88A /* StartGameViewController.swift */,
@@ -485,6 +490,7 @@
 		CEF066381BA8EF1200927C86 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				CE9057261BDB39550027EDF1 /* collection-red.png */,
 				CEB567371BD564C300FBA2F0 /* pause.png */,
 				CE94FAA51BD3483C002C0011 /* uiground_1.jpg */,
 				CE94FAA31BD343C4002C0011 /* fightground_heishita_EndPos.jpg */,
@@ -650,6 +656,7 @@
 				CEC499951BD2D797005CAFF1 /* bgm_002.mp3 in Resources */,
 				CEC499F81BD2D7AD005CAFF1 /* sound_fight_skill003.mp3 in Resources */,
 				CEC49A341BD2D7AD005CAFF1 /* sound_ui003.mp3 in Resources */,
+				CE9057271BDB39550027EDF1 /* collection-red.png in Resources */,
 				CE94FAA61BD3483C002C0011 /* uiground_1.jpg in Resources */,
 				CEC49A2A1BD2D7AD005CAFF1 /* sound_part006.mp3 in Resources */,
 				CEC4998C1BD2D750005CAFF1 /* spark.png in Resources */,
@@ -755,6 +762,7 @@
 				CEF0661B1BA8EB1500927C86 /* GameViewController.swift in Sources */,
 				CEF066151BA8EB1500927C86 /* AppDelegate.swift in Sources */,
 				CED065BB1BABA5BC00C9CBAC /* MyUtils.swift in Sources */,
+				CE9057291BDC2B410027EDF1 /* GuideTableViewController.swift in Sources */,
 				CEE8E19D1BCE02B300A78EA8 /* SpecialViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

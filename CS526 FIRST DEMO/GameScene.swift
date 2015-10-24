@@ -18,6 +18,7 @@ class GameScene: SKScene {
     
     var viewcontroller = GameViewController()
     
+    var testCollection = SKSpriteNode(imageNamed: "collection-red.png")
     
     enum GameState {
         case GameRunning
@@ -65,8 +66,6 @@ class GameScene: SKScene {
     var blackHit = Bool()
     var emptyCollect: Int = 0
     var lifeLosingVelocity: CGFloat = 0
-//    var timing = NSTimeInterval(0)
-    var lifebarRecoder = CGFloat(0)
     
     let black = SKEmitterNode(fileNamed: "Black.sks")
     let feverEffect = SKEmitterNode(fileNamed: "Fever.sks")
@@ -121,6 +120,8 @@ class GameScene: SKScene {
       
     }
     override func update(currentTime: NSTimeInterval) {
+        
+        
         if(gameState != .GameOver) {
             if lastUpdateTime > 0 {
                 dt = currentTime - lastUpdateTime
@@ -199,11 +200,10 @@ class GameScene: SKScene {
         touchLocation = touch.locationInNode(chararterLayerNode)
         if(pauseButton.containsPoint(touchLocation)){
             if(self.view?.paused == false){
-                lifebarRecoder = Lifebar.size.width
                 self.view?.paused = true
             } else {
                 self.view?.paused = false
-                Lifebar.size.width = lifebarRecoder
+                lastUpdateTime = 0
             }
         }
     }
@@ -268,6 +268,9 @@ class GameScene: SKScene {
         feverEffect!.hidden = true;
         black!.hidden = true;
 
+        UIlayerNode.addChild(testCollection)
+        testCollection.position = CGPoint(x: size.width/2, y: size.height/2)
+        testCollection.zPosition = 150
         
         chararterLayerNode.addChild(charater)
         let backgroundSize = CGSize(width: size.width, height: UIbackgroundHeight)

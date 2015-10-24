@@ -25,13 +25,7 @@ class GameOverViewController: UIViewController {
         scene.scaleMode = .AspectFill
         skView.presentScene(scene)
         
-    }
-//
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-    
+    }    
     override func prefersStatusBarHidden() -> Bool {
         return true
     }

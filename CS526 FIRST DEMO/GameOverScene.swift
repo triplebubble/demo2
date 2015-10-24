@@ -68,20 +68,4 @@ class GameOverScene: SKScene {
         self.addChild(gameOverLabel)
         self.addChild(resultLable)
     }
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        let myScene: SKScene
-        if (self.Mode == 1){
-            myScene = GameScene(size: self.size)
-        } else {
-            myScene = GameSceneSpecial(size: self.size)
-        }
-        let block = SKAction.runBlock {
-            myScene.scaleMode = self.scaleMode
-            let reveal = SKTransition.fadeWithDuration(0.5)
-            self.view?.presentScene(myScene, transition: reveal)
-        }
-        self.runAction(block)
-    }
-    
 }
