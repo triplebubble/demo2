@@ -15,7 +15,6 @@ enum colour: Int {
 
 class GameScene: SKScene {
     
-    
     var viewcontroller = GameViewController()
     
     var testCollection = SKSpriteNode(imageNamed: "collection-red.png")
@@ -24,6 +23,8 @@ class GameScene: SKScene {
         case GameRunning
         case GameOver
     }
+    
+    let topbar = SKSpriteNode(imageNamed: "toplabel.png")
     
     var counter = 0;
     var score = 0;
@@ -61,7 +62,7 @@ class GameScene: SKScene {
     var collectRight = SKSpriteNode()
     var collectMid = SKSpriteNode()
     var collectSize = CGSize()
-    var collectSet = [SKSpriteNode]()
+    var collectSet = [CGPoint]()
     var prevHitGemColor = Int()
     var blackHit = Bool()
     var emptyCollect: Int = 0
@@ -73,7 +74,7 @@ class GameScene: SKScene {
     let backgroundImage = SKSpriteNode(imageNamed: "fightground_heishita.jpg")
     let backgroundImagedown = SKSpriteNode(imageNamed: "fightground_heishita_startPos.jpg")
     
-    var mapUIColor: [UIColor] = [UIColor.blueColor(), UIColor.yellowColor(), UIColor.redColor(), UIColor.purpleColor(), UIColor.greenColor(), UIColor.blackColor()]
+    var mapUIColor: [String] = ["collection-blue.png", "collection-yellow.png", "collection-red.png", "collection-violet.png", "collection-green.png", "collection-grey.png"]
     
     //combo label
     let comboLabel = SKLabelNode(fontNamed: "Arial")
@@ -120,8 +121,6 @@ class GameScene: SKScene {
       
     }
     override func update(currentTime: NSTimeInterval) {
-        
-        
         if(gameState != .GameOver) {
             if lastUpdateTime > 0 {
                 dt = currentTime - lastUpdateTime
@@ -172,8 +171,6 @@ class GameScene: SKScene {
                 gemFallSecond = gemFallInterval
                 runAction(SKAction.runBlock(gemfall))
             }
-            
-            
             if(Lifebar.size.width <= 0 && gameState == .GameRunning){
                 gameState = GameState.GameOver
             }
@@ -269,8 +266,13 @@ class GameScene: SKScene {
         black!.hidden = true;
 
         UIlayerNode.addChild(testCollection)
-        testCollection.position = CGPoint(x: size.width/2, y: size.height/2)
+        testCollection.position = CGPoint(x: size.width/2+275, y: size.height/2+300)
         testCollection.zPosition = 150
+        
+        UIlayerNode.addChild(topbar)
+        topbar.anchorPoint = CGPointZero
+        topbar.position = CGPoint(x: playableMargin, y: size.height - topbar.size.height)
+        topbar.zPosition = 300
         
         chararterLayerNode.addChild(charater)
         let backgroundSize = CGSize(width: size.width, height: UIbackgroundHeight)
@@ -286,7 +288,7 @@ class GameScene: SKScene {
         UIlayerNode.addChild(UIbackground)
         CollectionLayerNode.addChild(collectionbackground)
         
-        scoreLabel.fontColor = UIColor.grayColor();
+        scoreLabel.fontColor = UIColor.blackColor();
         scoreLabel.text = "Score: 0 "
         scoreLabel.name = "scoreLabel"
         
@@ -298,11 +300,11 @@ class GameScene: SKScene {
         feverSecond.position = CGPointMake(100, size.height / 2)
         
         scoreLabel.fontSize = 50
-        scoreLabel.zPosition = 60
+        scoreLabel.zPosition = 320
         scoreLabel.verticalAlignmentMode = .Center
-        scoreLabel.position = CGPoint(x: size.width/2, y: size.height - scoreLabel.frame.height)
+        scoreLabel.position = CGPoint(x: size.width/2, y: size.height - scoreLabel.frame.height-10)
         UIlayerNode.addChild(scoreLabel)
-        Lifebar.zPosition = 60
+        Lifebar.zPosition = 320
         LifebarSize = size.width - playableMargin*2;
         Lifebar.size = CGSizeMake(LifebarSize, 10)
         Lifebar.anchorPoint = CGPointZero
@@ -314,38 +316,42 @@ class GameScene: SKScene {
     
     // set up the colloction set, initailize the layer's nodes, and collectSet
     func setUpCollection() {
-        collectSize = CGSize(width: (size.width-2*playableMargin-20)/3, height: 20)
-        collectLeft.size = collectSize
-        collectLeft.anchorPoint = CGPointZero
-        collectLeft.position = CGPoint(x: playableMargin + 5, y: size.height - UIbackgroundHeight - collectionBackgroundHeight + 5)
-        collectLeft.zPosition = 60
-        CollectionLayerNode.addChild(collectLeft)
-        collectMid.size = collectSize
-        collectMid.anchorPoint = CGPointZero
-        collectMid.position = CGPoint(x: playableMargin + 10 + collectSize.width, y: size.height - UIbackgroundHeight - collectionBackgroundHeight + 5)
-        collectMid.zPosition = 60
-        CollectionLayerNode.addChild(collectMid)
-        collectRight.size = collectSize
-        collectRight.anchorPoint = CGPointZero
-        collectRight.position = CGPoint(x: playableMargin + 15 + 2 * collectSize.width, y: size.height - UIbackgroundHeight - collectionBackgroundHeight + 5)
-        collectRight.zPosition = 60
-        CollectionLayerNode.addChild(collectRight)
-        collectSet.append(collectLeft)
-        collectSet.append(collectMid)
-        collectSet.append(collectRight)
+//        collectSize = CGSize(width: (size.width-2*playableMargin-20)/3, height: 20)
+//        collectLeft.size = collectSize
+//        collectLeft.anchorPoint = CGPointZero
+//        collectLeft.position = CGPoint(x: playableMargin + 5, y: size.height - UIbackgroundHeight - collectionBackgroundHeight + 5)
+//        collectLeft.zPosition = 60
+//        CollectionLayerNode.addChild(collectLeft)
+//        collectMid.size = collectSize
+//        collectMid.anchorPoint = CGPointZero
+//        collectMid.position = CGPoint(x: playableMargin + 10 + collectSize.width, y: size.height - UIbackgroundHeight - collectionBackgroundHeight + 5)
+//        collectMid.zPosition = 60
+//        CollectionLayerNode.addChild(collectMid)
+//        collectRight.size = collectSize
+//        collectRight.anchorPoint = CGPointZero
+//        collectRight.position = CGPoint(x: playableMargin + 15 + 2 * collectSize.width, y: size.height - UIbackgroundHeight - collectionBackgroundHeight + 5)
+//        collectRight.zPosition = 60
+//        CollectionLayerNode.addChild(collectRight)
+        let top = CGPoint(x: size.width/2+275, y: size.height/2+300)
+        let middle = CGPoint(x: size.width/2+275, y: size.height/2+250)
+        let low = CGPoint(x: size.width/2+275, y: size.height/2+200)
+        collectSet.append(top)
+        collectSet.append(middle)
+        collectSet.append(low)
     }
     
     // Randomly set up three color for collection set
     func SetUpCollectionColor() {
-        for var collect in collectSet {
-            collect = generateColor(collect, num: randomInRange(1...5))
+        for let collect in collectSet {
+            var collection = generateColor(collect, num: randomInRange(1...5))
         }
     }
     
     // set up color for each collection set node
-    func generateColor(collect: SKSpriteNode, num: Int) -> SKSpriteNode {
-        collect.color = mapUIColor[num - 1];
-        return collect
+    func generateColor(collect: CGPoint, num: Int) -> SKSpriteNode {
+        let temp = SKSpriteNode(imageNamed: mapUIColor[num - 1])
+        temp.position = collect
+        return temp
     }
     
     // set the gems' color and set up their moving action
@@ -606,7 +612,6 @@ class GameScene: SKScene {
     
     // increase the score by a given value
     func increaseScoreBy(plus: Int){
-//        self.view?.paused = true
         let scoreincrease = SKLabelNode()
         scoreincrease.text = String(plus)
         scoreincrease.fontSize = 70;

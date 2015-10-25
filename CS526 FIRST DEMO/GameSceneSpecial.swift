@@ -255,7 +255,7 @@ class GameSceneSpecial: SKScene {
     }
     
     // set up color for each collection set node
-    func generateColor(collect: SKSpriteNode, num: Int) -> SKSpriteNode {
+    func generateColor(collect: CGPoint, num: Int) -> SKSpriteNode {
         collect.color = mapUIColor[num - 1];
         return collect
     }
