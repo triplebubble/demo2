@@ -491,7 +491,7 @@ class GameScene: SKScene {
             emptyCollect++
             if (emptyCollect == 3) {
                 fullCollectionDone()
-                hitWithOutMistake = 0
+//                hitWithOutMistake = 0
             }
             prevHitGemColor = 0
         } else {
@@ -600,6 +600,7 @@ class GameScene: SKScene {
         feverCount = 5;
         feverSecond.text = "5"
         UIlayerNode.addChild(feverSecond)
+        hitWithOutMistake = 0
     }
     
     // update the collection when gem hit charactor. When collecion is empty, add the score, add the life time and create a new collection
