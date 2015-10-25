@@ -17,6 +17,7 @@
 		CE1EC5891BDC50FF007573D3 /* collection-grey.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1EC5841BDC50FF007573D3 /* collection-grey.png */; };
 		CE1EC58A1BDC50FF007573D3 /* collection-violet.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1EC5851BDC50FF007573D3 /* collection-violet.png */; };
 		CE1EC58B1BDC50FF007573D3 /* collection-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1EC5861BDC50FF007573D3 /* collection-yellow.png */; };
+		CE1EC58D1BDD4959007573D3 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1EC58C1BDD4959007573D3 /* Collection.swift */; };
 		CE591FC51BD3034D0051E479 /* BlackGem.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE591FC41BD3034D0051E479 /* BlackGem.sks */; };
 		CE5B49F51BBB8A4000E4DBA4 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */; };
 		CE9057271BDB39550027EDF1 /* collection-red.png in Resources */ = {isa = PBXBuildFile; fileRef = CE9057261BDB39550027EDF1 /* collection-red.png */; };
@@ -177,6 +178,7 @@
 		CE1EC5841BDC50FF007573D3 /* collection-grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collection-grey.png"; sourceTree = "<group>"; };
 		CE1EC5851BDC50FF007573D3 /* collection-violet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collection-violet.png"; sourceTree = "<group>"; };
 		CE1EC5861BDC50FF007573D3 /* collection-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collection-yellow.png"; sourceTree = "<group>"; };
+		CE1EC58C1BDD4959007573D3 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		CE591FC41BD3034D0051E479 /* BlackGem.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlackGem.sks; sourceTree = "<group>"; };
 		CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		CE9057261BDB39550027EDF1 /* collection-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collection-red.png"; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 			isa = PBXGroup;
 			children = (
 				1FE91D0F1BC2EBDD00132486 /* gem.swift */,
+				CE1EC58C1BDD4959007573D3 /* Collection.swift */,
 				CEF066141BA8EB1500927C86 /* AppDelegate.swift */,
 				CEF0661C1BA8EB1500927C86 /* Main.storyboard */,
 				CEF066211BA8EB1500927C86 /* LaunchScreen.xib */,
@@ -788,6 +791,7 @@
 				CE5B49F51BBB8A4000E4DBA4 /* GameOverScene.swift in Sources */,
 				CEE8E19B1BCE025400A78EA8 /* GameSceneSpecial.swift in Sources */,
 				1FE91D101BC2EBDD00132486 /* gem.swift in Sources */,
+				CE1EC58D1BDD4959007573D3 /* Collection.swift in Sources */,
 				CEB5673A1BD6EBD700FBA2F0 /* GameOverViewController.swift in Sources */,
 				CEF066191BA8EB1500927C86 /* GameScene.swift in Sources */,
 				CEF0661B1BA8EB1500927C86 /* GameViewController.swift in Sources */,
