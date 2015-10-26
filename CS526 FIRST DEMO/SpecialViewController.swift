@@ -10,6 +10,8 @@ import UIKit
 import SpriteKit
 
 class SpecialViewController: UIViewController {
+    var totalscore = String()
+    var index = Int(0)
     override func viewDidLoad() {
         super.viewDidLoad()
         let scene = GameSceneSpecial(size: CGSize(width: 750, height: 1134))// Configure the view.
@@ -27,6 +29,20 @@ class SpecialViewController: UIViewController {
     }
     override func prefersStatusBarHidden() -> Bool {
         return true
+    }
+
+    func test(score: String, mode: Int) {
+        totalscore = score
+        index = mode
+        performSegueWithIdentifier("test", sender: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "test") {
+            let svc: GameOverViewController = segue.destinationViewController as! GameOverViewController
+            svc.toPass = totalscore
+            svc.modeIndex = index
+        }
     }
 
 }

@@ -237,16 +237,6 @@
                     <view key="view" contentMode="scaleToFill" id="Rwj-Y4-cjZ" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdE-Ry-xoZ">
-                                <rect key="frame" x="8" y="7" width="56" height="56"/>
-                                <animations/>
-                                <state key="normal" image="menu"/>
-                                <connections>
-                                    <action selector="specialToMenu:" destination="Jr9-7Y-pOD" eventType="touchUpInside" id="8Qn-RA-8YT"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -258,7 +248,6 @@
     </scenes>
     <resources>
         <image name="golden.png" width="203" height="154"/>
-        <image name="menu" width="64" height="64"/>
         <image name="shop.png" width="219" height="151"/>
         <image name="sliver.png" width="201" height="147"/>
     </resources>
