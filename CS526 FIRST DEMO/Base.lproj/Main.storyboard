@@ -240,6 +240,9 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="wuK-n7-XMd" kind="show" identifier="test" id="JFn-wZ-Zej"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UDm-kT-szj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -252,8 +255,9 @@
         <image name="sliver.png" width="201" height="147"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="kQ3-wE-JNw"/>
         <segue reference="mjp-G1-OPB"/>
         <segue reference="j7C-yr-DjV"/>
+        <segue reference="kQ3-wE-JNw"/>
+        <segue reference="JFn-wZ-Zej"/>
     </inferredMetricsTieBreakers>
 </document>
