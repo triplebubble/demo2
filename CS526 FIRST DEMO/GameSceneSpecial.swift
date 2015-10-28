@@ -39,7 +39,7 @@ class GameSceneSpecial: SKScene {
     var maxAspectRatio = CGFloat()
     var playableMargin = CGFloat()
     var maxAspectRatioWidth = CGFloat()
-    let charater = SKSpriteNode(imageNamed: "worker")
+    let charater = SKSpriteNode(imageNamed: "char-7.png")
     var swipe = CGVector()
     var collectLeft = SKSpriteNode()
     var collectRight = SKSpriteNode()
@@ -59,6 +59,9 @@ class GameSceneSpecial: SKScene {
         case GameRunning
         case GameOver
     }
+    
+    var animation = SKAction()
+    
     let topbar = SKSpriteNode(imageNamed: "toplabel.png")
     var counter = 0;
     var totalGameTime = Float(0)
@@ -84,6 +87,15 @@ class GameSceneSpecial: SKScene {
     //set the swipe length
     var touchLocation = CGPointZero
     override init(size: CGSize) {
+        var texture : [SKTexture] = []
+        texture.append(SKTexture(imageNamed: "char-7.png"))
+        texture.append(SKTexture(imageNamed: "char-3.png"))
+        texture.append(SKTexture(imageNamed: "char-2.png"))
+        texture.append(SKTexture(imageNamed: "char-4.png"))
+        texture.append(SKTexture(imageNamed: "char-6.png"))
+        texture.append(SKTexture(imageNamed: "char-5.png"))
+        texture.append(SKTexture(imageNamed: "char-1.png"))
+        animation = SKAction.animateWithTextures(texture, timePerFrame: 0.05)
         gameState = .GameRunning
         maxAspectRatio = 16.0/9.0 // iPhone 5"
         maxAspectRatioWidth = size.height / maxAspectRatio
@@ -100,6 +112,7 @@ class GameSceneSpecial: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     override func didMoveToView(view: SKView) {
+        charater.runAction(SKAction.repeatActionForever(animation))
         setupSceneLayer()
         setupGemAction()
         playBackGroundMusic("bgm_002.mp3");

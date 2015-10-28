@@ -24,6 +24,8 @@ class GameScene: SKScene {
         case GameOver
     }
     
+    var animation = SKAction()
+    
     let topbar = SKSpriteNode(imageNamed: "toplabel.png")
     var counter = 0;
     var score = 0;
@@ -55,7 +57,7 @@ class GameScene: SKScene {
     var maxAspectRatio = CGFloat()
     var playableMargin = CGFloat()
     var maxAspectRatioWidth = CGFloat()
-    let charater = SKSpriteNode(imageNamed: "worker")
+    let charater = SKSpriteNode(imageNamed: "char-7.png")
     var swipe = CGVector()
     var collectSetPosition = [CGPoint]()
     var prevHitGemColor = Int()
@@ -100,6 +102,15 @@ class GameScene: SKScene {
     let pauseButton = SKSpriteNode(imageNamed: "pause.png")
     
     override init(size: CGSize) {
+        var texture : [SKTexture] = []
+        texture.append(SKTexture(imageNamed: "char-7.png"))
+        texture.append(SKTexture(imageNamed: "char-3.png"))
+        texture.append(SKTexture(imageNamed: "char-2.png"))
+        texture.append(SKTexture(imageNamed: "char-4.png"))
+        texture.append(SKTexture(imageNamed: "char-6.png"))
+        texture.append(SKTexture(imageNamed: "char-5.png"))
+        texture.append(SKTexture(imageNamed: "char-1.png"))
+        animation = SKAction.animateWithTextures(texture, timePerFrame: 0.05)
         gameState = .GameRunning
         maxAspectRatio = 16.0/9.0 // iPhone 5"
         maxAspectRatioWidth = size.height / maxAspectRatio
@@ -116,6 +127,7 @@ class GameScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
     override func didMoveToView(view: SKView) {
+        charater.runAction(SKAction.repeatActionForever(animation))
         setupSceneLayer()
         playBackGroundMusic("bgm_003.mp3");
       
