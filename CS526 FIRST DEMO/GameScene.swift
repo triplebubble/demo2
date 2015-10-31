@@ -9,9 +9,6 @@
 import SpriteKit
 
 // number value for gem color
-enum colour: Int {
-    case Blue = 1, Yellow, Red, Violet, Green, Black;
-}
 
 class GameScene: SKScene {
     

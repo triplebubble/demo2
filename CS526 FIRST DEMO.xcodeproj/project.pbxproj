@@ -10,6 +10,15 @@
 		00784A491BD7603C00B54E63 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00784A481BD7603C00B54E63 /* SettingView.swift */; };
 		1FA412481BD1BA05009F9FDA /* DiamondBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FA412471BD1BA05009F9FDA /* DiamondBlack.png */; };
 		1FE91D101BC2EBDD00132486 /* gem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE91D0F1BC2EBDD00132486 /* gem.swift */; };
+		CE01549F1BE27FB600BF1711 /* MonsterGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE01549E1BE27FB600BF1711 /* MonsterGameScene.swift */; };
+		CE0154A11BE280D500BF1711 /* MonsterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0154A01BE280D500BF1711 /* MonsterViewController.swift */; };
+		CE0154A51BE2880900BF1711 /* monster-1.png in Resources */ = {isa = PBXBuildFile; fileRef = CE0154A41BE2880900BF1711 /* monster-1.png */; };
+		CE0154A91BE28F1400BF1711 /* skill-3.png in Resources */ = {isa = PBXBuildFile; fileRef = CE0154A61BE28F1400BF1711 /* skill-3.png */; };
+		CE0154AA1BE28F1400BF1711 /* skill-2.png in Resources */ = {isa = PBXBuildFile; fileRef = CE0154A71BE28F1400BF1711 /* skill-2.png */; };
+		CE0154AB1BE28F1400BF1711 /* skill-1.png in Resources */ = {isa = PBXBuildFile; fileRef = CE0154A81BE28F1400BF1711 /* skill-1.png */; };
+		CE0154AD1BE2A04600BF1711 /* skill-1-eff.png in Resources */ = {isa = PBXBuildFile; fileRef = CE0154AC1BE2A04600BF1711 /* skill-1-eff.png */; };
+		CE0154AF1BE2D06800BF1711 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE0154AE1BE2D06800BF1711 /* MyParticle.sks */; };
+		CE0154B11BE2D32200BF1711 /* monsterAttack1.png in Resources */ = {isa = PBXBuildFile; fileRef = CE0154B01BE2D32200BF1711 /* monsterAttack1.png */; };
 		CE0584351BD3063900AE7C6B /* Black.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE0584341BD3063900AE7C6B /* Black.sks */; };
 		CE1EC5811BDC4305007573D3 /* toplabel.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1EC5801BDC4305007573D3 /* toplabel.png */; };
 		CE1EC5871BDC50FF007573D3 /* collection-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1EC5821BDC50FF007573D3 /* collection-blue.png */; };
@@ -178,6 +187,15 @@
 		00784A481BD7603C00B54E63 /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		1FA412471BD1BA05009F9FDA /* DiamondBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiamondBlack.png; sourceTree = "<group>"; };
 		1FE91D0F1BC2EBDD00132486 /* gem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gem.swift; sourceTree = "<group>"; };
+		CE01549E1BE27FB600BF1711 /* MonsterGameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonsterGameScene.swift; sourceTree = "<group>"; };
+		CE0154A01BE280D500BF1711 /* MonsterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonsterViewController.swift; sourceTree = "<group>"; };
+		CE0154A41BE2880900BF1711 /* monster-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "monster-1.png"; sourceTree = "<group>"; };
+		CE0154A61BE28F1400BF1711 /* skill-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skill-3.png"; sourceTree = "<group>"; };
+		CE0154A71BE28F1400BF1711 /* skill-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skill-2.png"; sourceTree = "<group>"; };
+		CE0154A81BE28F1400BF1711 /* skill-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skill-1.png"; sourceTree = "<group>"; };
+		CE0154AC1BE2A04600BF1711 /* skill-1-eff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skill-1-eff.png"; sourceTree = "<group>"; };
+		CE0154AE1BE2D06800BF1711 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
+		CE0154B01BE2D32200BF1711 /* monsterAttack1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monsterAttack1.png; sourceTree = "<group>"; };
 		CE0584341BD3063900AE7C6B /* Black.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Black.sks; sourceTree = "<group>"; };
 		CE1EC5801BDC4305007573D3 /* toplabel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toplabel.png; sourceTree = "<group>"; };
 		CE1EC5821BDC50FF007573D3 /* collection-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collection-blue.png"; sourceTree = "<group>"; };
@@ -472,6 +490,7 @@
 			children = (
 				CEC49A3E1BD2D7EB005CAFF1 /* Fever.sks */,
 				CE591FC41BD3034D0051E479 /* BlackGem.sks */,
+				CE0154AE1BE2D06800BF1711 /* MyParticle.sks */,
 				CE0584341BD3063900AE7C6B /* Black.sks */,
 				CE6B01E01BABCEE000429C1F /* Sound */,
 				CEF066381BA8EF1200927C86 /* image */,
@@ -486,6 +505,8 @@
 				00784A481BD7603C00B54E63 /* SettingView.swift */,
 				CEE8E19A1BCE025400A78EA8 /* GameSceneSpecial.swift */,
 				CE90572A1BDC335A0027EDF1 /* GuideTableViewCell.swift */,
+				CE01549E1BE27FB600BF1711 /* MonsterGameScene.swift */,
+				CE0154A01BE280D500BF1711 /* MonsterViewController.swift */,
 				CEF0661F1BA8EB1500927C86 /* Images.xcassets */,
 				CEF066121BA8EB1500927C86 /* Supporting Files */,
 			);
@@ -525,6 +546,11 @@
 		CEF066381BA8EF1200927C86 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				CE0154B01BE2D32200BF1711 /* monsterAttack1.png */,
+				CE0154A61BE28F1400BF1711 /* skill-3.png */,
+				CE0154A71BE28F1400BF1711 /* skill-2.png */,
+				CE0154A81BE28F1400BF1711 /* skill-1.png */,
+				CE0154A41BE2880900BF1711 /* monster-1.png */,
 				CEC0E62D1BE003C200C53934 /* char-2.png */,
 				CEC0E62E1BE003C200C53934 /* char-3.png */,
 				CEC0E62F1BE003C200C53934 /* char-4.png */,
@@ -563,6 +589,7 @@
 				CEC499711BD2D718005CAFF1 /* evolutionlv_9.png */,
 				CEC499721BD2D718005CAFF1 /* evolutionlv_max.png */,
 				CEC499661BD2D705005CAFF1 /* golden.png */,
+				CE0154AC1BE2A04600BF1711 /* skill-1-eff.png */,
 				CED065B81BAB871700C9CBAC /* worker.png */,
 				1FA412471BD1BA05009F9FDA /* DiamondBlack.png */,
 				CEC6D5801BAA6E0C00F9DA7F /* DiamondBlue.png */,
@@ -732,8 +759,10 @@
 				CECE75941BBE456700B2911C /* DiamondGreen.png in Resources */,
 				CEC49A191BD2D7AD005CAFF1 /* sound_hero001.mp3 in Resources */,
 				CEC49A291BD2D7AD005CAFF1 /* sound_part005.mp3 in Resources */,
+				CE0154AB1BE28F1400BF1711 /* skill-1.png in Resources */,
 				CEC49A311BD2D7AD005CAFF1 /* sound_part016.mp3 in Resources */,
 				1FA412481BD1BA05009F9FDA /* DiamondBlack.png in Resources */,
+				CE0154A91BE28F1400BF1711 /* skill-3.png in Resources */,
 				CEC49A0D1BD2D7AD005CAFF1 /* sound_fight_slash008.mp3 in Resources */,
 				CEC499751BD2D718005CAFF1 /* evolutionlv_2.png in Resources */,
 				CEC49A061BD2D7AD005CAFF1 /* sound_fight_slash001.mp3 in Resources */,
@@ -751,6 +780,7 @@
 				CEC49A381BD2D7AD005CAFF1 /* sound_ui007.mp3 in Resources */,
 				CEC49A091BD2D7AD005CAFF1 /* sound_fight_slash004.mp3 in Resources */,
 				CEC499F41BD2D7AD005CAFF1 /* sound_dig005.mp3 in Resources */,
+				CE0154AD1BE2A04600BF1711 /* skill-1-eff.png in Resources */,
 				CEC499941BD2D797005CAFF1 /* bgm_001.mp3 in Resources */,
 				CEC4997B1BD2D718005CAFF1 /* evolutionlv_8.png in Resources */,
 				CEC49A0B1BD2D7AD005CAFF1 /* sound_fight_slash006.mp3 in Resources */,
@@ -765,8 +795,10 @@
 				CEC49A391BD2D7AD005CAFF1 /* sound_uifight001.mp3 in Resources */,
 				CEC499981BD2D797005CAFF1 /* bgm_005.mp3 in Resources */,
 				CEC49A141BD2D7AD005CAFF1 /* sound_fight_slash015.mp3 in Resources */,
+				CE0154AA1BE28F1400BF1711 /* skill-2.png in Resources */,
 				CEC0E6341BE003C200C53934 /* char-2.png in Resources */,
 				CEC49A1C1BD2D7AD005CAFF1 /* sound_monster002.mp3 in Resources */,
+				CE0154B11BE2D32200BF1711 /* monsterAttack1.png in Resources */,
 				CEC499831BD2D737005CAFF1 /* fightground_heishita.jpg in Resources */,
 				CEC49A3A1BD2D7AD005CAFF1 /* sound_uifight002.mp3 in Resources */,
 				CEC499961BD2D797005CAFF1 /* bgm_003.mp3 in Resources */,
@@ -789,10 +821,12 @@
 				CEC49A121BD2D7AD005CAFF1 /* sound_fight_slash013.mp3 in Resources */,
 				CEC49A041BD2D7AD005CAFF1 /* sound_fight_skillhit008.mp3 in Resources */,
 				CEC49A0A1BD2D7AD005CAFF1 /* sound_fight_slash005.mp3 in Resources */,
+				CE0154A51BE2880900BF1711 /* monster-1.png in Resources */,
 				CEC49A261BD2D7AD005CAFF1 /* sound_part002.mp3 in Resources */,
 				CEC49A071BD2D7AD005CAFF1 /* sound_fight_slash002.mp3 in Resources */,
 				CEC499F31BD2D7AD005CAFF1 /* sound_dig004.mp3 in Resources */,
 				CEC499841BD2D737005CAFF1 /* fightground_yingyachengbao_startPos.jpg in Resources */,
+				CE0154AF1BE2D06800BF1711 /* MyParticle.sks in Resources */,
 				CEB567381BD564C300FBA2F0 /* pause.png in Resources */,
 				CEC49A411BD2EC3A005CAFF1 /* backgroud_raffleanimation.jpg in Resources */,
 				CEC49A001BD2D7AD005CAFF1 /* sound_fight_skillhit004.mp3 in Resources */,
@@ -817,6 +851,7 @@
 				CEC125101BCAD8FD0007A88A /* StartGameViewController.swift in Sources */,
 				00784A491BD7603C00B54E63 /* SettingView.swift in Sources */,
 				CE5B49F51BBB8A4000E4DBA4 /* GameOverScene.swift in Sources */,
+				CE01549F1BE27FB600BF1711 /* MonsterGameScene.swift in Sources */,
 				CEE8E19B1BCE025400A78EA8 /* GameSceneSpecial.swift in Sources */,
 				1FE91D101BC2EBDD00132486 /* gem.swift in Sources */,
 				CE1EC58D1BDD4959007573D3 /* Collection.swift in Sources */,
@@ -826,6 +861,7 @@
 				CEF066151BA8EB1500927C86 /* AppDelegate.swift in Sources */,
 				CED065BB1BABA5BC00C9CBAC /* MyUtils.swift in Sources */,
 				CE9057291BDC2B410027EDF1 /* GuideTableViewController.swift in Sources */,
+				CE0154A11BE280D500BF1711 /* MonsterViewController.swift in Sources */,
 				CEE8E19D1BCE02B300A78EA8 /* SpecialViewController.swift in Sources */,
 				CE90572B1BDC335A0027EDF1 /* GuideTableViewCell.swift in Sources */,
 			);
