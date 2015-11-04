@@ -23,9 +23,10 @@ class SpecialViewController: UIViewController {
         skView.presentScene(scene)
     }
 
-    @IBAction func specialToMenu(sender: UIButton) {
+    @IBAction func specialToSetting(sender: UIButton) {
         let menuV = self.storyboard?.instantiateViewControllerWithIdentifier("settingView") as! SettingView
         self.presentViewController(menuV, animated: false, completion: nil)
+
     }
     override func prefersStatusBarHidden() -> Bool {
         return true

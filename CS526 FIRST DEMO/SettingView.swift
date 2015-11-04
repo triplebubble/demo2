@@ -8,6 +8,8 @@
 
 import UIKit
 import AVFoundation
+import Social
+
 var count = 1
 class SettingView:UIViewController{
     
@@ -19,19 +21,20 @@ class SettingView:UIViewController{
         super.viewDidAppear(animated)
     }
     
-    @IBAction func toStartGame(sender: UIButton) {
+    @IBAction func newGame(sender: UIButton) {
         backgroundMusicPlayer.stop()
         let startGameV = self.storyboard?.instantiateViewControllerWithIdentifier("startGameView") as! StartGameViewController
         self.presentViewController(startGameV, animated: false, completion: nil)
     }
     
-    @IBAction func closeGame(sender: UIButton) {
-        backgroundMusicPlayer.stop()
+    @IBAction func endGame(sender: UIButton) {
+           backgroundMusicPlayer.stop()
         let startGameV = self.storyboard?.instantiateViewControllerWithIdentifier("startGameView") as! StartGameViewController
         self.presentViewController(startGameV, animated: false, completion: nil)
     }
-    @IBAction func muteTheMusic(sender: UISwitch) {
-        if(count == 1){
+
+    @IBAction func muteMusic(sender: UISwitch) {
+           if(count == 1){
         //backgroundMusicPlayer.volume = 0
             backgroundMusicPlayer.stop()
             count = 0
@@ -43,5 +46,23 @@ class SettingView:UIViewController{
             count = 1
         }
         
+    }
+    
+    @IBAction func connectFacebook( sender: UIButton ){
+      let shareWithFacebook = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+       
+        shareWithFacebook.setInitialText("Sharing an interesting iOS Game : Triple Bubble")
+        shareWithFacebook.addImage(UIImage(named: "mainpic.png"))
+        shareWithFacebook.addURL(NSURL(string:"https://github.com/mingjiej/CS526-FIRST-DEMO1"))
+         self.presentViewController(shareWithFacebook, animated: true, completion: nil)
+    }
+    
+    @IBAction func connectTwitter( sender: UIButton ){
+        let shareWithTwitter = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+        shareWithTwitter.setInitialText("Sharing an interesting iOS Game : Triple Bubble")
+        shareWithTwitter.addImage(UIImage(named: "mainpic.png"))
+        shareWithTwitter.addURL(NSURL(string:"https://github.com/mingjiej/CS526-FIRST-DEMO1"))
+
+        self.presentViewController(shareWithTwitter, animated: true, completion: nil)
     }
 }

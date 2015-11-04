@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0040DC801BE9EC2400F5A75C /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0040DC7F1BE9EC2400F5A75C /* Social.framework */; };
+		0040DC821BE9F8AB00F5A75C /* mainpic.png in Resources */ = {isa = PBXBuildFile; fileRef = 0040DC811BE9F8AB00F5A75C /* mainpic.png */; };
 		00784A491BD7603C00B54E63 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00784A481BD7603C00B54E63 /* SettingView.swift */; };
 		1FA412481BD1BA05009F9FDA /* DiamondBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 1FA412471BD1BA05009F9FDA /* DiamondBlack.png */; };
 		1FE91D101BC2EBDD00132486 /* gem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE91D0F1BC2EBDD00132486 /* gem.swift */; };
@@ -184,6 +186,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0040DC7F1BE9EC2400F5A75C /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		0040DC811BE9F8AB00F5A75C /* mainpic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mainpic.png; path = ../../mainpic.png; sourceTree = "<group>"; };
 		00784A481BD7603C00B54E63 /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		1FA412471BD1BA05009F9FDA /* DiamondBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiamondBlack.png; sourceTree = "<group>"; };
 		1FE91D0F1BC2EBDD00132486 /* gem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = gem.swift; sourceTree = "<group>"; };
@@ -359,6 +363,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0040DC801BE9EC2400F5A75C /* Social.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +475,7 @@
 		CEF066061BA8EB1500927C86 = {
 			isa = PBXGroup;
 			children = (
+				0040DC7F1BE9EC2400F5A75C /* Social.framework */,
 				CEF066111BA8EB1500927C86 /* CS526 FIRST DEMO */,
 				CEF0662B1BA8EB1500927C86 /* CS526 FIRST DEMOTests */,
 				CEF066101BA8EB1500927C86 /* Products */,
@@ -546,6 +552,7 @@
 		CEF066381BA8EF1200927C86 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				0040DC811BE9F8AB00F5A75C /* mainpic.png */,
 				CE0154B01BE2D32200BF1711 /* monsterAttack1.png */,
 				CE0154A61BE28F1400BF1711 /* skill-3.png */,
 				CE0154A71BE28F1400BF1711 /* skill-2.png */,
@@ -652,7 +659,7 @@
 				TargetAttributes = {
 					CEF0660E1BA8EB1500927C86 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 254K6E45Z5;
+						DevelopmentTeam = ETMB55L5KQ;
 					};
 					CEF066271BA8EB1500927C86 = {
 						CreatedOnToolsVersion = 6.4;
@@ -771,6 +778,7 @@
 				CE1EC58B1BDC50FF007573D3 /* collection-yellow.png in Resources */,
 				CEC49A1E1BD2D7AD005CAFF1 /* sound_monster004.mp3 in Resources */,
 				CEC49A281BD2D7AD005CAFF1 /* sound_part004.mp3 in Resources */,
+				0040DC821BE9F8AB00F5A75C /* mainpic.png in Resources */,
 				CEC499F71BD2D7AD005CAFF1 /* sound_fight_skill002.mp3 in Resources */,
 				CEC49A2D1BD2D7AD005CAFF1 /* sound_part012.mp3 in Resources */,
 				CEC499FD1BD2D7AD005CAFF1 /* sound_fight_skillhit001.mp3 in Resources */,
@@ -997,7 +1005,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "CS526 FIRST DEMO/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "usc.CS526-FIRST-DEMO1";
+				PRODUCT_BUNDLE_IDENTIFIER = "nov-3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1011,7 +1019,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "CS526 FIRST DEMO/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "usc.CS526-FIRST-DEMO1";
+				PRODUCT_BUNDLE_IDENTIFIER = "nov-3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
