@@ -52,14 +52,14 @@ class SettingView:UIViewController{
       let shareWithFacebook = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
        
         shareWithFacebook.setInitialText("Sharing an interesting iOS Game : Triple Bubble")
-        shareWithFacebook.addURL(NSURL(string:"https://github.com/mingjiej/CS526-FIRST-DEMO1"))
+        shareWithFacebook.addURL(NSURL(string:"https://github.com/triplebubble/demo2"))
          self.presentViewController(shareWithFacebook, animated: true, completion: nil)
     }
     
     @IBAction func connectTwitter( sender: UIButton ){
         let shareWithTwitter = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
         shareWithTwitter.setInitialText("Sharing an interesting iOS Game : Triple Bubble")
-        shareWithTwitter.addURL(NSURL(string:"https://github.com/mingjiej/CS526-FIRST-DEMO1"))
+        shareWithTwitter.addURL(NSURL(string:"https://github.com/triplebubble/demo2"))
 
         self.presentViewController(shareWithTwitter, animated: true, completion: nil)
     }
