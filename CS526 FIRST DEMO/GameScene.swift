@@ -42,7 +42,7 @@ class GameScene: SKScene {
     var velocity = CGPointZero
     let UIlayerNode = SKNode()
     let CollectionLayerNode = SKNode()
-    var scoreLabel = SKLabelNode(fontNamed: "Arial")
+    var scoreLabel = SKLabelNode(fontNamed: "Noteworthy-Bold")
     var feverSecond = SKLabelNode(fontNamed: "Arial")
     let UIbackgroundHeight: CGFloat = 90
     let collectionBackgroundHeight: CGFloat = 30
@@ -96,7 +96,7 @@ class GameScene: SKScene {
     let gemCollsionSound: SKAction = SKAction.playSoundFileNamed("sound_ui001.mp3", waitForCompletion: false)
     let collectionSound: SKAction = SKAction.playSoundFileNamed("sound_fight_skill005.mp3", waitForCompletion: false)
     
-    let pauseButton = SKSpriteNode(imageNamed: "pause.png")
+    let pauseButton = SKSpriteNode(imageNamed: "Return.png")
     
     override init(size: CGSize) {
         var texture : [SKTexture] = []
@@ -280,7 +280,7 @@ class GameScene: SKScene {
         topbar.zPosition = 300
         
         chararterLayerNode.addChild(charater)
-        scoreLabel.fontColor = UIColor.blackColor();
+        scoreLabel.fontColor = UIColor.whiteColor();
         scoreLabel.text = "Score: 0 "
         scoreLabel.name = "scoreLabel"
         
@@ -288,7 +288,7 @@ class GameScene: SKScene {
         scoreLabel.fontSize = 50
         scoreLabel.zPosition = 320
         scoreLabel.verticalAlignmentMode = .Center
-        scoreLabel.position = CGPoint(x: size.width/2, y: size.height - scoreLabel.frame.height-10)
+        scoreLabel.position = CGPoint(x: size.width/2, y: size.height - scoreLabel.frame.height)
         UIlayerNode.addChild(scoreLabel)
         Lifebar.zPosition = 320
         LifebarSize = size.width - playableMargin*2;
@@ -595,9 +595,10 @@ class GameScene: SKScene {
     
     // increase the score by a given value
     func increaseScoreBy(plus: Int){
+        //fontNamed: "Helvetica-light"
         let scoreincrease = SKLabelNode()
         scoreincrease.text = String(plus)
-        scoreincrease.fontSize = 70;
+        scoreincrease.fontSize = 50;
         scoreincrease.zPosition = 100;
         scoreincrease.position = charater.position
         UIlayerNode.addChild(scoreincrease)
@@ -607,6 +608,7 @@ class GameScene: SKScene {
     }
      // display the score and game over scene, then restart the game
     func restartGame(){
+        backgroundMusicPlayer.stop()
         self.viewcontroller.test("\(score)",mode: 1)
     }
     func chooseColor(posit: CGPoint) -> Collection {

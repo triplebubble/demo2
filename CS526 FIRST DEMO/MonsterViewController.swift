@@ -9,12 +9,15 @@
 import UIKit
 import SpriteKit
 class MonsterViewController: UIViewController {
+    var monsterIndex = Int(2)
+    var totalScore = Double(0)
     override func viewDidLoad() {
         super.viewDidLoad()
-        let scene = MonsterGameScene(size: CGSize(width: 750, height: 1134))// Configure the view.
+        let scene = MonsterGameScene(size: CGSize(width: 750, height: 1134), num: monsterIndex)// Configure the view.
+        scene.viewcontroller = self
         let skView = self.view as! SKView
         //        skView.showsFPS = true
-        //        skView.showsNodeCount = true
+        //        skView.showsNodeCount  = true
         skView.ignoresSiblingOrder = true
         scene.scaleMode = .AspectFill
         skView.presentScene(scene)
@@ -30,10 +33,18 @@ class MonsterViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func back() {
-        performSegueWithIdentifier("return", sender: nil)
+    func back(score: Double) {
+        totalScore = score
+        self.performSegueWithIdentifier("monster", sender: nil)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "monster") {
+            let svc : GameOverViewController = segue.destinationViewController as! GameOverViewController
+            svc.toPass = "\(totalScore)"
+            svc.modeIndex = 3
+        }
+    }
 
     /*
     // MARK: - Navigation

@@ -14,7 +14,9 @@ enum colour: Int {
 }
 
 class MonsterGameScene: SKScene {
-    var score = 0;
+    var blinkDone = false
+    var monsterSwitch = NSTimeInterval(5)
+    var score = Double(0);
     let playableRect : CGRect
     let backgroundLayerNode = SKNode()
     let informationLayerNode = SKNode()
@@ -27,7 +29,7 @@ class MonsterGameScene: SKScene {
     var velocity = CGPointZero
     let UIlayerNode = SKNode()
     let CollectionLayerNode = SKNode()
-    var scoreLabel = SKLabelNode(fontNamed: "Arial")
+    var scoreLabel = SKLabelNode(fontNamed: "Noteworthy-light")
     let UIbackgroundHeight: CGFloat = 90
     let collectionBackgroundHeight: CGFloat = 30
     var Lifebar = SKSpriteNode()
@@ -54,10 +56,13 @@ class MonsterGameScene: SKScene {
     var collectionLow = Collection()
     var collectionSet = [Collection]()
     
-    var monster1 = SKSpriteNode(imageNamed: "monster-1.png")
+    var monster1 = SKSpriteNode()
     var skill1 = SKSpriteNode(imageNamed: "skill-1")
     var skill2 = SKSpriteNode(imageNamed: "skill-2")
     var skill3 = SKSpriteNode(imageNamed: "skill-3")
+    var skill1lock = SKSpriteNode(imageNamed: "skill-1-lock.png")
+    var skill2lock = SKSpriteNode(imageNamed: "skill-2-lock.png")
+    var skill3lock = SKSpriteNode(imageNamed: "skill-3-lock.png")
     var lowerbar = SKSpriteNode()
     var skillSet = [SKSpriteNode]()
     var level = Int(0);
@@ -65,8 +70,13 @@ class MonsterGameScene: SKScene {
     var speedup = false;
     let feverEffect = SKEmitterNode(fileNamed: "Fever.sks")
     var fevertime = NSTimeInterval(10)
-    
+    var skillthreetime = NSTimeInterval(5)
+    var skillthreeOn = false
+    var skillthreeEffect = SKEmitterNode(fileNamed: "MyParticle.sks")
+    var skillthreeAncharPoint = SKSpriteNode()
     var viewcontroller = MonsterViewController()
+    let backgroundImage = SKSpriteNode(imageNamed: "fightground_yingyachengbao.jpg")
+    let backgroundImagedown = SKSpriteNode(imageNamed: "fightground_yingyachengbao_startPos.jpg")
     enum GameState {
         case GameRunning
         case GameOver
@@ -84,22 +94,24 @@ class MonsterGameScene: SKScene {
     var LifebarSize = CGFloat(0)
     var monsterbarSize = CGFloat(0)
     var collectSetPosition = [CGPoint]()
-    let pauseButton = SKSpriteNode(imageNamed: "pause.png")
+    let pauseButton = SKSpriteNode(imageNamed: "Return.png")
     
     
     var mapUIColor: [String] = ["collection-blue.png", "collection-yellow.png", "collection-red.png", "collection-violet.png", "collection-green.png", "collection-grey.png"]
     let gemCollsionSound: SKAction = SKAction.playSoundFileNamed("sound_ui001.mp3", waitForCompletion: false)
     let collectionSound: SKAction = SKAction.playSoundFileNamed("sound_fight_skill005.mp3", waitForCompletion: false)
-    
-    let backgroundImage = SKSpriteNode(imageNamed: "fightground_yingyachengbao.jpg")
-    let backgroundImagedown = SKSpriteNode(imageNamed: "fightground_yingyachengbao_startPos.jpg")
-    
-    
     var tempGem = Gem()
     var tempGem1 = Gem();
+    var number = Int(0)
     //set the swipe length
     var touchLocation = CGPointZero
-    override init(size: CGSize) {
+    init(size: CGSize, num: Int) {
+        number = num
+        if(number==1){
+            monster1 = SKSpriteNode(imageNamed: "monster-1.png")
+        } else {
+            monster1 = SKSpriteNode(imageNamed: "monster-2.png")
+        }
         var texture : [SKTexture] = []
         texture.append(SKTexture(imageNamed: "char-7.png"))
         texture.append(SKTexture(imageNamed: "char-3.png"))
@@ -132,52 +144,93 @@ class MonsterGameScene: SKScene {
         playBackGroundMusic("bgm_002.mp3");
     }
     override func update(currentTime: NSTimeInterval) {
-        if lastUpdateTime > 0 {
-            dt = currentTime - lastUpdateTime
-        } else {
-            dt = 0
-        }
-        lastUpdateTime = currentTime
-        if let lastTouch = lastTouchPosition {
-            let diff = lastTouch - charater.position
-            if (diff.length() <= characterMovePointsPerSec * CGFloat(dt)) {
-                charater.position = lastTouchPosition!
-                velocity = CGPointZero
+        if (gameState == .GameRunning) {
+            if lastUpdateTime > 0 {
+                dt = currentTime - lastUpdateTime
+                score += Double(dt)
+                if(monsterSwitch>0) {
+                    monsterSwitch -= dt
+                }
+                scoreLabel.text = "Time: " + String(format: "%.2f", score)
             } else {
-                moveSprite(charater, velocity: velocity)
+                dt = 0
             }
-        }
-//        Lifebar.size.width -= lifeLosingVelocity * CGFloat(dt)
-        gemFallInterval -= dt
-        if(speedup) {
-            fevertime -= dt
-            if(fevertime<=0) {
-                speedup = false
-                fevertime = 10
-                gemFallInterval = 0.8
-                gemFallSpeed = 1
+            if(skillthreeOn) {
+                skillthreetime -= dt
+                monsterlife.size.width -= 100*CGFloat(dt)
+                if(skillthreetime<=0) {
+                    skillthreeOn = false
+                    skillthreetime = 5
+                    skillthreeAncharPoint.removeFromParent()
+                }
             }
-        }
-        if(gemFallInterval<=0) {
-            gemfall(gemFallSpeed)
+//            if(monsterSwitch<=0) {
+//                monsterBlink(monster1)
+//            }
+//            if(monsterSwitch<=0) {
+//                if number == 1 {
+////                    monster1.removeFromParent()
+//                   let monsterTemp = SKSpriteNode(imageNamed: "monster-2.png")
+//                    monsterTemp.position = monster1.position
+//                    monsterTemp.zPosition = monster1.zPosition
+//                    UIlayerNode.addChild(monsterTemp)
+//                    monster1.removeFromParent()
+//                    monster1 = monsterTemp
+////                    UIlayerNode.addChild(monster1)
+//                    number = 0
+//                } else {
+////                    monster1.removeFromParent()
+//                    var monsterTemp = SKSpriteNode(imageNamed: "monster-1.png")
+//                    monsterTemp.position = monster1.position
+//                    monsterTemp.zPosition = monster1.zPosition
+//                    UIlayerNode.addChild(monsterTemp)
+//                    monster1.removeFromParent()
+//                    monster1 = monsterTemp
+////                    UIlayerNode.addChild(monster1)
+//                    number = 1
+//                }
+//                blinkDone = false
+//                monsterSwitch = 5
+//            }
+            lastUpdateTime = currentTime
+            if let lastTouch = lastTouchPosition {
+                let diff = lastTouch - charater.position
+                if (diff.length() <= characterMovePointsPerSec * CGFloat(dt)) {
+                    charater.position = lastTouchPosition!
+                    velocity = CGPointZero
+                } else {
+                    moveSprite(charater, velocity: velocity)
+                }
+            }
+            //        Lifebar.size.width -= lifeLosingVelocity * CGFloat(dt)
+            gemFallInterval -= dt
             if(speedup) {
-                gemFallInterval = 0.2
-            } else {
-                gemFallInterval = 0.8
+                fevertime -= dt
+                if(fevertime<=0) {
+                    speedup = false
+                    fevertime = 10
+                    gemFallInterval = 0.8
+                    gemFallSpeed = 2
+                }
             }
-        }
-        if(Lifebar.size.width <= 0 && gameState == .GameRunning||(monsterlife.size.width <= 0 && gameState == .GameRunning)){
-            gameState = GameState.GameOver
-        }
-        if(Lifebar.size.width <= size.width/2 && Lifebar.color == UIColor.greenColor()){
-            Lifebar.color = UIColor.orangeColor()
-        }
-        if(Lifebar.size.width <= size.width/5 && Lifebar.color == UIColor.orangeColor()){
-            Lifebar.color = UIColor.redColor()
-        }
-        switch(gameState){
-        case (.GameOver): restartGame()
-        default: break
+            if(gemFallInterval<=0) {
+                gemfall(gemFallSpeed)
+                if(speedup) {
+                    gemFallInterval = 0.2
+                } else {
+                    gemFallInterval = 0.8
+                }
+            }
+            if(monsterlife.size.width <= 0 && gameState == .GameRunning){
+                gameState = GameState.GameOver
+                restartGame()
+            }
+            if(monsterlife.size.width <= size.width/2 && monsterlife.color == UIColor.greenColor()){
+                Lifebar.color = UIColor.orangeColor()
+            }
+            if(monsterlife.size.width <= size.width/5 && monsterlife.color == UIColor.orangeColor()){
+                Lifebar.color = UIColor.redColor()
+            }
         }
     }
     
@@ -192,7 +245,8 @@ class MonsterGameScene: SKScene {
                 self.view?.paused = false
                 lastUpdateTime = 0
             }
-        } else if (skill1.containsPoint(touchLocation)&&level>=1) {
+        }
+        if (skill1.containsPoint(touchLocation)&&level>=1) {
             print("you used skill1")
             skillone()
             level--
@@ -208,6 +262,9 @@ class MonsterGameScene: SKScene {
         } else if (skill3.containsPoint(touchLocation)&&level>=3) {
             print("you used skill3")
             level = level - 3;
+            if(!skillthreeOn){
+                skillthree()
+            }
             removeSkill(level, num: 3)
         }
     }
@@ -229,14 +286,6 @@ class MonsterGameScene: SKScene {
     // set up the basic UI
     func setupUI() {
         
-        lowerbar.size = CGSize(width: size.width, height: 150)
-        lowerbar.color = UIColor.whiteColor()
-        lowerbar.anchorPoint = CGPointZero
-        lowerbar.position = CGPoint(x: playableMargin, y: 0)
-        lowerbar.zPosition = 150
-        
-        UIlayerNode.addChild(lowerbar)
-        
         backgroundImage.anchorPoint = CGPointZero
         backgroundLayerNode.addChild(backgroundImage)
         backgroundImage.zPosition = -100;
@@ -246,11 +295,10 @@ class MonsterGameScene: SKScene {
         backgroundLayerNode.addChild(backgroundImagedown)
         backgroundImagedown.zPosition = -100;
         backgroundImagedown.position = CGPoint(x: playableMargin, y: 0)
-        view?.backgroundColor = UIColor.whiteColor();
         
-//        UIlayerNode.addChild(pauseButton)
-        pauseButton.zPosition = 100
-        pauseButton.position = CGPoint(x: size.width*2/3+100, y: 90)
+        UIlayerNode.addChild(pauseButton)
+        pauseButton.zPosition = 200
+        pauseButton.position = CGPoint(x: playableMargin + pauseButton.size.width/2, y: 990)
         
         charater.position = CGPoint(x: size.width/2, y: 1/5*size.height)
         charater.zPosition = 20
@@ -262,7 +310,7 @@ class MonsterGameScene: SKScene {
         topbar.zPosition = 100
         
         chararterLayerNode.addChild(charater)
-        scoreLabel.fontColor = UIColor.blackColor();
+        scoreLabel.fontColor = UIColor.whiteColor();
         scoreLabel.text = "Score: 0 "
         scoreLabel.name = "scoreLabel"
         
@@ -270,24 +318,27 @@ class MonsterGameScene: SKScene {
         scoreLabel.fontSize = 50
         scoreLabel.zPosition = 320
         scoreLabel.verticalAlignmentMode = .Center
-        scoreLabel.position = CGPoint(x: size.width/2, y: size.height - scoreLabel.frame.height-10)
+        scoreLabel.position = CGPoint(x: size.width/2, y: size.height - scoreLabel.frame.height)
         UIlayerNode.addChild(scoreLabel)
-        Lifebar.zPosition = 320
-        LifebarSize = size.width - playableMargin*2;
-        Lifebar.size = CGSizeMake(LifebarSize, 10)
-        Lifebar.anchorPoint = CGPointZero
-        Lifebar.position = CGPoint(x: playableMargin, y: size.height - UIbackgroundHeight)
-        Lifebar.color = UIColor.greenColor()
-        lifeLosingVelocity = Lifebar.size.width / 30
-        UIlayerNode.addChild(Lifebar)
         monsterlife.zPosition = 320
         monsterbarSize = size.width - playableMargin*2;
-        monsterlife.size = CGSizeMake(LifebarSize, 10)
+        monsterlife.size = CGSizeMake(monsterbarSize, 10)
         monsterlife.anchorPoint = CGPointZero
         monsterlife.position = CGPoint(x: playableMargin, y: size.height - UIbackgroundHeight - 10)
         monsterlife.color = UIColor.purpleColor()
         UIlayerNode.addChild(monsterlife)
-
+        skill1lock.position = CGPoint(x: size.width/3-50, y: 90)
+        skill2lock.position = CGPoint(x: size.width/2, y: 90)
+        skill3lock.position = CGPoint(x: size.width*2/3+50, y: 90)
+        skill1lock.zPosition = 150
+        skill2lock.zPosition = 150
+        skill3lock.zPosition = 150
+        skill1lock.setScale(0.8)
+        skill2lock.setScale(0.8)
+        skill3lock.setScale(0.8)
+        UIlayerNode.addChild(skill1lock)
+        UIlayerNode.addChild(skill2lock)
+        UIlayerNode.addChild(skill3lock)
     }
     // set the gems' color and set up their moving action
     func gemfall(speed: NSTimeInterval) {
@@ -330,19 +381,29 @@ class MonsterGameScene: SKScene {
     // check all the gems and call the hit function for collisions
     func collisionCheck() {
         var hitGem: [Gem] = []
+        var hitAttack: [SKSpriteNode] = []
         gemLayerNode.enumerateChildNodesWithName("Gem") { node, _ in
             let gem = node as! Gem
             if CGRectIntersectsRect(CGRectInset(node.frame,20, 20), self.charater.frame){
                 hitGem.append(gem)
             }
         }
+        UIlayerNode.enumerateChildNodesWithName("attack") { node, _ in
+            let attack = node as! SKSpriteNode
+            if CGRectIntersectsRect(CGRectInset(node.frame,20, 20), self.charater.frame){
+                hitAttack.append(attack)
+            }
+        }
         for gem in hitGem {
             characterHitGem(gem)
+        }
+        for attack in hitAttack {
+            characterHitAttack(attack)
         }
         
     }
     func characterHitGem(gem: Gem){
-        increaseScoreBy(250)
+//        increaseScoreBy(250)
         updateCollection(gem.colour)
         gem.removeFromParent()
     }
@@ -350,18 +411,18 @@ class MonsterGameScene: SKScene {
    
     // display the score and game over scene, then restart the game
     func restartGame(){
-        self.viewcontroller.back()
+        backgroundMusicPlayer.stop()
+        self.viewcontroller.back(Double(String(format: "%.2f", score))!)
     }
     // calculate the swipe distance and move the character
     // initialize UI
     func setupSceneLayer() {
-//        addChild(backgroundLayerNode)
+        addChild(backgroundLayerNode)
         addChild(chararterLayerNode)
         addChild(UIlayerNode)
         addChild(gemLayerNode)
         addChild(CollectionLayerNode)
         addChild(informationLayerNode)
-        
         setupUI()
         setUpCollection()
         SetUpCollectionColor()
@@ -390,7 +451,7 @@ class MonsterGameScene: SKScene {
     
     func fullCollectionDone() {
         emptyCollect = 0
-        increaseScoreBy(500)
+//        increaseScoreBy(500)
         if(level<=2) {
             level++;
             setupSkill(level)
@@ -410,7 +471,7 @@ class MonsterGameScene: SKScene {
                 collectionSet[i] = cancelOneCollection(collectSetPosition[i])
                 UIlayerNode.addChild(collectionSet[i])
                 emptyCollect += 1
-                increaseScoreBy(300)
+//                increaseScoreBy(300)
                 break
             }
         }
@@ -445,20 +506,6 @@ class MonsterGameScene: SKScene {
         let direction = offset.normalize()
         velocity = direction * characterMovePointsPerSec
     }
-    
-    // increase the score by a given value
-    func increaseScoreBy(plus: Int){
-        let scoreincrease = SKLabelNode()
-        scoreincrease.text = String(plus)
-        scoreincrease.fontSize = 70;
-        scoreincrease.zPosition = 100;
-        scoreincrease.position = charater.position
-        UIlayerNode.addChild(scoreincrease)
-        scoreincrease.runAction(SKAction.sequence([SKAction.moveBy(CGVector(dx: 0, dy: 150), duration: 1), SKAction.fadeOutWithDuration(0.2), SKAction.removeFromParent()]))
-        score += plus
-        scoreLabel.text = "Score: \(score)"
-    }
-    // display the score and game over scene, then restart the game
     
     func chooseColor(posit: CGPoint, colColor : Int) -> Collection {
         var tempCollection = Collection()
@@ -524,7 +571,7 @@ class MonsterGameScene: SKScene {
         let wait = SKAction.waitForDuration(1)
         let goLeft = SKAction.moveByX(-size.width/6, y: 0, duration: 1)
         let goright = SKAction.moveByX(size.width/6, y: 0, duration: 1)
-        monster1.runAction(SKAction.repeatActionForever(SKAction.sequence([flipleft,wait,flipright,wait,goright,flipleft,wait,flipright, wait, flipleft, goLeft,flipright,wait,flipleft,goLeft,flipright,wait,flipleft,wait,flipright,wait,goright])))
+        monster1.runAction(SKAction.repeatActionForever(SKAction.sequence([flipleft,wait,SKAction.runBlock(monsterAttack),flipright,wait,SKAction.runBlock(monsterAttack),goright,flipleft,wait,SKAction.runBlock(monsterAttack),flipright, wait, SKAction.runBlock(monsterAttack),flipleft, goLeft,flipright,wait,SKAction.runBlock(monsterAttack),flipleft,goLeft,flipright,wait,SKAction.runBlock(monsterAttack),flipleft,wait,SKAction.runBlock(monsterAttack),flipright,wait,SKAction.runBlock(monsterAttack),goright])))
     }
     
     func setupSkill(level: Int) {
@@ -572,21 +619,54 @@ class MonsterGameScene: SKScene {
         gemFallSpeed = 0.8
     }
     
+    func skillthree() {
+        skillthreeAncharPoint.addChild(skillthreeEffect!)
+        skillthreeOn = true
+        skillthreeAncharPoint.position = CGPoint(x: size.width/2, y: monster1.position.y-50)
+        skillthreeAncharPoint.zPosition = 300
+        UIlayerNode.addChild(skillthreeAncharPoint)
+    }
     
     func monsterHited(eff: SKSpriteNode) {
         UIlayerNode.enumerateChildNodesWithName("skill") { node, _ in
             if CGRectIntersectsRect(CGRectInset(node.frame,20, 20), self.monster1.frame){
-                let duration = 3.0
-                let blinkTimes = 10.0
-                let blinkAction = SKAction.customActionWithDuration(duration) { node, elapsedTime in
-                    let slice = duration / blinkTimes
-                    let remainder = Double(elapsedTime) % slice
-                    node.hidden = remainder > slice / 2
-                }
-                self.monster1.runAction(blinkAction)
-                self.monsterlife.size.width -= 200
+                self.monsterBlink(self.monster1)
+                self.monsterlife.size.width -= 150
             }
         }
     }
-
+    func monsterBlink(monster: SKSpriteNode) {
+        let duration = 3.0
+        let blinkTimes = 10.0
+        let blinkAction = SKAction.customActionWithDuration(duration) { node, elapsedTime in
+            let slice = duration / blinkTimes
+            let remainder = Double(elapsedTime) % slice
+            node.hidden = remainder > slice / 2
+        }
+        monster.runAction(SKAction.sequence([blinkAction, SKAction.runBlock(blinkDown)]))
+    }
+    func blinkDown() {
+         blinkDone = true
+    }
+    func monsterAttack() {
+        let attackChance : Int = randomInRange(1...5)
+        if(attackChance<=3) {
+            let attack = SKSpriteNode(imageNamed: "shoot copy.png")
+            attack.setScale(2.0)
+            attack.name = "attack"
+            attack.position = monster1.position
+            attack.zPosition = 100
+            UIlayerNode.addChild(attack)
+            let testActinon = SKAction.moveBy(CGVector(dx: 0, dy: -size.height-CGFloat(attack.size.height)), duration: gemFallSpeed)
+            let remove = SKAction.removeFromParent()
+            attack.runAction(SKAction.sequence([testActinon, remove]))
+        }
+    }
+    func characterHitAttack(attack: SKSpriteNode) {
+        if(level>=1) {
+            level--;
+            skillSet[level].removeFromParent()
+        }
+        attack.removeFromParent()
+    }
 }

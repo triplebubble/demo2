@@ -28,8 +28,13 @@
 		CE1EC58A1BDC50FF007573D3 /* collection-violet.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1EC5851BDC50FF007573D3 /* collection-violet.png */; };
 		CE1EC58B1BDC50FF007573D3 /* collection-yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1EC5861BDC50FF007573D3 /* collection-yellow.png */; };
 		CE1EC58D1BDD4959007573D3 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1EC58C1BDD4959007573D3 /* Collection.swift */; };
+		CE527DFE1C01433100C48F02 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE527DFD1C01433100C48F02 /* Main.storyboard */; };
+		CE5710971C00F4FB009AE30C /* replay.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5710951C00F4FB009AE30C /* replay.png */; };
+		CE5710981C00F4FB009AE30C /* BackToMain.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5710961C00F4FB009AE30C /* BackToMain.png */; };
+		CE57109C1C012E79009AE30C /* MonsterGameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57109B1C012E79009AE30C /* MonsterGameOverViewController.swift */; };
 		CE591FC51BD3034D0051E479 /* BlackGem.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE591FC41BD3034D0051E479 /* BlackGem.sks */; };
 		CE5B49F51BBB8A4000E4DBA4 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */; };
+		CE71BD4D1C0824ED007F35CC /* monster-2.png in Resources */ = {isa = PBXBuildFile; fileRef = CE71BD4C1C0824ED007F35CC /* monster-2.png */; };
 		CE9057271BDB39550027EDF1 /* collection-red.png in Resources */ = {isa = PBXBuildFile; fileRef = CE9057261BDB39550027EDF1 /* collection-red.png */; };
 		CE9057291BDC2B410027EDF1 /* GuideTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9057281BDC2B410027EDF1 /* GuideTableViewController.swift */; };
 		CE90572B1BDC335A0027EDF1 /* GuideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90572A1BDC335A0027EDF1 /* GuideTableViewCell.swift */; };
@@ -162,16 +167,24 @@
 		CECE75961BBE456700B2911C /* DiamondViolet.png in Resources */ = {isa = PBXBuildFile; fileRef = CECE75921BBE456700B2911C /* DiamondViolet.png */; };
 		CED065B91BAB871700C9CBAC /* worker.png in Resources */ = {isa = PBXBuildFile; fileRef = CED065B81BAB871700C9CBAC /* worker.png */; };
 		CED065BB1BABA5BC00C9CBAC /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED065BA1BABA5BC00C9CBAC /* MyUtils.swift */; };
+		CED1E5171BFE8BBA00E38E05 /* skill-1-lock.png in Resources */ = {isa = PBXBuildFile; fileRef = CED1E5141BFE8BBA00E38E05 /* skill-1-lock.png */; };
+		CED1E5181BFE8BBA00E38E05 /* skill-2-lock.png in Resources */ = {isa = PBXBuildFile; fileRef = CED1E5151BFE8BBA00E38E05 /* skill-2-lock.png */; };
+		CED1E5191BFE8BBA00E38E05 /* skill-3-lock.png in Resources */ = {isa = PBXBuildFile; fileRef = CED1E5161BFE8BBA00E38E05 /* skill-3-lock.png */; };
+		CED1E51B1BFE8BCA00E38E05 /* shoot copy.png in Resources */ = {isa = PBXBuildFile; fileRef = CED1E51A1BFE8BCA00E38E05 /* shoot copy.png */; };
+		CED1E5201BFE8DCF00E38E05 /* falseOption.png in Resources */ = {isa = PBXBuildFile; fileRef = CED1E51C1BFE8DCF00E38E05 /* falseOption.png */; };
+		CED1E5211BFE8DCF00E38E05 /* trueOption.png in Resources */ = {isa = PBXBuildFile; fileRef = CED1E51D1BFE8DCF00E38E05 /* trueOption.png */; };
+		CED1E5221BFE8DCF00E38E05 /* Return.png in Resources */ = {isa = PBXBuildFile; fileRef = CED1E51E1BFE8DCF00E38E05 /* Return.png */; };
+		CED1E5231BFE8DCF00E38E05 /* PauseBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CED1E51F1BFE8DCF00E38E05 /* PauseBackground.png */; };
 		CEE8E19B1BCE025400A78EA8 /* GameSceneSpecial.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE8E19A1BCE025400A78EA8 /* GameSceneSpecial.swift */; };
 		CEE8E19D1BCE02B300A78EA8 /* SpecialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE8E19C1BCE02B300A78EA8 /* SpecialViewController.swift */; };
 		CEF066151BA8EB1500927C86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF066141BA8EB1500927C86 /* AppDelegate.swift */; };
 		CEF066191BA8EB1500927C86 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF066181BA8EB1500927C86 /* GameScene.swift */; };
 		CEF0661B1BA8EB1500927C86 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0661A1BA8EB1500927C86 /* GameViewController.swift */; };
-		CEF0661E1BA8EB1500927C86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEF0661C1BA8EB1500927C86 /* Main.storyboard */; };
 		CEF066201BA8EB1500927C86 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF0661F1BA8EB1500927C86 /* Images.xcassets */; };
 		CEF066231BA8EB1500927C86 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEF066211BA8EB1500927C86 /* LaunchScreen.xib */; };
 		CEF0662F1BA8EB1500927C86 /* CS526_FIRST_DEMOTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF0662E1BA8EB1500927C86 /* CS526_FIRST_DEMOTests.swift */; };
 		CEF0663E1BA8F27600927C86 /* testbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = CEF0663D1BA8F27600927C86 /* testbackground.png */; };
+		F7CB9FCA1C0E703000EFDB7A /* monster-2.png in Resources */ = {isa = PBXBuildFile; fileRef = F7CB9FC91C0E703000EFDB7A /* monster-2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -206,8 +219,13 @@
 		CE1EC5851BDC50FF007573D3 /* collection-violet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collection-violet.png"; sourceTree = "<group>"; };
 		CE1EC5861BDC50FF007573D3 /* collection-yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collection-yellow.png"; sourceTree = "<group>"; };
 		CE1EC58C1BDD4959007573D3 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		CE527DFD1C01433100C48F02 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		CE5710951C00F4FB009AE30C /* replay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = replay.png; sourceTree = "<group>"; };
+		CE5710961C00F4FB009AE30C /* BackToMain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackToMain.png; sourceTree = "<group>"; };
+		CE57109B1C012E79009AE30C /* MonsterGameOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonsterGameOverViewController.swift; sourceTree = "<group>"; };
 		CE591FC41BD3034D0051E479 /* BlackGem.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BlackGem.sks; sourceTree = "<group>"; };
 		CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		CE71BD4C1C0824ED007F35CC /* monster-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "monster-2.png"; sourceTree = "<group>"; };
 		CE9057261BDB39550027EDF1 /* collection-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "collection-red.png"; sourceTree = "<group>"; };
 		CE9057281BDC2B410027EDF1 /* GuideTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideTableViewController.swift; sourceTree = "<group>"; };
 		CE90572A1BDC335A0027EDF1 /* GuideTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideTableViewCell.swift; sourceTree = "<group>"; };
@@ -340,6 +358,14 @@
 		CECE75921BBE456700B2911C /* DiamondViolet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DiamondViolet.png; sourceTree = "<group>"; };
 		CED065B81BAB871700C9CBAC /* worker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = worker.png; sourceTree = "<group>"; };
 		CED065BA1BABA5BC00C9CBAC /* MyUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = "<group>"; };
+		CED1E5141BFE8BBA00E38E05 /* skill-1-lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skill-1-lock.png"; sourceTree = "<group>"; };
+		CED1E5151BFE8BBA00E38E05 /* skill-2-lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skill-2-lock.png"; sourceTree = "<group>"; };
+		CED1E5161BFE8BBA00E38E05 /* skill-3-lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "skill-3-lock.png"; sourceTree = "<group>"; };
+		CED1E51A1BFE8BCA00E38E05 /* shoot copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shoot copy.png"; sourceTree = "<group>"; };
+		CED1E51C1BFE8DCF00E38E05 /* falseOption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falseOption.png; sourceTree = "<group>"; };
+		CED1E51D1BFE8DCF00E38E05 /* trueOption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trueOption.png; sourceTree = "<group>"; };
+		CED1E51E1BFE8DCF00E38E05 /* Return.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Return.png; sourceTree = "<group>"; };
+		CED1E51F1BFE8DCF00E38E05 /* PauseBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PauseBackground.png; sourceTree = "<group>"; };
 		CEE8E19A1BCE025400A78EA8 /* GameSceneSpecial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSceneSpecial.swift; sourceTree = "<group>"; };
 		CEE8E19C1BCE02B300A78EA8 /* SpecialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecialViewController.swift; sourceTree = "<group>"; };
 		CEF0660F1BA8EB1500927C86 /* CS526 FIRST DEMO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CS526 FIRST DEMO.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -347,13 +373,13 @@
 		CEF066141BA8EB1500927C86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEF066181BA8EB1500927C86 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		CEF0661A1BA8EB1500927C86 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		CEF0661D1BA8EB1500927C86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEF0661F1BA8EB1500927C86 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CEF066221BA8EB1500927C86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		CEF066281BA8EB1500927C86 /* CS526 FIRST DEMOTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CS526 FIRST DEMOTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF0662D1BA8EB1500927C86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEF0662E1BA8EB1500927C86 /* CS526_FIRST_DEMOTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CS526_FIRST_DEMOTests.swift; sourceTree = "<group>"; };
 		CEF0663D1BA8F27600927C86 /* testbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testbackground.png; sourceTree = "<group>"; };
+		F7CB9FC91C0E703000EFDB7A /* monster-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "monster-2.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -502,15 +528,11 @@
 				CE5B49F41BBB8A4000E4DBA4 /* GameOverScene.swift */,
 				CEB567391BD6EBD700FBA2F0 /* GameOverViewController.swift */,
 				CED065BA1BABA5BC00C9CBAC /* MyUtils.swift */,
-				CE9057281BDC2B410027EDF1 /* GuideTableViewController.swift */,
 				CEF0661A1BA8EB1500927C86 /* GameViewController.swift */,
-				CEE8E19C1BCE02B300A78EA8 /* SpecialViewController.swift */,
 				CEC1250F1BCAD8FD0007A88A /* StartGameViewController.swift */,
-				00784A481BD7603C00B54E63 /* SettingView.swift */,
-				CEE8E19A1BCE025400A78EA8 /* GameSceneSpecial.swift */,
-				CE90572A1BDC335A0027EDF1 /* GuideTableViewCell.swift */,
 				CE01549E1BE27FB600BF1711 /* MonsterGameScene.swift */,
 				CE0154A01BE280D500BF1711 /* MonsterViewController.swift */,
+				CE527DFD1C01433100C48F02 /* Main.storyboard */,
 				CEF0661F1BA8EB1500927C86 /* Images.xcassets */,
 				CEF066121BA8EB1500927C86 /* Supporting Files */,
 			);
@@ -520,10 +542,15 @@
 		CEF066121BA8EB1500927C86 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CE57109B1C012E79009AE30C /* MonsterGameOverViewController.swift */,
+				CE90572A1BDC335A0027EDF1 /* GuideTableViewCell.swift */,
+				CEE8E19A1BCE025400A78EA8 /* GameSceneSpecial.swift */,
+				00784A481BD7603C00B54E63 /* SettingView.swift */,
+				CEE8E19C1BCE02B300A78EA8 /* SpecialViewController.swift */,
+				CE9057281BDC2B410027EDF1 /* GuideTableViewController.swift */,
 				1FE91D0F1BC2EBDD00132486 /* gem.swift */,
 				CE1EC58C1BDD4959007573D3 /* Collection.swift */,
 				CEF066141BA8EB1500927C86 /* AppDelegate.swift */,
-				CEF0661C1BA8EB1500927C86 /* Main.storyboard */,
 				CEF066211BA8EB1500927C86 /* LaunchScreen.xib */,
 				CEF066131BA8EB1500927C86 /* Info.plist */,
 			);
@@ -550,6 +577,13 @@
 		CEF066381BA8EF1200927C86 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				F7CB9FC91C0E703000EFDB7A /* monster-2.png */,
+				CE5710951C00F4FB009AE30C /* replay.png */,
+				CE5710961C00F4FB009AE30C /* BackToMain.png */,
+				CED1E51A1BFE8BCA00E38E05 /* shoot copy.png */,
+				CED1E5141BFE8BBA00E38E05 /* skill-1-lock.png */,
+				CED1E5151BFE8BBA00E38E05 /* skill-2-lock.png */,
+				CED1E5161BFE8BBA00E38E05 /* skill-3-lock.png */,
 				CE0154B01BE2D32200BF1711 /* monsterAttack1.png */,
 				CE0154A61BE28F1400BF1711 /* skill-3.png */,
 				CE0154A71BE28F1400BF1711 /* skill-2.png */,
@@ -584,6 +618,10 @@
 				CEC499811BD2D737005CAFF1 /* fightground_yingyachengbao.jpg */,
 				CEC499691BD2D718005CAFF1 /* evolutionlv_1.png */,
 				CEC4996A1BD2D718005CAFF1 /* evolutionlv_2.png */,
+				CED1E51C1BFE8DCF00E38E05 /* falseOption.png */,
+				CED1E51D1BFE8DCF00E38E05 /* trueOption.png */,
+				CED1E51E1BFE8DCF00E38E05 /* Return.png */,
+				CED1E51F1BFE8DCF00E38E05 /* PauseBackground.png */,
 				CEC4996B1BD2D718005CAFF1 /* evolutionlv_3.png */,
 				CEC4996C1BD2D718005CAFF1 /* evolutionlv_4.png */,
 				CEC4996D1BD2D718005CAFF1 /* evolutionlv_5.png */,
@@ -591,6 +629,7 @@
 				CEC4996F1BD2D718005CAFF1 /* evolutionlv_7.png */,
 				CEC499701BD2D718005CAFF1 /* evolutionlv_8.png */,
 				CEC499711BD2D718005CAFF1 /* evolutionlv_9.png */,
+				CE71BD4C1C0824ED007F35CC /* monster-2.png */,
 				CEC499721BD2D718005CAFF1 /* evolutionlv_max.png */,
 				CEC499661BD2D705005CAFF1 /* golden.png */,
 				CE0154AC1BE2A04600BF1711 /* skill-1-eff.png */,
@@ -656,7 +695,7 @@
 				TargetAttributes = {
 					CEF0660E1BA8EB1500927C86 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = ETMB55L5KQ;
+						DevelopmentTeam = GAST4664KV;
 					};
 					CEF066271BA8EB1500927C86 = {
 						CreatedOnToolsVersion = 6.4;
@@ -709,9 +748,12 @@
 				CEC49A351BD2D7AD005CAFF1 /* sound_ui004.mp3 in Resources */,
 				CE94FAA41BD343C4002C0011 /* fightground_heishita_EndPos.jpg in Resources */,
 				CEC499F61BD2D7AD005CAFF1 /* sound_fight_skill001.mp3 in Resources */,
+				F7CB9FCA1C0E703000EFDB7A /* monster-2.png in Resources */,
+				CE71BD4D1C0824ED007F35CC /* monster-2.png in Resources */,
 				CEC0E6361BE003C200C53934 /* char-4.png in Resources */,
 				CEC49A0F1BD2D7AD005CAFF1 /* sound_fight_slash010.mp3 in Resources */,
 				CEC499741BD2D718005CAFF1 /* evolutionlv_1.png in Resources */,
+				CE5710971C00F4FB009AE30C /* replay.png in Resources */,
 				CEC4998B1BD2D750005CAFF1 /* sliver.png in Resources */,
 				CEC499771BD2D718005CAFF1 /* evolutionlv_4.png in Resources */,
 				CEC6D5811BAA6E0C00F9DA7F /* DiamondBlue.png in Resources */,
@@ -719,12 +761,12 @@
 				CEC49A331BD2D7AD005CAFF1 /* sound_ui001.mp3 in Resources */,
 				CEC4998D1BD2D750005CAFF1 /* UIAtlas.png in Resources */,
 				CEC49A151BD2D7AD005CAFF1 /* sound_fight_slash016.mp3 in Resources */,
+				CED1E5171BFE8BBA00E38E05 /* skill-1-lock.png in Resources */,
 				CEC49A1B1BD2D7AD005CAFF1 /* sound_monster001.mp3 in Resources */,
 				CEC49A051BD2D7AD005CAFF1 /* sound_fight_skillhit009.mp3 in Resources */,
 				CEC0E6381BE003C200C53934 /* char-6.png in Resources */,
 				CEF0663E1BA8F27600927C86 /* testbackground.png in Resources */,
 				CEC49A171BD2D7AD005CAFF1 /* sound_fight_throw001.mp3 in Resources */,
-				CEF0661E1BA8EB1500927C86 /* Main.storyboard in Resources */,
 				CEC499851BD2D737005CAFF1 /* fightground_yingyachengbao.jpg in Resources */,
 				CEC499FF1BD2D7AD005CAFF1 /* sound_fight_skillhit003.mp3 in Resources */,
 				CEC499EE1BD2D7AD005CAFF1 /* sound_collect002.mp3 in Resources */,
@@ -738,6 +780,7 @@
 				CEC49A021BD2D7AD005CAFF1 /* sound_fight_skillhit006.mp3 in Resources */,
 				CEC499951BD2D797005CAFF1 /* bgm_002.mp3 in Resources */,
 				CEC499F81BD2D7AD005CAFF1 /* sound_fight_skill003.mp3 in Resources */,
+				CED1E5221BFE8DCF00E38E05 /* Return.png in Resources */,
 				CEC49A341BD2D7AD005CAFF1 /* sound_ui003.mp3 in Resources */,
 				CE9057271BDB39550027EDF1 /* collection-red.png in Resources */,
 				CE94FAA61BD3483C002C0011 /* uiground_1.jpg in Resources */,
@@ -758,10 +801,13 @@
 				CEC49A011BD2D7AD005CAFF1 /* sound_fight_skillhit005.mp3 in Resources */,
 				CEC49A201BD2D7AD005CAFF1 /* sound_monsterdead001.mp3 in Resources */,
 				CEC499ED1BD2D7AD005CAFF1 /* sound_collect001.mp3 in Resources */,
+				CE5710981C00F4FB009AE30C /* BackToMain.png in Resources */,
+				CED1E5181BFE8BBA00E38E05 /* skill-2-lock.png in Resources */,
 				CEC49A3C1BD2D7AD005CAFF1 /* sound_womendead.mp3 in Resources */,
 				CECE75931BBE456700B2911C /* DiamondYellow.png in Resources */,
 				CECE75941BBE456700B2911C /* DiamondGreen.png in Resources */,
 				CEC49A191BD2D7AD005CAFF1 /* sound_hero001.mp3 in Resources */,
+				CE527DFE1C01433100C48F02 /* Main.storyboard in Resources */,
 				CEC49A291BD2D7AD005CAFF1 /* sound_part005.mp3 in Resources */,
 				CE0154AB1BE28F1400BF1711 /* skill-1.png in Resources */,
 				CEC49A311BD2D7AD005CAFF1 /* sound_part016.mp3 in Resources */,
@@ -777,15 +823,18 @@
 				CEC49A281BD2D7AD005CAFF1 /* sound_part004.mp3 in Resources */,
 				CEC499F71BD2D7AD005CAFF1 /* sound_fight_skill002.mp3 in Resources */,
 				CEC49A2D1BD2D7AD005CAFF1 /* sound_part012.mp3 in Resources */,
+				CED1E51B1BFE8BCA00E38E05 /* shoot copy.png in Resources */,
 				CEC499FD1BD2D7AD005CAFF1 /* sound_fight_skillhit001.mp3 in Resources */,
 				CEC49A081BD2D7AD005CAFF1 /* sound_fight_slash003.mp3 in Resources */,
 				CEC49A371BD2D7AD005CAFF1 /* sound_ui006.mp3 in Resources */,
 				CE1EC5811BDC4305007573D3 /* toplabel.png in Resources */,
 				CEC49A381BD2D7AD005CAFF1 /* sound_ui007.mp3 in Resources */,
 				CEC49A091BD2D7AD005CAFF1 /* sound_fight_slash004.mp3 in Resources */,
+				CED1E5191BFE8BBA00E38E05 /* skill-3-lock.png in Resources */,
 				CEC499F41BD2D7AD005CAFF1 /* sound_dig005.mp3 in Resources */,
 				CE0154AD1BE2A04600BF1711 /* skill-1-eff.png in Resources */,
 				CEC499941BD2D797005CAFF1 /* bgm_001.mp3 in Resources */,
+				CED1E5201BFE8DCF00E38E05 /* falseOption.png in Resources */,
 				CEC4997B1BD2D718005CAFF1 /* evolutionlv_8.png in Resources */,
 				CEC49A0B1BD2D7AD005CAFF1 /* sound_fight_slash006.mp3 in Resources */,
 				CEC49A1A1BD2D7AD005CAFF1 /* sound_mandead.mp3 in Resources */,
@@ -793,6 +842,7 @@
 				CED065B91BAB871700C9CBAC /* worker.png in Resources */,
 				CEC49A241BD2D7AD005CAFF1 /* sound_monsterdead005.mp3 in Resources */,
 				CEC499991BD2D797005CAFF1 /* bgm_006.mp3 in Resources */,
+				CED1E5231BFE8DCF00E38E05 /* PauseBackground.png in Resources */,
 				CEC49A3B1BD2D7AD005CAFF1 /* sound_uifight003.mp3 in Resources */,
 				CEC49A2C1BD2D7AD005CAFF1 /* sound_part011.mp3 in Resources */,
 				CEC49A301BD2D7AD005CAFF1 /* sound_part015.mp3 in Resources */,
@@ -812,6 +862,7 @@
 				CECE75961BBE456700B2911C /* DiamondViolet.png in Resources */,
 				CE94FAA21BD343A0002C0011 /* listbase_1.jpg in Resources */,
 				CEC49A131BD2D7AD005CAFF1 /* sound_fight_slash014.mp3 in Resources */,
+				CED1E5211BFE8DCF00E38E05 /* trueOption.png in Resources */,
 				CEC49A251BD2D7AD005CAFF1 /* sound_part001.mp3 in Resources */,
 				CEC499FB1BD2D7AD005CAFF1 /* sound_fight_skill007.mp3 in Resources */,
 				CEC0E6371BE003C200C53934 /* char-5.png in Resources */,
@@ -853,6 +904,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEC125101BCAD8FD0007A88A /* StartGameViewController.swift in Sources */,
+				CE57109C1C012E79009AE30C /* MonsterGameOverViewController.swift in Sources */,
 				00784A491BD7603C00B54E63 /* SettingView.swift in Sources */,
 				CE5B49F51BBB8A4000E4DBA4 /* GameOverScene.swift in Sources */,
 				CE01549F1BE27FB600BF1711 /* MonsterGameScene.swift in Sources */,
@@ -890,14 +942,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CEF0661C1BA8EB1500927C86 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CEF0661D1BA8EB1500927C86 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CEF066211BA8EB1500927C86 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1000,10 +1044,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "CS526 FIRST DEMO/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "nov-3";
+				PRODUCT_BUNDLE_IDENTIFIER = TrippleBubble;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1014,10 +1060,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "CS526 FIRST DEMO/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "nov-3";
+				PRODUCT_BUNDLE_IDENTIFIER = TrippleBubble;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

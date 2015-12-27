@@ -19,6 +19,16 @@ class StartGameViewController: UIViewController {
         return true
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBarHidden = true
+        if #available(iOS 8.0, *) {
+            navigationController?.hidesBarsOnTap = false
+        } else {
+            // Fallback on earlier versions
+        };
+    }
+
 
     
 }

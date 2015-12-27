@@ -1,0 +1,44 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "ED11001210748AFFDE3680B24D3B75B2BEE2DEC0+++1B10BC3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "ED11001210748AFFDE3680B24D3B75B2BEE2DEC0+++9C5F2A8" : 0,
+    "ED11001210748AFFDE3680B24D3B75B2BEE2DEC0+++1B10BC3" : 0,
+    "ED11001210748AFFDE3680B24D3B75B2BEE2DEC0+++69E4A8E" : 0,
+    "ED11001210748AFFDE3680B24D3B75B2BEE2DEC0+++8FE8465" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9BA04D0C-1D95-4A5D-9934-3FFF44CF8EF9",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "ED11001210748AFFDE3680B24D3B75B2BEE2DEC0+++9C5F2A8" : "",
+    "ED11001210748AFFDE3680B24D3B75B2BEE2DEC0+++1B10BC3" : "TrippleBubble\/",
+    "ED11001210748AFFDE3680B24D3B75B2BEE2DEC0+++69E4A8E" : "cs%20526%20demo%202\/",
+    "ED11001210748AFFDE3680B24D3B75B2BEE2DEC0+++8FE8465" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CS526 FIRST DEMO",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CS526 FIRST DEMO.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/triplebubble\/demo2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "ED11001210748AFFDE3680B24D3B75B2BEE2DEC0+++1B10BC3"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/triplebubble\/demo2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "ED11001210748AFFDE3680B24D3B75B2BEE2DEC0+++69E4A8E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/triplebubble\/demo2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "ED11001210748AFFDE3680B24D3B75B2BEE2DEC0+++8FE8465"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mingjiej\/CS526-FIRST-DEMO1.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "ED11001210748AFFDE3680B24D3B75B2BEE2DEC0+++9C5F2A8"
+    }
+  ]
+}

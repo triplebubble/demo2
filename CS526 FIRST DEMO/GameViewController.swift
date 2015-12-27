@@ -26,8 +26,11 @@ class GameViewController: UIViewController {
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
+    
+    
 
     func test(score: String, mode: Int) {
+//        self.view.removeFromSuperview()
         totalscore = score
         index = mode
         performSegueWithIdentifier("test", sender: nil)
@@ -42,11 +45,11 @@ class GameViewController: UIViewController {
     }
     // move to setting view
 
-        @IBAction func toSetting(sender: UIButton) {
-        
-        let menuView = self.storyboard?.instantiateViewControllerWithIdentifier("settingView") as! SettingView
-        self.presentViewController(menuView, animated: false, completion: nil)
-    }
+//        @IBAction func toSetting(sender: UIButton) {
+//        
+//        let menuView = self.storyboard?.instantiateViewControllerWithIdentifier("settingView") as! SettingView
+//        self.presentViewController(menuView, animated: false, completion: nil)
+//    }
 
 
 }
